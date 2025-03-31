@@ -3,6 +3,7 @@ import { RouterProvider as AriaRouterProvider } from 'react-aria';
 import { createBrowserRouter, Outlet, RouterProvider, useHref, useNavigate, type NavigateOptions, type To } from 'react-router';
 import { IndexRoute } from './routes/IndexRoute';
 import { RootRoute } from './routes/RootRoute';
+import YouCommonAnchorRoute from './routes/YouCommonAnchorRoute';
 
 export const ReactAriaProvider: FC = (): ReactNode => {
   const navigate = useNavigate();
@@ -25,6 +26,15 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <IndexRoute />,
+          },
+          {
+            path: 'components',
+            children: [
+              {
+                path: 'you-common-anchor',
+                element: <YouCommonAnchorRoute />,
+              },
+            ],
           },
         ],
       },
