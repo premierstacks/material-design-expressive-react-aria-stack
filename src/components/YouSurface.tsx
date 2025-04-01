@@ -23,7 +23,7 @@ const styles = stylex.create({
     borderTopRightRadius: youSysShape.cornerLarge,
   },
   br: {
-    borderBottomLeftRadius: youSysShape.cornerLarge,
+    borderBottomRightRadius: youSysShape.cornerLarge,
   },
   bl: {
     borderBottomLeftRadius: youSysShape.cornerLarge,
