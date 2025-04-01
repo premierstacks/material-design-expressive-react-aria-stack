@@ -1,4 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
+import 'core-js/actual';
 import { stylexify } from '../src/helpers/stylex';
 import { youSysColor } from '../src/vars/sys.stylex';
 
