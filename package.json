@@ -1,16 +1,16 @@
 {
-  "name": "@premierstacks/browser-webpack-typescript-react-library-template",
-  "description": "premierstacks browser webpack typescript react library template",
+  "name": "@premierstacks/material-design-you-react-aria-stack",
+  "description": "material design you react aria stack",
   "keywords": [
     "tomchochola",
     "tomaschochola",
     "premierstacks",
-    "browser-webpack-typescript-react-library-template"
+    "material-design-you-react-aria-stack"
   ],
-  "homepage": "https://github.com/premierstacks/browser-webpack-typescript-react-library-template",
+  "homepage": "https://github.com/premierstacks/material-design-you-react-aria-stack",
   "bugs": {
     "email": "chocholatom1997@gmail.com",
-    "url": "https://github.com/premierstacks/browser-webpack-typescript-react-library-template/issues"
+    "url": "https://github.com/premierstacks/material-design-you-react-aria-stack/issues"
   },
   "license": "Apache-2.0",
   "author": {
@@ -29,7 +29,7 @@
     "type": "github",
     "url": "https://github.com/sponsors/tomchochola"
   },
-  "repository": "github:premierstacks/browser-webpack-typescript-react-library-template",
+  "repository": "github:premierstacks/material-design-you-react-aria-stack",
   "dependencies": {
     "@internationalized/date": "^3.7",
     "@internationalized/number": "^3.6",
