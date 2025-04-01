@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
-import { YouCommonAnchor } from '../../src/components/YouCommonAnchor';
-import { YouPillShape } from '../../src/shapes/YouPillShape';
+import { YouCommonAnchor, YouPillShape } from '../../src';
 
 export default function YouCommonAnchorRoute(): ReactNode {
   return (
