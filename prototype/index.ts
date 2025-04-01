@@ -15,7 +15,7 @@ stylexify(
     base: {
       color: `rgb(${youSysColor.onSurface})`,
       backgroundColor: `rgb(${youSysColor.surfaceContainer})`,
-      scrollbarColor: `rgb(${youSysColor.outline}) red`,
+      scrollbarColor: `rgb(${youSysColor.outline}) transparent`,
     },
   }).base,
 );
