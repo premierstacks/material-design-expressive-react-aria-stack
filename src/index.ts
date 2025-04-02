@@ -42,7 +42,3 @@ export * from './components/YouTildeRule';
 export * from './components/YouToggleIconButton';
 export * from './components/YouTopAppBar';
 export * from './components/YouWiggleRule';
-
-export * from './vars/ref.stylex';
-export * from './vars/styles.stylex';
-export * from './vars/sys.stylex';
