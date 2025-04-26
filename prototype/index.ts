@@ -1,3 +1,5 @@
+import '../src/css/styles';
+
 import 'core-js/actual';
 
 import * as stylex from '@stylexjs/stylex';

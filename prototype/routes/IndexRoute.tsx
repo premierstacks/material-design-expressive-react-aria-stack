@@ -1,7 +1,7 @@
-import type { FC, ReactNode } from 'react';
+import type { ReactElement } from 'react';
 import { Link } from 'react-aria-components';
 
-export const IndexRoute: FC = (): ReactNode => {
+export function IndexRoute(): ReactElement {
   return (
     <main>
       <nav>
@@ -32,4 +32,4 @@ export const IndexRoute: FC = (): ReactNode => {
       </nav>
     </main>
   );
-};
+}
