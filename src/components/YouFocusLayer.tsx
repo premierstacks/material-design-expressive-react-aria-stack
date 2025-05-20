@@ -1,38 +1,59 @@
 import * as stylex from '@stylexjs/stylex';
-import type { FC, HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactElement } from 'react';
 import { youSysColor } from '../vars/sys.stylex';
 
-export interface YouFocusLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'children'> {
-  isFocusVisible?: boolean | undefined;
-  isInset?: boolean | undefined;
-  xstyle?: stylex.StyleXStyles | undefined;
+export interface YouFocusLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
+  readonly isFocusVisible?: boolean;
+  readonly isInset?: boolean;
+  readonly xstyle?: stylex.StyleXStyles;
 }
 
 const rootStyles = stylex.create({
   base: {
-    borderColor: `rgb(${youSysColor.secondary})`,
-    borderRadius: 'inherit',
-    borderStyle: 'solid',
-    borderWidth: 0,
-    inset: 0,
+    borderBottomColor: `rgb(${youSysColor.secondary})`,
+    borderBottomLeftRadius: 'inherit',
+    borderBottomRightRadius: 'inherit',
+    borderBottomStyle: 'solid',
+    borderBottomWidth: 0,
+    borderLeftColor: `rgb(${youSysColor.secondary})`,
+    borderLeftStyle: 'solid',
+    borderLeftWidth: 0,
+    borderRightColor: `rgb(${youSysColor.secondary})`,
+    borderRightStyle: 'solid',
+    borderRightWidth: 0,
+    borderTopColor: `rgb(${youSysColor.secondary})`,
+    borderTopLeftRadius: 'inherit',
+    borderTopRightRadius: 'inherit',
+    borderTopStyle: 'solid',
+    borderTopWidth: 0,
+    bottom: 0,
+    left: 0,
     outlineColor: `rgb(${youSysColor.secondary})`,
-    outlineOffset: 2,
+    outlineOffset: '2px',
     outlineStyle: 'solid',
-    outlineWidth: 0,
-    overflow: 'hidden',
+    outlineWidth: '0px',
+    overflowX: 'hidden',
+    overflowY: 'hidden',
     pointerEvents: 'none',
     position: 'absolute',
+    right: 0,
+    top: 0,
     userSelect: 'none',
     zIndex: 90,
   },
   inset: {
-    borderWidth: 3,
+    borderBottomWidth: 3,
+    borderLeftWidth: 3,
+    borderRightWidth: 3,
+    borderTopWidth: 3,
   },
   outline: {
-    outlineWidth: 3,
+    outlineWidth: '3px',
   },
 });
 
-export const YouFocusLayer: FC<YouFocusLayerProps> = ({ isFocusVisible, isInset, xstyle, ...props }: YouFocusLayerProps): ReactNode => {
-  return <div {...stylex.props(rootStyles.base, isFocusVisible ? (isInset ? rootStyles.inset : rootStyles.outline) : null, xstyle)} {...props} />;
-};
+export function YouFocusLayer({ isFocusVisible = false, isInset = false, xstyle, ...props }: YouFocusLayerProps): ReactElement {
+  const inset = isInset ? rootStyles.inset : rootStyles.outline;
+
+  return <div {...stylex.props(rootStyles.base, isFocusVisible ? inset : null, xstyle)} {...props} />;
+}

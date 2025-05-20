@@ -1,21 +1,21 @@
 import * as stylex from '@stylexjs/stylex';
-import type { FC, ReactNode, SVGAttributes } from 'react';
+import type { ReactElement, SVGAttributes } from 'react';
 import { useId } from 'react';
 import { youSysColor } from '../vars/sys.stylex';
 
-interface YouWiggleRuleProps extends Omit<SVGAttributes<SVGSVGElement>, 'style' | 'children'> {
-  xstyle?: stylex.StyleXStyles | undefined;
+interface YouWiggleRuleProps extends Omit<SVGAttributes<SVGSVGElement>, 'style' | 'className' | 'children'> {
+  readonly xstyle?: stylex.StyleXStyles;
 }
 
 const styles = stylex.create({
   base: {
-    position: 'relative',
-    display: 'block',
     color: `rgb(${youSysColor.outlineVariant})`,
+    display: 'block',
+    position: 'relative',
   },
 });
 
-export const YouWiggleRule: FC<YouWiggleRuleProps> = ({ xstyle, ...props }: YouWiggleRuleProps): ReactNode => {
+export function YouWiggleRule({ xstyle, ...props }: YouWiggleRuleProps): ReactElement {
   const id = useId();
 
   return (
@@ -30,4 +30,4 @@ export const YouWiggleRule: FC<YouWiggleRuleProps> = ({ xstyle, ...props }: YouW
       <rect width="100%" height="100%" fill={`url(#${id})`} />
     </svg>
   );
-};
+}

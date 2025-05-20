@@ -1,53 +1,43 @@
 import * as stylex from '@stylexjs/stylex';
-import type { FC, HTMLAttributes } from 'react';
+import type { HTMLAttributes, ReactElement, ReactNode } from 'react';
 import { youStylesTypography } from '../vars/styles.stylex';
 import { youSysColor, youSysMotion } from '../vars/sys.stylex';
 
-interface YouTopAppBarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style'> {
-  xstyle?: stylex.StyleXStyles | undefined;
-  isFixed?: boolean | undefined;
-  isOffscreen?: boolean | undefined;
-  isSticky?: boolean | undefined;
-  isSurfaceContainer?: boolean | undefined;
-  isSurfaceContainerLowest?: boolean | undefined;
-  isSurfaceBright?: boolean | undefined;
-  isSurface?: boolean | undefined;
-  isSurfaceDim?: boolean | undefined;
-  leading?: React.ReactNode;
-  trailing?: React.ReactNode;
-  isPadded?: boolean | undefined;
-  isCentered?: boolean | undefined;
+interface YouSmallTopAppBarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className'> {
+  readonly xstyle?: stylex.StyleXStyles;
+  readonly isFixed?: boolean;
+  readonly isOffScreen?: boolean;
+  readonly isSticky?: boolean;
+  readonly isSurfaceContainer?: boolean;
+  readonly isSurfaceContainerLowest?: boolean;
+  readonly isSurfaceBright?: boolean;
+  readonly isSurface?: boolean;
+  readonly isSurfaceDim?: boolean;
+  readonly leading?: ReactNode;
+  readonly trailing?: ReactNode;
+  readonly isPadded?: boolean;
+  readonly isCentered?: boolean;
 }
 
 const styles = stylex.create({
   base: {
-    position: 'relative',
-    display: 'grid',
-    gridTemplateColumns: '1fr',
-    columnGap: 16,
     alignItems: 'center',
-    height: 64,
-    transitionTimingFunction: youSysMotion.easingEmphasized,
-    transitionDuration: youSysMotion.durationEmphasized,
-    transitionProperties: 'left, right, top, bottom, transform',
-  },
-  hasLeading: {
-    gridTemplateColumns: 'auto 1fr',
-  },
-  hasLeadingAndTrailing: {
+    columnGap: 16,
+    display: 'grid',
     gridTemplateColumns: 'auto 1fr auto',
-  },
-  isCentered: {
-    gridTemplateColumns: '1fr auto 1fr',
-  },
-  isPadded: {
-    paddingInline: 16,
+    height: 64,
+    paddingLeft: 16,
+    paddingRight: 16,
+    position: 'relative',
+    transitionDuration: youSysMotion.durationEmphasized,
+    transitionProperty: 'left, right, top, bottom, transform',
+    transitionTimingFunction: youSysMotion.easingEmphasized,
   },
   isSticky: {
-    position: 'sticky',
-    top: 0,
     left: 0,
+    position: 'sticky',
     right: 0,
+    top: 0,
     zIndex: 40,
   },
   isSurfaceContainer: {
@@ -72,61 +62,55 @@ const styles = stylex.create({
     transform: 'translateY(0%)',
   },
   leading: {
+    alignItems: 'center',
     color: `rgb(${youSysColor.onSurface})`,
     display: 'flex',
-    alignItems: 'center',
   },
   children: {
+    alignItems: 'center',
     color: `rgb(${youSysColor.onSurface})`,
     display: 'flex',
-    alignItems: 'center',
   },
   trailing: {
-    justifySelf: 'end',
+    alignItems: 'center',
     color: `rgb(${youSysColor.onSurfaceVariant})`,
     display: 'flex',
-    alignItems: 'center',
+    justifySelf: 'end',
   },
 });
 
-export const YouTopAppBar: FC<YouTopAppBarProps> = ({
+export function YouSmallTopAppBar({
   xstyle,
-  isSticky,
-  isOffscreen,
-  isSurfaceContainer,
-  isSurfaceContainerLowest,
-  isSurfaceBright,
-  isSurface,
-  isSurfaceDim,
+  isSticky = false,
+  isOffScreen = false,
+  isSurfaceContainer = false,
+  isSurfaceContainerLowest = false,
+  isSurfaceBright = false,
+  isSurface = false,
+  isSurfaceDim = false,
   leading,
   trailing,
   children,
-  isPadded,
-  isCentered,
   ...props
-}: YouTopAppBarProps) => {
+}: YouSmallTopAppBarProps): ReactElement {
   return (
     <div
       {...stylex.props(
         styles.base,
-        leading ? styles.hasLeading : null,
-        leading && trailing ? styles.hasLeadingAndTrailing : null,
-        isCentered ? styles.isCentered : null,
-        isPadded ? styles.isPadded : null,
         isSticky ? styles.isSticky : null,
         isSurfaceContainer ? styles.isSurfaceContainer : null,
         isSurfaceContainerLowest ? styles.isSurfaceContainerLowest : null,
         isSurfaceBright ? styles.isSurfaceBright : null,
         isSurface ? styles.isSurface : null,
         isSurfaceDim ? styles.isSurfaceDim : null,
-        isOffscreen ? styles.isOffScreen : styles.isOnScreen,
+        isOffScreen ? styles.isOffScreen : styles.isOnScreen,
         xstyle,
       )}
       {...props}
     >
-      {leading ? <div {...stylex.props(styles.leading)}>{leading}</div> : null}
-      {children ? <div {...stylex.props(styles.children, youStylesTypography.titleLarge)}>{children}</div> : null}
-      {trailing ? <div {...stylex.props(styles.trailing)}>{trailing}</div> : null}
+      <div {...stylex.props(styles.leading)}>{leading}</div>
+      <div {...stylex.props(styles.children, youStylesTypography.titleLarge)}>{children}</div>
+      <div {...stylex.props(styles.trailing)}>{trailing}</div>
     </div>
   );
-};
+}

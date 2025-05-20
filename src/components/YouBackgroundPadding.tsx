@@ -1,13 +1,13 @@
 import * as stylex from '@stylexjs/stylex';
-import type { FC, HTMLProps, ReactNode } from 'react';
+import type { HTMLProps, ReactElement } from 'react';
 import { useScreen } from '../hooks/media';
 
-interface YouBackgroundPaddingProps extends Omit<HTMLProps<HTMLDivElement>, 'style'> {
-  xstyle?: stylex.StyleXStyles | undefined;
-  top?: boolean | undefined;
-  right?: boolean | undefined;
-  bottom?: boolean | undefined;
-  left?: boolean | undefined;
+interface YouBackgroundPaddingProps extends Omit<HTMLProps<HTMLDivElement>, 'style' | 'className'> {
+  readonly xstyle?: stylex.StyleXStyles;
+  readonly top?: boolean;
+  readonly right?: boolean;
+  readonly bottom?: boolean;
+  readonly left?: boolean;
 }
 
 const styles = stylex.create({
@@ -19,7 +19,7 @@ const styles = stylex.create({
   rightLarge: { paddingRight: 24 },
 });
 
-export const YouBackgroundPadding: FC<YouBackgroundPaddingProps> = ({ xstyle, top, right, bottom, left, ...props }: YouBackgroundPaddingProps): ReactNode => {
+export function YouBackgroundPadding({ xstyle, top = false, right = false, bottom = false, left = false, ...props }: YouBackgroundPaddingProps): ReactElement {
   const { extraLarge, large, expanded } = useScreen();
 
   return (
@@ -36,4 +36,4 @@ export const YouBackgroundPadding: FC<YouBackgroundPaddingProps> = ({ xstyle, to
       {...props}
     />
   );
-};
+}

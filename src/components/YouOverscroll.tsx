@@ -1,17 +1,17 @@
 import * as stylex from '@stylexjs/stylex';
-import type { FC, HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactElement } from 'react';
 
-interface YouOverscrollProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style'> {
-  xstyle?: stylex.StyleXStyles | undefined;
+interface YouOverscrollProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className'> {
+  readonly xstyle?: stylex.StyleXStyles;
 }
 
 const styles = stylex.create({
   base: {
-    position: 'relative',
     height: '50vh',
+    position: 'relative',
   },
 });
 
-export const YouOverscroll: FC<YouOverscrollProps> = ({ xstyle, ...props }: YouOverscrollProps): ReactNode => {
+export function YouOverscroll({ xstyle, ...props }: YouOverscrollProps): ReactElement {
   return <div {...stylex.props(styles.base, xstyle)} {...props} />;
-};
+}

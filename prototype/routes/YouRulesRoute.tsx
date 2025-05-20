@@ -1,18 +1,15 @@
-import type { ReactNode } from 'react';
+import type { ReactElement } from 'react';
 import { YouHorizontalRule, YouTildeRule, YouWiggleRule } from '../../src';
+import { PrototypeDisplay } from '../components/PrototypeDisplay';
 
-export default function YouRulesRoute(): ReactNode {
+export function YouRulesRoute(): ReactElement {
   return (
-    <main style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouHorizontalRule />
-      </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouWiggleRule />
-      </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouTildeRule />
-      </div>
-    </main>
+    <PrototypeDisplay>
+      {[
+        <YouHorizontalRule key={1} />,
+        <YouTildeRule key={2} />,
+        <YouWiggleRule key={3} />,
+      ]}
+    </PrototypeDisplay>
   );
 }

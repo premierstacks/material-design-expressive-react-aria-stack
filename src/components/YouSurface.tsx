@@ -1,14 +1,14 @@
 import * as stylex from '@stylexjs/stylex';
-import type { FC, HTMLProps, ReactNode } from 'react';
+import type { HTMLProps, ReactElement } from 'react';
 import { youSysColor, youSysShape } from '../vars/sys.stylex';
 
-interface SurfaceProps extends Omit<HTMLProps<HTMLDivElement>, 'style'> {
-  xstyle?: stylex.StyleXStyles | undefined;
-  isRounded?: boolean | undefined;
-  tl?: boolean | undefined;
-  tr?: boolean | undefined;
-  br?: boolean | undefined;
-  bl?: boolean | undefined;
+interface SurfaceProps extends Omit<HTMLProps<HTMLDivElement>, 'style' | 'className'> {
+  readonly xstyle?: stylex.StyleXStyles;
+  readonly isRounded?: boolean;
+  readonly topleft?: boolean;
+  readonly topright?: boolean;
+  readonly bottomright?: boolean;
+  readonly bottomleft?: boolean;
 }
 
 const styles = stylex.create({
@@ -16,20 +16,20 @@ const styles = stylex.create({
     backgroundColor: `rgb(${youSysColor.surface})`,
     color: `rgb(${youSysColor.onSurface})`,
   },
-  tl: {
+  topleft: {
     borderTopLeftRadius: youSysShape.cornerLarge,
   },
-  tr: {
+  topright: {
     borderTopRightRadius: youSysShape.cornerLarge,
   },
-  br: {
+  bottomright: {
     borderBottomRightRadius: youSysShape.cornerLarge,
   },
-  bl: {
+  bottomleft: {
     borderBottomLeftRadius: youSysShape.cornerLarge,
   },
 });
 
-export const Surface: FC<SurfaceProps> = ({ xstyle, tl, tr, bl, br, ...props }: SurfaceProps): ReactNode => {
-  return <div {...stylex.props(styles.base, tl ? styles.tl : null, tr ? styles.tr : null, bl ? styles.bl : null, br ? styles.br : null, xstyle)} {...props} />;
-};
+export function Surface({ xstyle, topleft = false, topright = false, bottomleft = false, bottomright = false, ...props }: SurfaceProps): ReactElement {
+  return <div {...stylex.props(styles.base, topleft ? styles.topleft : null, topright ? styles.topright : null, bottomleft ? styles.bottomleft : null, bottomright ? styles.bottomright : null, xstyle)} {...props} />;
+}

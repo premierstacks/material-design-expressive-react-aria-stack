@@ -1,19 +1,25 @@
 import * as stylex from '@stylexjs/stylex';
-import type { FC, HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactElement } from 'react';
 import { youSysColor } from '../vars/sys.stylex';
 
-interface YouActivationLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'children'> {
-  isActive?: boolean | undefined;
-  xstyle?: stylex.StyleXStyles | undefined;
+interface YouActivationLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
+  readonly isActive?: boolean;
+  readonly xstyle?: stylex.StyleXStyles;
 }
 
 const styles = stylex.create({
   base: {
     backgroundColor: `rgb(${youSysColor.secondaryContainer})`,
-    borderRadius: 'inherit',
-    inset: 0,
+    borderBottomLeftRadius: 'inherit',
+    borderBottomRightRadius: 'inherit',
+    borderTopLeftRadius: 'inherit',
+    borderTopRightRadius: 'inherit',
+    bottom: 0,
+    left: 0,
     pointerEvents: 'none',
     position: 'absolute',
+    right: 0,
+    top: 0,
     userSelect: 'none',
   },
   isActive: {
@@ -26,6 +32,6 @@ const styles = stylex.create({
   },
 });
 
-export const YouActivationLayer: FC<YouActivationLayerProps> = ({ isActive, xstyle, ...props }: YouActivationLayerProps): ReactNode => {
+export function YouActivationLayer({ isActive = false, xstyle, ...props }: YouActivationLayerProps): ReactElement {
   return <div {...stylex.props(styles.base, isActive ? styles.isActive : styles.isInactive, xstyle)} {...props} />;
-};
+}

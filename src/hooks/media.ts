@@ -26,6 +26,26 @@ export const desktopMedia: MediaQueryList = window.matchMedia(desktopQuery);
 export const darkThemeMedia: MediaQueryList = window.matchMedia(darkThemeQuery);
 export const noAnimationMedia: MediaQueryList = window.matchMedia(noAnimationQuery);
 
+export function useMatchMedia(media: MediaQueryList): boolean {
+  const [matches, setMatches] = useState<boolean>(media.matches);
+
+  useEffect(() => {
+    setMatches(media.matches);
+
+    const handleChange = (e: MediaQueryListEvent): void => {
+      setMatches(e.matches);
+    };
+
+    media.addEventListener('change', handleChange);
+
+    return (): void => {
+      media.removeEventListener('change', handleChange);
+    };
+  }, [media]);
+
+  return matches;
+}
+
 export function useMediaCompact(): boolean {
   return useMatchMedia(compactMedia);
 }
@@ -78,28 +98,6 @@ export function useMatchQuery(query: string): boolean {
   const media = useMemo(() => window.matchMedia(query), [query]);
 
   return useMatchMedia(media);
-}
-
-export function useMatchMedia(media: MediaQueryList): boolean {
-  const [matches, setMatches] = useState<boolean>(media.matches);
-
-  void matches;
-
-  useEffect(() => {
-    setMatches(media.matches);
-
-    const handleChange = (e: MediaQueryListEvent): void => {
-      setMatches(e.matches);
-    };
-
-    media.addEventListener('change', handleChange);
-
-    return (): void => {
-      media.removeEventListener('change', handleChange);
-    };
-  }, [media]);
-
-  return media.matches;
 }
 
 export interface DeviceArgs {

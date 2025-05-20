@@ -1,23 +1,30 @@
 import * as stylex from '@stylexjs/stylex';
-import type { FC, HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactElement } from 'react';
 import { youSysState } from '../vars/sys.stylex';
 
-export interface YouInteractionLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'children'> {
-  isDragged?: boolean | undefined;
-  isFocused?: boolean | undefined;
-  isHovered?: boolean | undefined;
-  isPressed?: boolean | undefined;
-  xstyle?: stylex.StyleXStyles | undefined;
+export interface YouInteractionLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
+  readonly isDragged?: boolean;
+  readonly isFocused?: boolean;
+  readonly isHovered?: boolean;
+  readonly isPressed?: boolean;
+  readonly xstyle?: stylex.StyleXStyles;
 }
 
 const rootStyles = stylex.create({
   base: {
     backgroundColor: 'currentColor',
-    borderRadius: 'inherit',
-    inset: 0,
-    overflow: 'hidden',
+    borderBottomLeftRadius: 'inherit',
+    borderBottomRightRadius: 'inherit',
+    borderTopLeftRadius: 'inherit',
+    borderTopRightRadius: 'inherit',
+    bottom: 0,
+    left: 0,
+    overflowX: 'hidden',
+    overflowY: 'hidden',
     pointerEvents: 'none',
     position: 'absolute',
+    right: 0,
+    top: 0,
     userSelect: 'none',
   },
   opacity: (pressed: string, hovered: string, focused: string, dragged: string) => ({
@@ -25,7 +32,7 @@ const rootStyles = stylex.create({
   }),
 });
 
-export const YouInteractionLayer: FC<YouInteractionLayerProps> = ({ isHovered, isPressed, isFocused, isDragged, xstyle, ...props }: YouInteractionLayerProps): ReactNode => {
+export function YouInteractionLayer({ isHovered = false, isPressed = false, isFocused = false, isDragged = false, xstyle, ...props }: YouInteractionLayerProps): ReactElement {
   return (
     <div
       {...stylex.props(
@@ -41,4 +48,4 @@ export const YouInteractionLayer: FC<YouInteractionLayerProps> = ({ isHovered, i
       {...props}
     />
   );
-};
+}

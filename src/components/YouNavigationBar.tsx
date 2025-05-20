@@ -1,36 +1,36 @@
 import * as stylex from '@stylexjs/stylex';
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactElement } from 'react';
 import { youStylesTypography } from '../vars/styles.stylex';
 import { youSysColor, youSysMotion } from '../vars/sys.stylex';
 
 interface YouNavigationBarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className'> {
-  xstyle?: stylex.StyleXStyles | undefined;
-  isHidden?: boolean | undefined;
-  isFixed?: boolean | undefined;
-  isSurfaceContainer?: boolean | undefined;
-  isSurfaceBright?: boolean | undefined;
-  isSurfaceDim?: boolean | undefined;
+  readonly xstyle?: stylex.StyleXStyles;
+  readonly isHidden?: boolean;
+  readonly isFixed?: boolean;
+  readonly isSurfaceContainer?: boolean;
+  readonly isSurfaceBright?: boolean;
+  readonly isSurfaceDim?: boolean;
 }
 
 const styles = stylex.create({
   base: {
-    overflowX: 'hidden',
-    overflowY: 'hidden',
     backgroundColor: `rgb(${youSysColor.surface})`,
     color: `rgb(${youSysColor.onSurfaceVariant})`,
-    height: 80,
-    display: 'flex',
-    rowGap: 8,
     columnGap: 8,
-    transitionTimingFunction: youSysMotion.easingEmphasized,
-    tranisitionDuration: youSysMotion.durationEmphasized,
+    display: 'flex',
+    height: 80,
+    overflowX: 'hidden',
+    overflowY: 'hidden',
+    rowGap: 8,
+    transitionDuration: youSysMotion.durationEmphasized,
     transitionProperty: 'transform',
+    transitionTimingFunction: youSysMotion.easingEmphasized,
   },
   isFixed: {
-    position: 'fixed',
-    right: 0,
     bottom: 0,
     left: 0,
+    position: 'fixed',
+    right: 0,
     zIndex: 50,
   },
   isHidden: {
@@ -44,7 +44,7 @@ const styles = stylex.create({
   isSurfaceDim: { backgroundColor: `rgb(${youSysColor.surfaceDim})` },
 });
 
-export function YouNavigationBar({ xstyle, isHidden, isFixed, isSurfaceBright, isSurfaceContainer, isSurfaceDim, ...props }: YouNavigationBarProps): ReactNode {
+export function YouNavigationBar({ xstyle, isHidden = false, isFixed = false, isSurfaceBright = false, isSurfaceContainer = false, isSurfaceDim = false, ...props }: YouNavigationBarProps): ReactElement {
   return (
     <div
       {...stylex.props(

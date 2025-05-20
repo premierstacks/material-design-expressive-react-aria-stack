@@ -6,28 +6,28 @@ export function IndexRoute(): ReactElement {
     <main>
       <nav>
         <div>
-          <Link href="/components/you-common-anchor">YouCommonAnchor</Link>
+          <Link href="/common-anchor">CommonAnchor</Link>
         </div>
         <div>
-          <Link href="/components/you-common-button">YouCommonButton</Link>
+          <Link href="/common-button">CommonButton</Link>
         </div>
         <div>
-          <Link href="/components/you-common-link">YouCommonLink</Link>
+          <Link href="/common-link">CommonLink</Link>
         </div>
         <div>
-          <Link href="/components/you-fab-button">YouFabButton</Link>
+          <Link href="/icon-button">IconButton</Link>
         </div>
         <div>
-          <Link href="/components/you-icon-button">YouIconButton</Link>
+          <Link href="/toggle-icon-button">ToggleIconButton</Link>
         </div>
         <div>
-          <Link href="/components/you-rules">YouRules</Link>
+          <Link href="/top-app-bar">TopAppBar</Link>
         </div>
         <div>
-          <Link href="/components/you-toggle-icon-button">YouToggleIconButton</Link>
+          <Link href="/rules">Rules</Link>
         </div>
         <div>
-          <Link href="/components/you-top-app-bar">YouTopAppBar</Link>
+          <Link href="/shapes">Shapes</Link>
         </div>
       </nav>
     </main>

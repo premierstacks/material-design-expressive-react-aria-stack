@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
-import type { ReactNode } from 'react';
-import { Link, type LinkProps } from 'react-aria-components';
-import { toClassName, toStyle } from '../helpers/utils';
+import { useCallback, type CSSProperties, type ReactElement, type ReactNode } from 'react';
+import { Link, type LinkProps, type LinkRenderProps } from 'react-aria-components';
+import { toClassName, toCssProperties } from '../helpers/utils';
 import { youStylesTypography } from '../vars/styles.stylex';
 import { youSysColor, youSysMotion, youSysShape, youSysState } from '../vars/sys.stylex';
 import { YouActivationLayer } from './YouActivationLayer';
@@ -9,62 +9,65 @@ import { YouFocusLayer } from './YouFocusLayer';
 import { YouInteractionLayer } from './YouInteractionLayer';
 
 interface NavigationBarLinkProps extends Omit<LinkProps, 'style' | 'className'> {
-  icon: ReactNode;
-  text: ReactNode;
-  isActive?: boolean | undefined;
-  xstyle?: stylex.StyleXStyles | undefined;
+  readonly icon: ReactNode;
+  readonly text: ReactNode;
+  readonly isActive?: boolean;
+  readonly xstyle?: stylex.StyleXStyles;
 }
 
 const styles = stylex.create({
   base: {
-    outlineStyle: 'none',
-    borderTopStyle: 'none',
-    borderRightStyle: 'none',
+    borderBottomLeftRadius: youSysShape.cornerLarge,
+    borderBottomRightRadius: youSysShape.cornerLarge,
     borderBottomStyle: 'none',
     borderLeftStyle: 'none',
-    position: 'relative',
-    cursor: 'pointer',
-    paddingTop: 12,
-    paddingBottom: 16,
-    textAlign: 'center',
+    borderRightStyle: 'none',
+    borderTopLeftRadius: youSysShape.cornerLarge,
+    borderTopRightRadius: youSysShape.cornerLarge,
+    borderTopStyle: 'none',
     color: `rgb(${youSysColor.onSurfaceVariant})`,
-    flexGrow: 1,
-    flexBasis: 0,
-    outlineWidth: 0,
-    whiteSpace: 'nowrap',
+    cursor: 'pointer',
     display: 'block',
+    flexBasis: 0,
+    flexGrow: 1,
     minWidth: 0,
-    borderRadius: youSysShape.cornerLarge,
-    transitionTimingFunction: youSysMotion.easingEmphasized,
-    tranisitionDuration: youSysMotion.durationEmphasized,
+    outlineStyle: 'none',
+    outlineWidth: '0px',
+    paddingBottom: 16,
+    paddingTop: 12,
+    position: 'relative',
+    textAlign: 'center',
+    transitionDuration: youSysMotion.durationEmphasized,
     transitionProperty: 'color',
+    transitionTimingFunction: youSysMotion.easingEmphasized,
+    whiteSpace: 'nowrap',
   },
   isHovered: {
     color: `rgb(${youSysColor.onSurface})`,
   },
   isDisabled: {
+    color: `rgb(${youSysColor.onSurfaceVariant}/${youSysState.disabledContentOpacity})`,
     pointerEvents: 'none',
     userSelect: 'none',
-    color: `rgb(${youSysColor.onSurfaceVariant}/${youSysState.disabledContentOpacity})`,
   },
 });
 
 const badgeStyles = stylex.create({
   base: {
-    width: 56,
+    alignItems: 'center',
+    borderBottomLeftRadius: 16,
+    borderBottomRightRadius: 16,
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    display: 'flex',
     height: 32,
+    justifyContent: 'center',
+    lineHeight: 32,
     marginLeft: 'auto',
     marginRight: 'auto',
     position: 'relative',
-    display: 'flex',
-    lineHeight: 32,
     textAlign: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderTopLeftRadius: 16,
-    borderBottomLeftRadius: 16,
-    borderTopRightRadius: 16,
-    borderBottomRightRadius: 16,
+    width: 56,
   },
   isActive: {
     color: `rgb(${youSysColor.onSecondaryContainer})`,
@@ -80,33 +83,39 @@ const iconStyles = stylex.create({
     display: 'inline-flex',
     fontSize: 24,
     justifyContent: 'center',
+    lineHeight: 1,
     maxHeight: 24,
     maxWidth: 24,
     position: 'relative',
-    lineHeight: 1,
   },
 });
 
 const childrenStyles = stylex.create({
   base: {
     marginTop: 4,
+    overflowX: 'hidden',
+    overflowY: 'hidden',
     textOverflow: 'ellipsis',
-    overflow: 'hidden',
   },
 });
 
-export function NavigationBarLink({ text, icon, xstyle, isActive = false, ...props }: NavigationBarLinkProps): ReactNode {
+export function NavigationBarLink({ children, text, icon, xstyle, isActive = false, ...props }: NavigationBarLinkProps): ReactElement {
+  const ariax = useCallback((args: LinkRenderProps) => {
+    return stylex.props(styles.base, args.isHovered ? styles.isHovered : null, args.isDisabled ? styles.isDisabled : null, youStylesTypography.labelMedium, xstyle);
+  }, [xstyle]);
+
+  const handleClassName = useCallback((args: LinkRenderProps & { defaultClassName: string | undefined }) => {
+    return toClassName(args.defaultClassName, ariax(args).className);
+  }, [ariax]);
+
+  const handleStyle = useCallback((args: LinkRenderProps & { defaultStyle: CSSProperties | undefined }) => {
+    return toCssProperties(args.defaultStyle, ariax(args).style);
+  }, [ariax]);
+
   return (
     <Link
-      style={(args) =>
-        toStyle(args.defaultStyle, stylex.props(styles.base, args.isHovered ? styles.isHovered : null, args.isDisabled ? styles.isDisabled : null, youStylesTypography.labelMedium, xstyle).style)
-      }
-      className={(args) =>
-        toClassName(
-          args.defaultClassName,
-          stylex.props(styles.base, args.isHovered ? styles.isHovered : null, args.isDisabled ? styles.isDisabled : null, youStylesTypography.labelMedium, xstyle).className,
-        )
-      }
+      style={handleStyle}
+      className={handleClassName}
       {...props}
     >
       {(args) => (
@@ -119,7 +128,7 @@ export function NavigationBarLink({ text, icon, xstyle, isActive = false, ...pro
               <YouFocusLayer isFocusVisible={args.isFocusVisible} isInset />
             </div>
           </div>
-          <div {...stylex.props(childrenStyles.base)}>{text}</div>
+          <div {...stylex.props(childrenStyles.base)}>{(typeof children === 'function' ? children(args) : (children ?? text)) ?? args.defaultChildren}</div>
         </>
       )}
     </Link>

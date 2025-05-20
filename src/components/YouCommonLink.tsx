@@ -1,43 +1,46 @@
 import * as stylex from '@stylexjs/stylex';
-import type { ReactNode } from 'react';
-import type { LinkProps } from 'react-aria-components';
+import { useCallback, type CSSProperties, type ReactNode } from 'react';
+import type { LinkProps, LinkRenderProps } from 'react-aria-components';
 import { Link } from 'react-aria-components';
-import { toClassName, toStyle } from '../helpers/utils';
+import { toClassName, toCssProperties } from '../helpers/utils';
 import { youStylesTypography } from '../vars/styles.stylex';
 import { youSysColor, youSysMotion, youSysShape, youSysState } from '../vars/sys.stylex';
 import { YouFocusLayer } from './YouFocusLayer';
 import { YouInteractionLayer } from './YouInteractionLayer';
+import { YouOutlineLayer } from './YouOutlineLayer';
 
-interface YouCommonLinkProps extends Omit<LinkProps, 'style' | 'className'> {
-  isElevated?: boolean | undefined;
-  isFilled?: boolean | undefined;
-  isOutlined?: boolean | undefined;
-  isText?: boolean | undefined;
-  isTonal?: boolean | undefined;
-  leading?: ReactNode | undefined;
-  text?: ReactNode | undefined;
-  xstyle?: stylex.StyleXStyles | undefined;
+interface YouCommonLinkProps extends Omit<LinkProps, 'style' | 'className' | 'children'> {
+  readonly leading?: ReactNode;
+  readonly label: ReactNode;
+  readonly xstyle?: stylex.StyleXStyles;
 }
 
 const styles = stylex.create({
   base: {
     alignItems: 'center',
     backgroundColor: 'transparent',
-    borderStyle: 'none',
+    borderBottomLeftRadius: youSysShape.cornerFull,
+    borderBottomRightRadius: youSysShape.cornerFull,
+    borderBottomStyle: 'none',
+    borderLeftStyle: 'none',
+    borderRightStyle: 'none',
+    borderTopLeftRadius: youSysShape.cornerFull,
+    borderTopRightRadius: youSysShape.cornerFull,
+    borderTopStyle: 'none',
     color: 'inherit',
     display: 'inline-flex',
     height: 40,
     justifyContent: 'center',
     outlineStyle: 'none',
-    paddingInline: 12,
+    paddingLeft: 12,
+    paddingRight: 12,
     position: 'relative',
     textAlign: 'center',
     textDecorationLine: 'inherit',
-    whiteSpace: 'nowrap',
-    borderRadius: youSysShape.cornerFull,
-    transitionTimingFunction: youSysMotion.easingEmphasized,
-    tranisitionDuration: youSysMotion.durationEmphasized,
+    transitionDuration: youSysMotion.durationEmphasized,
     transitionProperty: 'background-color, color, border-color',
+    transitionTimingFunction: youSysMotion.easingEmphasized,
+    whiteSpace: 'nowrap',
   },
   isText: {
     backgroundColor: 'transparent',
@@ -46,25 +49,26 @@ const styles = stylex.create({
   isFilled: {
     backgroundColor: `rgb(${youSysColor.primary})`,
     color: `rgb(${youSysColor.onPrimary})`,
-    paddingInline: 24,
+    paddingLeft: 24,
+    paddingRight: 24,
   },
   isElevated: {
     backgroundColor: `rgb(${youSysColor.surfaceContainerLow})`,
     color: `rgb(${youSysColor.primary})`,
-    paddingInline: 24,
+    paddingLeft: 24,
+    paddingRight: 24,
   },
   isTonal: {
     backgroundColor: `rgb(${youSysColor.secondaryContainer})`,
     color: `rgb(${youSysColor.onSecondaryContainer})`,
-    paddingInline: 24,
+    paddingLeft: 24,
+    paddingRight: 24,
   },
   isOutlined: {
     backgroundColor: 'transparent',
-    borderColor: `rgb(${youSysColor.outline})`,
-    borderStyle: 'solid',
-    borderWidth: 1,
     color: `rgb(${youSysColor.primary})`,
-    paddingInline: 24,
+    paddingLeft: 24,
+    paddingRight: 24,
   },
   hasLeading: {
     paddingRight: 16,
@@ -78,9 +82,6 @@ const styles = stylex.create({
   },
   isDisabledBackground: {
     backgroundColor: `rgb(${youSysColor.onSurfaceVariant}/${youSysState.disabledContainerOpacity})`,
-  },
-  isDisabledOutline: {
-    borderColor: `rgb(${youSysColor.outlineVariant}/${youSysState.disabledOutlineOpacity})`,
   },
   leading: {
     alignItems: 'center',
@@ -98,54 +99,192 @@ const styles = stylex.create({
   },
 });
 
-export function YouCommonLink({ leading, xstyle, isText, isElevated, isFilled, isTonal, isOutlined, children, text, ...props }: YouCommonLinkProps) {
+export function YouFilledCommonLink({ leading, xstyle, label, ...props }: YouCommonLinkProps) {
+  const ariax = useCallback((args: LinkRenderProps) => {
+    return stylex.props(
+      styles.base,
+      styles.isFilled,
+      leading !== undefined ? styles.hasLeading : null,
+      leading !== undefined ? styles.hasFilledLeading : null,
+      args.isDisabled ? styles.isDisabled : null,
+      args.isDisabled ? styles.isDisabledBackground : null,
+      xstyle,
+    );
+  }, [leading, xstyle]);
+
+  const handleClassName = useCallback((args: LinkRenderProps & { defaultClassName: string | undefined }) => {
+    return toClassName(args.defaultClassName, ariax(args).className);
+  }, [ariax]);
+
+  const handleStyle = useCallback((args: LinkRenderProps & { defaultStyle: CSSProperties | undefined }) => {
+    return toCssProperties(args.defaultStyle, ariax(args).style);
+  }, [ariax]);
+
   return (
     <Link
-      style={(args) =>
-        toStyle(
-          args.defaultStyle,
-          stylex.props(
-            styles.base,
-            isText ? styles.isText : null,
-            isFilled ? styles.isFilled : null,
-            isElevated ? styles.isElevated : null,
-            isTonal ? styles.isTonal : null,
-            isOutlined ? styles.isOutlined : null,
-            leading ? styles.hasLeading : null,
-            leading && (isElevated || isFilled || isTonal || isOutlined) ? styles.hasFilledLeading : null,
-            args.isDisabled ? styles.isDisabled : null,
-            args.isDisabled && (isElevated || isFilled || isTonal) ? styles.isDisabledBackground : null,
-            args.isDisabled && isOutlined ? styles.isDisabledOutline : null,
-            xstyle,
-          ).style,
-        )
-      }
-      className={(args) =>
-        toClassName(
-          args.defaultClassName,
-          stylex.props(
-            styles.base,
-            isText ? styles.isText : null,
-            isFilled ? styles.isFilled : null,
-            isElevated ? styles.isElevated : null,
-            isTonal ? styles.isTonal : null,
-            isOutlined ? styles.isOutlined : null,
-            leading ? styles.hasLeading : null,
-            leading && (isElevated || isFilled || isTonal || isOutlined) ? styles.hasFilledLeading : null,
-            args.isDisabled ? styles.isDisabled : null,
-            args.isDisabled && (isElevated || isFilled || isTonal) ? styles.isDisabledBackground : null,
-            args.isDisabled && isOutlined ? styles.isDisabledOutline : null,
-            xstyle,
-          ).className,
-        )
-      }
+      style={handleStyle}
+      className={handleClassName}
       {...props}
     >
       {(args) => (
         <>
           <YouInteractionLayer isHovered={args.isHovered} isDragged={false} isFocused={args.isFocused} isPressed={args.isPressed} />
-          {leading && <span {...stylex.props(styles.leading)}>{leading}</span>}
-          <span {...stylex.props(styles.children, youStylesTypography.labelLarge)}>{args.defaultChildren ?? (typeof children === 'function' ? children(args) : (children ?? text))}</span>
+          {leading !== undefined ? <span {...stylex.props(styles.leading)}>{leading}</span> : null}
+          <span {...stylex.props(styles.children, youStylesTypography.labelLarge)}>{label}</span>
+          <YouFocusLayer isFocusVisible={args.isFocusVisible} />
+        </>
+      )}
+    </Link>
+  );
+}
+
+export function YouElevatedCommonLink({ leading, xstyle, label, ...props }: YouCommonLinkProps) {
+  const ariax = useCallback((args: LinkRenderProps) => {
+    return stylex.props(
+      styles.base,
+      styles.isElevated,
+      leading !== undefined ? styles.hasLeading : null,
+      leading !== undefined ? styles.hasFilledLeading : null,
+      args.isDisabled ? styles.isDisabled : null,
+      args.isDisabled ? styles.isDisabledBackground : null,
+      xstyle,
+    );
+  }, [leading, xstyle]);
+
+  const handleClassName = useCallback((args: LinkRenderProps & { defaultClassName: string | undefined }) => {
+    return toClassName(args.defaultClassName, ariax(args).className);
+  }, [ariax]);
+
+  const handleStyle = useCallback((args: LinkRenderProps & { defaultStyle: CSSProperties | undefined }) => {
+    return toCssProperties(args.defaultStyle, ariax(args).style);
+  }, [ariax]);
+
+  return (
+    <Link
+      style={handleStyle}
+      className={handleClassName}
+      {...props}
+    >
+      {(args) => (
+        <>
+          <YouInteractionLayer isHovered={args.isHovered} isDragged={false} isFocused={args.isFocused} isPressed={args.isPressed} />
+          {leading !== undefined ? <span {...stylex.props(styles.leading)}>{leading}</span> : null}
+          <span {...stylex.props(styles.children, youStylesTypography.labelLarge)}>{label}</span>
+          <YouFocusLayer isFocusVisible={args.isFocusVisible} />
+        </>
+      )}
+    </Link>
+  );
+}
+
+export function YouTonalCommonLink({ leading, xstyle, label, ...props }: YouCommonLinkProps) {
+  const ariax = useCallback((args: LinkRenderProps) => {
+    return stylex.props(
+      styles.base,
+      styles.isTonal,
+      leading !== undefined ? styles.hasLeading : null,
+      leading !== undefined ? styles.hasFilledLeading : null,
+      args.isDisabled ? styles.isDisabled : null,
+      args.isDisabled ? styles.isDisabledBackground : null,
+      xstyle,
+    );
+  }, [leading, xstyle]);
+
+  const handleClassName = useCallback((args: LinkRenderProps & { defaultClassName: string | undefined }) => {
+    return toClassName(args.defaultClassName, ariax(args).className);
+  }, [ariax]);
+
+  const handleStyle = useCallback((args: LinkRenderProps & { defaultStyle: CSSProperties | undefined }) => {
+    return toCssProperties(args.defaultStyle, ariax(args).style);
+  }, [ariax]);
+
+  return (
+    <Link
+      style={handleStyle}
+      className={handleClassName}
+      {...props}
+    >
+      {(args) => (
+        <>
+          <YouInteractionLayer isHovered={args.isHovered} isDragged={false} isFocused={args.isFocused} isPressed={args.isPressed} />
+          {leading !== undefined ? <span {...stylex.props(styles.leading)}>{leading}</span> : null}
+          <span {...stylex.props(styles.children, youStylesTypography.labelLarge)}>{label}</span>
+          <YouFocusLayer isFocusVisible={args.isFocusVisible} />
+        </>
+      )}
+    </Link>
+  );
+}
+
+export function YouOutlinedCommonLink({ leading, xstyle, label, ...props }: YouCommonLinkProps) {
+  const ariax = useCallback((args: LinkRenderProps) => {
+    return stylex.props(
+      styles.base,
+      styles.isOutlined,
+      leading !== undefined ? styles.hasLeading : null,
+      leading !== undefined ? styles.hasFilledLeading : null,
+      args.isDisabled ? styles.isDisabled : null,
+      xstyle,
+    );
+  }, [leading, xstyle]);
+
+  const handleClassName = useCallback((args: LinkRenderProps & { defaultClassName: string | undefined }) => {
+    return toClassName(args.defaultClassName, ariax(args).className);
+  }, [ariax]);
+
+  const handleStyle = useCallback((args: LinkRenderProps & { defaultStyle: CSSProperties | undefined }) => {
+    return toCssProperties(args.defaultStyle, ariax(args).style);
+  }, [ariax]);
+
+  return (
+    <Link
+      style={handleStyle}
+      className={handleClassName}
+      {...props}
+    >
+      {(args) => (
+        <>
+          <YouInteractionLayer isHovered={args.isHovered} isDragged={false} isFocused={args.isFocused} isPressed={args.isPressed} />
+          {leading !== undefined ? <span {...stylex.props(styles.leading)}>{leading}</span> : null}
+          <span {...stylex.props(styles.children, youStylesTypography.labelLarge)}>{label}</span>
+          <YouOutlineLayer isDisabled={args.isDisabled} />
+          <YouFocusLayer isFocusVisible={args.isFocusVisible} />
+        </>
+      )}
+    </Link>
+  );
+}
+
+export function YouTextCommonLink({ leading, xstyle, label, ...props }: YouCommonLinkProps) {
+  const ariax = useCallback((args: LinkRenderProps) => {
+    return stylex.props(
+      styles.base,
+      styles.isText,
+      leading !== undefined ? styles.hasLeading : null,
+      args.isDisabled ? styles.isDisabled : null,
+      xstyle,
+    );
+  }, [leading, xstyle]);
+
+  const handleClassName = useCallback((args: LinkRenderProps & { defaultClassName: string | undefined }) => {
+    return toClassName(args.defaultClassName, ariax(args).className);
+  }, [ariax]);
+
+  const handleStyle = useCallback((args: LinkRenderProps & { defaultStyle: CSSProperties | undefined }) => {
+    return toCssProperties(args.defaultStyle, ariax(args).style);
+  }, [ariax]);
+
+  return (
+    <Link
+      style={handleStyle}
+      className={handleClassName}
+      {...props}
+    >
+      {(args) => (
+        <>
+          <YouInteractionLayer isHovered={args.isHovered} isDragged={false} isFocused={args.isFocused} isPressed={args.isPressed} />
+          {leading !== undefined ? <span {...stylex.props(styles.leading)}>{leading}</span> : null}
+          <span {...stylex.props(styles.children, youStylesTypography.labelLarge)}>{label}</span>
           <YouFocusLayer isFocusVisible={args.isFocusVisible} />
         </>
       )}

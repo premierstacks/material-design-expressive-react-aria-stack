@@ -1,36 +1,35 @@
 import * as stylex from '@stylexjs/stylex';
-import type { ReactNode } from 'react';
+import { useCallback, type CSSProperties, type ReactElement, type ReactNode } from 'react';
 import type { ButtonProps, ButtonRenderProps } from 'react-aria-components';
 import { Button } from 'react-aria-components';
-import { toClassName, toStyle } from '../helpers/utils';
+import { toClassName, toCssProperties } from '../helpers/utils';
 import { youSysColor, youSysMotion, youSysShape, youSysState } from '../vars/sys.stylex';
-import { YouBackgroundLayer } from './YouBackgroundLayer';
 import { YouFocusLayer } from './YouFocusLayer';
 import { YouInteractionLayer } from './YouInteractionLayer';
 import { YouOutlineLayer } from './YouOutlineLayer';
 
 interface YouIconButtonProps extends Omit<ButtonProps, 'style' | 'className'> {
-  interactionLayer?: ((args: ButtonRenderProps) => ReactNode) | undefined;
-  backgroundLyer?: ((args: ButtonRenderProps) => ReactNode) | undefined;
-  outlineLayer?: ((args: ButtonRenderProps) => ReactNode) | undefined;
-  focusLayer?: ((args: ButtonRenderProps) => ReactNode) | undefined;
-  isFilled?: boolean | undefined;
-  isOutlined?: boolean | undefined;
-  isStandard?: boolean | undefined;
-  isTonal?: boolean | undefined;
-  icon?: ReactNode | undefined;
-  xstyle?: stylex.StyleXStyles | undefined;
+  readonly isFilled?: boolean;
+  readonly isOutlined?: boolean;
+  readonly isStandard?: boolean;
+  readonly isTonal?: boolean;
+  readonly icon?: ReactNode;
+  readonly xstyle?: stylex.StyleXStyles;
 }
 
 const styles = stylex.create({
   base: {
-    appearance: 'none',
-    MozAppearance: 'none',
-    WebkitAppearance: 'none',
     alignItems: 'center',
+    appearance: 'none',
     backgroundColor: 'transparent',
-    borderRadius: youSysShape.cornerFull,
-    borderStyle: 'none',
+    borderBottomLeftRadius: youSysShape.cornerFull,
+    borderBottomRightRadius: youSysShape.cornerFull,
+    borderBottomStyle: 'none',
+    borderLeftStyle: 'none',
+    borderRightStyle: 'none',
+    borderTopLeftRadius: youSysShape.cornerFull,
+    borderTopRightRadius: youSysShape.cornerFull,
+    borderTopStyle: 'none',
     color: 'inherit',
     display: 'inline-flex',
     height: 40,
@@ -39,35 +38,26 @@ const styles = stylex.create({
     position: 'relative',
     textAlign: 'center',
     textDecorationLine: 'inherit',
+    transitionDuration: youSysMotion.durationEmphasized,
+    transitionProperty: 'color',
+    transitionTimingFunction: youSysMotion.easingEmphasized,
     whiteSpace: 'nowrap',
     width: 40,
-    transitionTimingFunction: youSysMotion.easingEmphasized,
-    tranisitionDuration: youSysMotion.durationEmphasized,
-    transitionProperty: 'color',
   },
   isStandard: {
     color: `rgb(${youSysColor.onSurfaceVariant})`,
   },
   isFilled: {
+    backgroundColor: `rgb(${youSysColor.primary})`,
     color: `rgb(${youSysColor.onPrimary})`,
   },
   isTonal: {
+    backgroundColor: `rgb(${youSysColor.secondaryContainer})`,
     color: `rgb(${youSysColor.onSecondaryContainer})`,
   },
   isDisabled: {
-    color: `rgb(${youSysColor.onSurfaceVariant}/${youSysState.disabledContentOpacity})`,
-  },
-});
-
-const backgroundStyles = stylex.create({
-  isFilled: {
-    backgroundColor: `rgb(${youSysColor.primary})`,
-  },
-  isTonal: {
-    backgroundColor: `rgb(${youSysColor.secondaryContainer})`,
-  },
-  isDisabled: {
     backgroundColor: 'transparent',
+    color: `rgb(${youSysColor.onSurfaceVariant}/${youSysState.disabledContentOpacity})`,
   },
   isDisabledBackground: {
     backgroundColor: `rgb(${youSysColor.onSurfaceVariant}/${youSysState.disabledContainerOpacity})`,
@@ -86,55 +76,39 @@ const childrenStyles = stylex.create({
   },
 });
 
-export function YouIconButton({ isStandard, isFilled, isTonal, isOutlined, children, interactionLayer, xstyle, backgroundLyer, outlineLayer, focusLayer, icon, ...props }: YouIconButtonProps) {
+export function YouIconButton({ isStandard = false, isFilled = false, isTonal = false, isOutlined = false, children, xstyle, icon, ...props }: YouIconButtonProps): ReactElement {
+  const ariax = useCallback((args: ButtonRenderProps) => {
+    return stylex.props(
+      styles.base,
+      isStandard ? styles.isStandard : null,
+      isFilled ? styles.isFilled : null,
+      isTonal ? styles.isTonal : null,
+      args.isDisabled || args.isPending ? styles.isDisabled : null,
+      (args.isDisabled || args.isPending) && (isFilled || isTonal) ? styles.isDisabledBackground : null,
+      xstyle,
+    );
+  }, [isStandard, isFilled, isTonal, xstyle]);
+
+  const handleClassName = useCallback((args: ButtonRenderProps & { defaultClassName: string | undefined }) => {
+    return toClassName(args.defaultClassName, ariax(args).className);
+  }, [ariax]);
+
+  const handleStyle = useCallback((args: ButtonRenderProps & { defaultStyle: CSSProperties | undefined }) => {
+    return toCssProperties(args.defaultStyle, ariax(args).style);
+  }, [ariax]);
+
   return (
     <Button
-      style={(args) =>
-        toStyle(
-          args.defaultStyle,
-          stylex.props(
-            styles.base,
-            isStandard ? styles.isStandard : null,
-            isFilled ? styles.isFilled : null,
-            isTonal ? styles.isTonal : null,
-            args.isDisabled || args.isPending ? styles.isDisabled : null,
-            xstyle,
-          ).style,
-        )
-      }
-      className={(args) =>
-        toClassName(
-          args.defaultClassName,
-          stylex.props(
-            styles.base,
-            isStandard ? styles.isStandard : null,
-            isFilled ? styles.isFilled : null,
-            isTonal ? styles.isTonal : null,
-            args.isDisabled || args.isPending ? styles.isDisabled : null,
-            xstyle,
-          ).className,
-        )
-      }
+      style={handleStyle}
+      className={handleClassName}
       {...props}
     >
       {(args) => (
         <>
-          {backgroundLyer ? (
-            backgroundLyer(args)
-          ) : (
-            <YouBackgroundLayer
-              xstyle={[
-                isFilled ? backgroundStyles.isFilled : null,
-                isTonal ? backgroundStyles.isTonal : null,
-                args.isDisabled || args.isPending ? backgroundStyles.isDisabled : null,
-                (args.isDisabled || args.isPending) && (isFilled || isTonal) ? backgroundStyles.isDisabledBackground : null,
-              ]}
-            />
-          )}
-          {interactionLayer ? interactionLayer(args) : <YouInteractionLayer isHovered={args.isHovered} isDragged={false} isFocused={args.isFocused} isPressed={args.isPressed} />}
-          <span {...stylex.props(childrenStyles.base)}>{args.defaultChildren ?? (typeof children === 'function' ? children(args) : (children ?? icon))}</span>
-          {outlineLayer ? outlineLayer(args) : isOutlined ? <YouOutlineLayer isDisabled={args.isDisabled || args.isPending} /> : null}
-          {focusLayer ? focusLayer(args) : <YouFocusLayer isFocusVisible={args.isFocusVisible} />}
+          <YouInteractionLayer isHovered={args.isHovered} isDragged={false} isFocused={args.isFocused} isPressed={args.isPressed} />
+          <span {...stylex.props(childrenStyles.base)}>{(typeof children === 'function' ? children(args) : (children ?? icon)) ?? args.defaultChildren}</span>
+          {isOutlined ? <YouOutlineLayer isDisabled={args.isDisabled || args.isPending} /> : null}
+          <YouFocusLayer isFocusVisible={args.isFocusVisible} />
         </>
       )}
     </Button>

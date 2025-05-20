@@ -1,22 +1,20 @@
 import * as stylex from '@stylexjs/stylex';
-import type { FC, HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactElement } from 'react';
 
-interface YouNavigationRailItemsProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style'> {
-  xstyle?: stylex.StyleXStyles | undefined;
-  isPadded?: boolean | undefined;
+interface YouNavigationRailItemsProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className'> {
+  readonly xstyle?: stylex.StyleXStyles;
 }
 
 const styles = stylex.create({
   base: {
     display: 'flex',
-    rowGap: 12,
     flexDirection: 'column',
-  },
-  isPadded: {
-    paddingBlock: 18,
+    paddingBottom: 18,
+    paddingTop: 18,
+    rowGap: 12,
   },
 });
 
-export const YouNavigationRailItems: FC<YouNavigationRailItemsProps> = ({ xstyle, isPadded, ...props }: YouNavigationRailItemsProps): ReactNode => {
-  return <div {...stylex.props(styles.base, isPadded ? styles.isPadded : null, xstyle)} {...props} />;
-};
+export function YouNavigationRailItems({ xstyle, ...props }: YouNavigationRailItemsProps): ReactElement {
+  return <div {...stylex.props(styles.base, xstyle)} {...props} />;
+}

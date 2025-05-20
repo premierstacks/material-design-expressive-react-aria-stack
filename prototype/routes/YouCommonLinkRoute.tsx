@@ -1,58 +1,84 @@
-import type { ReactNode } from 'react';
-import { YouCommonLink, YouPillShape } from '../../src';
+import type { ReactElement } from 'react';
+import { YouElevatedCommonLink, YouFilledCommonLink, YouOutlinedCommonLink, YouPillShape, YouTextCommonLink, YouTonalCommonLink } from '../../src';
 
-export default function YouCommonLinkRoute(): ReactNode {
+export function YouCommonLinkRoute(): ReactElement {
   return (
-    <main style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonLink isText href="" leading={<YouPillShape />}>
-          Text Common Link
-        </YouCommonLink>
+    <main style={{
+      padding: '1rem',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '1rem',
+    }}
+    >
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouTextCommonLink href="" leading={<YouPillShape />} label="Text Common Link" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonLink isElevated href="" leading={<YouPillShape />}>
-          Elevated Common Link
-        </YouCommonLink>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouElevatedCommonLink href="" leading={<YouPillShape />} label="Elevated Common Link" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonLink isFilled href="" leading={<YouPillShape />}>
-          Filled Common Link
-        </YouCommonLink>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouFilledCommonLink href="" leading={<YouPillShape />} label="Filled Common Link" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonLink isTonal href="" leading={<YouPillShape />}>
-          Tonal Common Link
-        </YouCommonLink>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouTonalCommonLink href="" leading={<YouPillShape />} label="Tonal Common Link" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonLink isOutlined href="" leading={<YouPillShape />}>
-          Outlined Common Link
-        </YouCommonLink>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouOutlinedCommonLink href="" leading={<YouPillShape />} label="Outlined Common Link" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonLink isText href="">
-          Text Common Link
-        </YouCommonLink>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouTextCommonLink href="" label="Text Common Link" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonLink isElevated href="">
-          Elevated Common Link
-        </YouCommonLink>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouElevatedCommonLink href="" label="Elevated Common Link" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonLink isFilled href="">
-          Filled Common Link
-        </YouCommonLink>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouFilledCommonLink href="" label="Filled Common Link" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonLink isTonal href="">
-          Tonal Common Link
-        </YouCommonLink>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouTonalCommonLink href="" label="Tonal Common Link" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonLink isOutlined href="">
-          Outlined Common Link
-        </YouCommonLink>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouOutlinedCommonLink href="" label="Outlined Common Link" />
       </div>
     </main>
   );

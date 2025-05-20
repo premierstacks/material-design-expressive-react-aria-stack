@@ -1,34 +1,33 @@
 import * as stylex from '@stylexjs/stylex';
-import type { AnchorHTMLAttributes, ReactNode } from 'react';
+import type { AnchorHTMLAttributes, ReactElement, ReactNode } from 'react';
 import { mergeProps, useFocusRing, useHover, usePress } from 'react-aria';
 import { youSysColor, youSysMotion, youSysShape } from '../vars/sys.stylex';
-import { YouBackgroundLayer } from './YouBackgroundLayer';
 import { YouFocusLayer } from './YouFocusLayer';
 import { YouInteractionLayer } from './YouInteractionLayer';
 import { YouOutlineLayer } from './YouOutlineLayer';
 
-interface YouIconAnchorProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'style'> {
-  interactionLayer?: (() => ReactNode) | undefined;
-  backgroundLyer?: (() => ReactNode) | undefined;
-  outlineLayer?: (() => ReactNode) | undefined;
-  focusLayer?: (() => ReactNode) | undefined;
-  isFilled?: boolean | undefined;
-  isOutlined?: boolean | undefined;
-  isStandard?: boolean | undefined;
-  isTonal?: boolean | undefined;
-  xstyle?: stylex.StyleXStyles | undefined;
-  icon?: ReactNode | undefined;
+interface YouIconAnchorProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'style' | 'className'> {
+  readonly isFilled?: boolean;
+  readonly isOutlined?: boolean;
+  readonly isStandard?: boolean;
+  readonly isTonal?: boolean;
+  readonly xstyle?: stylex.StyleXStyles;
+  readonly icon?: ReactNode;
 }
 
 const styles = stylex.create({
   base: {
-    appearance: 'none',
-    MozAppearance: 'none',
-    WebkitAppearance: 'none',
     alignItems: 'center',
+    appearance: 'none',
     backgroundColor: 'transparent',
-    borderRadius: youSysShape.cornerFull,
-    borderStyle: 'none',
+    borderBottomLeftRadius: youSysShape.cornerFull,
+    borderBottomRightRadius: youSysShape.cornerFull,
+    borderBottomStyle: 'none',
+    borderLeftStyle: 'none',
+    borderRightStyle: 'none',
+    borderTopLeftRadius: youSysShape.cornerFull,
+    borderTopRightRadius: youSysShape.cornerFull,
+    borderTopStyle: 'none',
     color: 'inherit',
     display: 'inline-flex',
     height: 40,
@@ -37,29 +36,22 @@ const styles = stylex.create({
     position: 'relative',
     textAlign: 'center',
     textDecorationLine: 'inherit',
+    transitionDuration: youSysMotion.durationEmphasized,
+    transitionProperty: 'color',
+    transitionTimingFunction: youSysMotion.easingEmphasized,
     whiteSpace: 'nowrap',
     width: 40,
-    transitionTimingFunction: youSysMotion.easingEmphasized,
-    tranisitionDuration: youSysMotion.durationEmphasized,
-    transitionProperty: 'color',
   },
   isStandard: {
     color: `rgb(${youSysColor.onSurfaceVariant})`,
   },
   isFilled: {
+    backgroundColor: `rgb(${youSysColor.primary})`,
     color: `rgb(${youSysColor.onPrimary})`,
   },
   isTonal: {
-    color: `rgb(${youSysColor.onSecondaryContainer})`,
-  },
-});
-
-const backgroundStyles = stylex.create({
-  isFilled: {
-    backgroundColor: `rgb(${youSysColor.primary})`,
-  },
-  isTonal: {
     backgroundColor: `rgb(${youSysColor.secondaryContainer})`,
+    color: `rgb(${youSysColor.onSecondaryContainer})`,
   },
 });
 
@@ -75,7 +67,7 @@ const interactionStyles = stylex.create({
   },
 });
 
-export function YouIconAnchor({ isStandard, isFilled, isTonal, isOutlined, children, interactionLayer, xstyle, backgroundLyer, outlineLayer, focusLayer, icon, ...props }: YouIconAnchorProps) {
+export function YouIconAnchor({ isStandard = false, isFilled = false, isTonal = false, isOutlined = false, children, xstyle, icon, ...props }: YouIconAnchorProps): ReactElement {
   const { hoverProps, isHovered } = useHover({});
   const { isPressed, pressProps } = usePress({});
   const { focusProps, isFocusVisible, isFocused } = useFocusRing({ autoFocus: props.autoFocus });
@@ -85,11 +77,10 @@ export function YouIconAnchor({ isStandard, isFilled, isTonal, isOutlined, child
       {...stylex.props(styles.base, isStandard ? styles.isStandard : null, isFilled ? styles.isFilled : null, isTonal ? styles.isTonal : null, xstyle)}
       {...mergeProps(props, hoverProps, pressProps, focusProps)}
     >
-      {backgroundLyer ? backgroundLyer() : <YouBackgroundLayer xstyle={[isFilled ? backgroundStyles.isFilled : null, isTonal ? backgroundStyles.isTonal : null]} />}
-      {interactionLayer ? interactionLayer() : <YouInteractionLayer isHovered={isHovered} isDragged={false} isFocused={isFocused} isPressed={isPressed} />}
+      <YouInteractionLayer isHovered={isHovered} isDragged={false} isFocused={isFocused} isPressed={isPressed} />
       <span {...stylex.props(interactionStyles.base)}>{children ?? icon}</span>
-      {outlineLayer ? outlineLayer() : isOutlined ? <YouOutlineLayer /> : null}
-      {focusLayer ? focusLayer() : <YouFocusLayer isFocusVisible={isFocusVisible} />}
+      {isOutlined ? <YouOutlineLayer /> : null}
+      <YouFocusLayer isFocusVisible={isFocusVisible} />
     </a>
   );
 }

@@ -1,25 +1,26 @@
 import * as stylex from '@stylexjs/stylex';
+import { toClassName, toStyle } from './utils';
 
 export function stylexify(el: HTMLElement, xstyle: stylex.StyleXStyles, override = false) {
-  const attrs = stylex.attrs(xstyle);
+  const { className, style, 'data-style-src': dataStyleSrc } = stylex.props(xstyle);
 
-  if (attrs.class !== undefined) {
+  if (className !== undefined) {
     if (override) {
-      el.className = attrs.class;
+      el.className = className;
     } else {
-      el.className += ` ${attrs.class}`;
+      el.className = toClassName(el.className, className);
     }
   }
 
-  if (attrs['data-style-src'] !== undefined) {
-    el.setAttribute('data-style-src', attrs['data-style-src']);
+  if (dataStyleSrc !== undefined) {
+    el.setAttribute('data-style-src', dataStyleSrc);
   }
 
-  if (attrs.style !== undefined) {
+  if (style !== undefined) {
     if (override) {
-      el.style.cssText = attrs.style;
+      el.style.cssText = Object.keys(style).map((key) => `${key}:${(style[key] ?? '').toString()};`).join('');
     } else {
-      el.style.cssText += `; ${attrs.style}`;
+      el.style.cssText = toStyle(el.style.cssText, Object.keys(style).map((key) => `${key}:${(style[key] ?? '').toString()};`).join(''));
     }
   }
 }

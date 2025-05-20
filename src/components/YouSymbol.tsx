@@ -1,33 +1,34 @@
 import * as stylex from '@stylexjs/stylex';
-import type { FC, HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactElement, ReactNode } from 'react';
 
-interface YouSymbolProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style'> {
-  size?: number | undefined;
-  xstyle?: stylex.StyleXStyles | undefined;
-  symbol?: ReactNode | undefined;
+interface YouSymbolProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className'> {
+  readonly size?: number;
+  readonly xstyle?: stylex.StyleXStyles;
+  readonly symbol?: ReactNode;
 }
 
 const styles = stylex.create({
   base: {
-    position: 'relative',
+    alignItems: 'center',
+    display: 'inline-flex',
     fontSize: 'inherit',
+    height: '1em',
+    justifyContent: 'center',
+    overflowX: 'hidden',
+    overflowY: 'hidden',
+    pointerEvents: 'none',
+    position: 'relative',
     userSelect: 'none',
     verticalAlign: 'middle',
-    pointerEvents: 'none',
     width: '1em',
-    height: '1em',
-    overflow: 'hidden',
-    display: 'inline-flex',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   size: (size: number) => ({ fontSize: size }),
 });
 
-export const YouSymbol: FC<YouSymbolProps> = ({ symbol, size, xstyle, children, ...props }: YouSymbolProps): ReactNode => {
+export function YouSymbol({ symbol, size, xstyle, children, ...props }: YouSymbolProps): ReactElement {
   return (
-    <span {...stylex.props(styles.base, size !== undefined ? styles.size(size) : null, xstyle)} {...props} role="presentation">
+    <span {...stylex.props(styles.base, size !== undefined ? styles.size(size) : null, xstyle)} {...props} aria-hidden>
       {children ?? symbol}
     </span>
   );
-};
+}

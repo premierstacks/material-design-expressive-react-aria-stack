@@ -1,12 +1,12 @@
 import * as stylex from '@stylexjs/stylex';
-import type { FC, HTMLProps, ReactNode } from 'react';
+import type { HTMLProps, ReactElement } from 'react';
 
-interface YouSurfacePaddingProps extends Omit<HTMLProps<HTMLDivElement>, 'style'> {
-  xstyle?: stylex.StyleXStyles | undefined;
-  top?: boolean;
-  right?: boolean;
-  bottom?: boolean;
-  left?: boolean;
+interface YouSurfacePaddingProps extends Omit<HTMLProps<HTMLDivElement>, 'style' | 'className'> {
+  readonly xstyle?: stylex.StyleXStyles;
+  readonly top?: boolean;
+  readonly right?: boolean;
+  readonly bottom?: boolean;
+  readonly left?: boolean;
 }
 
 const styles = stylex.create({
@@ -16,6 +16,6 @@ const styles = stylex.create({
   left: { paddingLeft: 16 },
 });
 
-export const YouSurfacePadding: FC<YouSurfacePaddingProps> = ({ xstyle, top, right, bottom, left, ...props }: YouSurfacePaddingProps): ReactNode => {
+export function YouSurfacePadding({ xstyle, top = false, right = false, bottom = false, left = false, ...props }: YouSurfacePaddingProps): ReactElement {
   return <div {...stylex.props(top ? styles.top : null, right ? styles.right : null, bottom ? styles.bottom : null, left ? styles.left : null, xstyle)} {...props} />;
-};
+}

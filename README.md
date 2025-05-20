@@ -1,6 +1,4 @@
-# [Browser Webpack TypeScript React Library Template](https://github.com/premierstacks/browser-webpack-typescript-react-library-template) by [Tomáš Chochola](https://github.com/tomchochola)
-
-The Browser Webpack TypeScript React Library Template provides a foundation for developing React libraries with TypeScript, adapted for a modern workflow where consumers integrate raw source code directly. It enables users to utilize TypeScript and SCSS files from the src directory within their own build processes, eliminating the need for library pre-bundling or separate type definitions and fostering a cleaner integration. While featuring tools like Webpack in the prototypes directory for local development, its primary purpose is direct source consumption.
+# [Material Design You React Aria Stack](https://github.com/premierstacks/material-design-you-react-aria-stack) by [Tomáš Chochola](https://github.com/tomchochola)
 
 ## What is Premierstacks
 

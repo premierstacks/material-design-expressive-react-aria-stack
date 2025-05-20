@@ -1,17 +1,18 @@
 import * as stylex from '@stylexjs/stylex';
-import type { FC, ReactNode, SVGAttributes } from 'react';
+import type { ReactElement, SVGAttributes } from 'react';
 import { youSysColor } from '../vars/sys.stylex';
 
-interface YouTildeRuleProps extends Omit<SVGAttributes<SVGSVGElement>, 'style' | 'children'> {
-  xstyle?: stylex.StyleXStyles | undefined;
-  isPrimary?: boolean | undefined;
+interface YouTildeRuleProps extends Omit<SVGAttributes<SVGSVGElement>, 'style' | 'className' | 'children'> {
+  readonly xstyle?: stylex.StyleXStyles;
+  readonly isPrimary?: boolean;
 }
 
 const styles = stylex.create({
   base: {
     color: `rgb(${youSysColor.outlineVariant})`,
     display: 'block',
-    marginInline: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto',
     position: 'relative',
   },
   isPrimary: {
@@ -19,7 +20,7 @@ const styles = stylex.create({
   },
 });
 
-export const YouTildeRule: FC<YouTildeRuleProps> = ({ xstyle, isPrimary, ...props }: YouTildeRuleProps): ReactNode => {
+export function YouTildeRule({ xstyle, isPrimary = false, ...props }: YouTildeRuleProps): ReactElement {
   return (
     <svg {...stylex.props(styles.base, isPrimary ? styles.isPrimary : null, xstyle)} aria-hidden="true" width="155" height="9" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path
@@ -27,7 +28,7 @@ export const YouTildeRule: FC<YouTildeRuleProps> = ({ xstyle, isPrimary, ...prop
         stroke="currentColor"
         strokeWidth={2}
         strokeLinecap="round"
-      ></path>
+      />
     </svg>
   );
-};
+}

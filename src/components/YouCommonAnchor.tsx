@@ -5,37 +5,40 @@ import { youStylesTypography } from '../vars/styles.stylex';
 import { youSysColor, youSysMotion, youSysShape } from '../vars/sys.stylex';
 import { YouFocusLayer } from './YouFocusLayer';
 import { YouInteractionLayer } from './YouInteractionLayer';
+import { YouOutlineLayer } from './YouOutlineLayer';
 
-interface YouCommonAnchorProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'style' | 'className'> {
-  isElevated?: boolean | undefined;
-  isFilled?: boolean | undefined;
-  isOutlined?: boolean | undefined;
-  isText?: boolean | undefined;
-  isTonal?: boolean | undefined;
-  leading?: ReactNode | undefined;
-  xstyle?: stylex.StyleXStyles | undefined;
-  text?: ReactNode | undefined;
+interface YouCommonAnchorProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'style' | 'className' | 'children'> {
+  readonly leading?: ReactNode;
+  readonly xstyle?: stylex.StyleXStyles;
+  readonly label: ReactNode;
 }
 
-const rootStyles = stylex.create({
+const styles = stylex.create({
   base: {
     alignItems: 'center',
     backgroundColor: 'transparent',
-    borderStyle: 'none',
+    borderBottomLeftRadius: youSysShape.cornerFull,
+    borderBottomRightRadius: youSysShape.cornerFull,
+    borderBottomStyle: 'none',
+    borderLeftStyle: 'none',
+    borderRightStyle: 'none',
+    borderTopLeftRadius: youSysShape.cornerFull,
+    borderTopRightRadius: youSysShape.cornerFull,
+    borderTopStyle: 'none',
     color: 'inherit',
     display: 'inline-flex',
     height: 40,
     justifyContent: 'center',
     outlineStyle: 'none',
-    paddingInline: 12,
+    paddingLeft: 12,
+    paddingRight: 12,
     position: 'relative',
     textAlign: 'center',
     textDecorationLine: 'inherit',
-    whiteSpace: 'nowrap',
-    borderRadius: youSysShape.cornerFull,
-    transitionTimingFunction: youSysMotion.easingEmphasized,
     transitionDuration: youSysMotion.durationEmphasized,
     transitionProperty: 'background-color, color, border-color',
+    transitionTimingFunction: youSysMotion.easingEmphasized,
+    whiteSpace: 'nowrap',
   },
   isText: {
     backgroundColor: 'transparent',
@@ -44,36 +47,34 @@ const rootStyles = stylex.create({
   isFilled: {
     backgroundColor: `rgb(${youSysColor.primary})`,
     color: `rgb(${youSysColor.onPrimary})`,
-    paddingInline: 24,
+    paddingLeft: 24,
+    paddingRight: 24,
   },
   isElevated: {
     backgroundColor: `rgb(${youSysColor.surfaceContainerLow})`,
     color: `rgb(${youSysColor.primary})`,
-    paddingInline: 24,
+    paddingLeft: 24,
+    paddingRight: 24,
   },
   isTonal: {
     backgroundColor: `rgb(${youSysColor.secondaryContainer})`,
     color: `rgb(${youSysColor.onSecondaryContainer})`,
-    paddingInline: 24,
+    paddingLeft: 24,
+    paddingRight: 24,
   },
   isOutlined: {
     backgroundColor: 'transparent',
-    borderColor: `rgb(${youSysColor.outline})`,
-    borderStyle: 'solid',
-    borderWidth: 1,
     color: `rgb(${youSysColor.primary})`,
-    paddingInline: 24,
+    paddingLeft: 24,
+    paddingRight: 24,
   },
-  leading: {
+  hasLeading: {
     paddingRight: 16,
   },
   leadingOpaque: {
     paddingLeft: 16,
   },
-});
-
-const leadingStyles = stylex.create({
-  base: {
+  leading: {
     alignItems: 'center',
     display: 'inline-flex',
     fontSize: 18,
@@ -83,16 +84,13 @@ const leadingStyles = stylex.create({
     maxWidth: 18,
     position: 'relative',
   },
-});
-
-const labelStyles = stylex.create({
-  base: {
+  label: {
     display: 'inline-block',
     position: 'relative',
   },
 });
 
-export function YouCommonAnchor({ xstyle, leading, isText, isElevated, isFilled, isTonal, isOutlined, children, text, ...props }: YouCommonAnchorProps) {
+export function YouElevatedCommonAnchor({ xstyle, leading, label, ...props }: YouCommonAnchorProps) {
   const { hoverProps, isHovered } = useHover({});
   const { isPressed, pressProps } = usePress({});
   const { focusProps, isFocusVisible, isFocused } = useFocusRing({ autoFocus: props.autoFocus });
@@ -100,21 +98,113 @@ export function YouCommonAnchor({ xstyle, leading, isText, isElevated, isFilled,
   return (
     <a
       {...stylex.props(
-        rootStyles.base,
-        isText && rootStyles.isText,
-        isFilled && rootStyles.isFilled,
-        isElevated && rootStyles.isElevated,
-        isTonal && rootStyles.isTonal,
-        isOutlined && rootStyles.isOutlined,
-        leading ? rootStyles.leading : null,
-        leading && (isElevated || isFilled || isTonal || isOutlined) ? rootStyles.leadingOpaque : null,
+        styles.base,
+        styles.isElevated,
+        styles.leadingOpaque,
+        leading !== undefined ? styles.hasLeading : null,
         xstyle,
       )}
       {...mergeProps(hoverProps, pressProps, focusProps, props)}
     >
       <YouInteractionLayer isHovered={isHovered} isDragged={false} isFocused={isFocused} isPressed={isPressed} />
-      {leading && <span {...stylex.props(leadingStyles.base)}>{leading}</span>}
-      <span {...stylex.props(labelStyles.base, youStylesTypography.labelLarge)}>{text ?? children}</span>
+      {leading !== undefined ? <span {...stylex.props(styles.leading)}>{leading}</span> : null}
+      <span {...stylex.props(styles.label, youStylesTypography.labelLarge)}>{label}</span>
+      <YouFocusLayer isFocusVisible={isFocusVisible} />
+    </a>
+  );
+}
+
+export function YouTextCommonAnchor({ xstyle, leading, label, ...props }: YouCommonAnchorProps) {
+  const { hoverProps, isHovered } = useHover({});
+  const { isPressed, pressProps } = usePress({});
+  const { focusProps, isFocusVisible, isFocused } = useFocusRing({ autoFocus: props.autoFocus });
+
+  return (
+    <a
+      {...stylex.props(
+        styles.base,
+        styles.isText,
+        leading !== undefined ? styles.hasLeading : null,
+        xstyle,
+      )}
+      {...mergeProps(hoverProps, pressProps, focusProps, props)}
+    >
+      <YouInteractionLayer isHovered={isHovered} isDragged={false} isFocused={isFocused} isPressed={isPressed} />
+      {leading !== undefined ? <span {...stylex.props(styles.leading)}>{leading}</span> : null}
+      <span {...stylex.props(styles.label, youStylesTypography.labelLarge)}>{label}</span>
+      <YouFocusLayer isFocusVisible={isFocusVisible} />
+    </a>
+  );
+}
+
+export function YouFilledCommonAnchor({ xstyle, leading, label, ...props }: YouCommonAnchorProps) {
+  const { hoverProps, isHovered } = useHover({});
+  const { isPressed, pressProps } = usePress({});
+  const { focusProps, isFocusVisible, isFocused } = useFocusRing({ autoFocus: props.autoFocus });
+
+  return (
+    <a
+      {...stylex.props(
+        styles.base,
+        styles.isFilled,
+        styles.leadingOpaque,
+        leading !== undefined ? styles.hasLeading : null,
+        xstyle,
+      )}
+      {...mergeProps(hoverProps, pressProps, focusProps, props)}
+    >
+      <YouInteractionLayer isHovered={isHovered} isDragged={false} isFocused={isFocused} isPressed={isPressed} />
+      {leading !== undefined ? <span {...stylex.props(styles.leading)}>{leading}</span> : null}
+      <span {...stylex.props(styles.label, youStylesTypography.labelLarge)}>{label}</span>
+      <YouFocusLayer isFocusVisible={isFocusVisible} />
+    </a>
+  );
+}
+
+export function YouTonalCommonAnchor({ xstyle, leading, label, ...props }: YouCommonAnchorProps) {
+  const { hoverProps, isHovered } = useHover({});
+  const { isPressed, pressProps } = usePress({});
+  const { focusProps, isFocusVisible, isFocused } = useFocusRing({ autoFocus: props.autoFocus });
+
+  return (
+    <a
+      {...stylex.props(
+        styles.base,
+        styles.isTonal,
+        styles.leadingOpaque,
+        leading !== undefined ? styles.hasLeading : null,
+        xstyle,
+      )}
+      {...mergeProps(hoverProps, pressProps, focusProps, props)}
+    >
+      <YouInteractionLayer isHovered={isHovered} isDragged={false} isFocused={isFocused} isPressed={isPressed} />
+      {leading !== undefined ? <span {...stylex.props(styles.leading)}>{leading}</span> : null}
+      <span {...stylex.props(styles.label, youStylesTypography.labelLarge)}>{label}</span>
+      <YouFocusLayer isFocusVisible={isFocusVisible} />
+    </a>
+  );
+}
+
+export function YouOutlinedCommonAnchor({ xstyle, leading, label, ...props }: YouCommonAnchorProps) {
+  const { hoverProps, isHovered } = useHover({});
+  const { isPressed, pressProps } = usePress({});
+  const { focusProps, isFocusVisible, isFocused } = useFocusRing({ autoFocus: props.autoFocus });
+
+  return (
+    <a
+      {...stylex.props(
+        styles.base,
+        styles.isOutlined,
+        styles.leadingOpaque,
+        leading !== undefined ? styles.hasLeading : null,
+        xstyle,
+      )}
+      {...mergeProps(hoverProps, pressProps, focusProps, props)}
+    >
+      <YouInteractionLayer isHovered={isHovered} isDragged={false} isFocused={isFocused} isPressed={isPressed} />
+      {leading !== undefined ? <span {...stylex.props(styles.leading)}>{leading}</span> : null}
+      <span {...stylex.props(styles.label, youStylesTypography.labelLarge)}>{label}</span>
+      <YouOutlineLayer />
       <YouFocusLayer isFocusVisible={isFocusVisible} />
     </a>
   );

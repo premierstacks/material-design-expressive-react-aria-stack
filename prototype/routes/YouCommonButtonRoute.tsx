@@ -1,48 +1,84 @@
-import type { ReactNode } from 'react';
-import { YouCommonButton, YouPillShape } from '../../src';
+import type { ReactElement } from 'react';
+import { YouElevatedCommonButton, YouFilledCommonButton, YouOutlinedCommonButton, YouPillShape, YouTextCommonButton, YouTonalCommonButton } from '../../src';
 
-export default function YouCommonButtonRoute(): ReactNode {
+export function YouCommonButtonRoute(): ReactElement {
   return (
-    <main style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonButton isText leading={<YouPillShape />}>
-          Text Common Button
-        </YouCommonButton>
+    <main style={{
+      padding: '1rem',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '1rem',
+    }}
+    >
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouTextCommonButton leading={<YouPillShape />} label="Text Common Button" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonButton isElevated leading={<YouPillShape />}>
-          Elevated Common Button
-        </YouCommonButton>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouElevatedCommonButton leading={<YouPillShape />} label="Elevated Common Button" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonButton isFilled leading={<YouPillShape />}>
-          Filled Common Button
-        </YouCommonButton>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouFilledCommonButton leading={<YouPillShape />} label="Filled Common Button" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonButton isTonal leading={<YouPillShape />}>
-          Tonal Common Button
-        </YouCommonButton>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouTonalCommonButton leading={<YouPillShape />} label="Tonal Common Button" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonButton isOutlined leading={<YouPillShape />}>
-          Outlined Common Button
-        </YouCommonButton>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouOutlinedCommonButton leading={<YouPillShape />} label="Outlined Common Button" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonButton isText>Text Common Button</YouCommonButton>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouTextCommonButton label="Text Common Button" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonButton isElevated>Elevated Common Button</YouCommonButton>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouElevatedCommonButton label="Elevated Common Button" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonButton isFilled>Filled Common Button</YouCommonButton>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouFilledCommonButton label="Filled Common Button" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonButton isTonal>Tonal Common Button</YouCommonButton>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouTonalCommonButton label="Tonal Common Button" />
       </div>
-      <div style={{ padding: '1rem', backgroundColor: 'white' }}>
-        <YouCommonButton isOutlined>Outlined Common Button</YouCommonButton>
+      <div style={{
+        padding: '1rem',
+        backgroundColor: 'white',
+      }}
+      >
+        <YouOutlinedCommonButton label="Outlined Common Button" />
       </div>
     </main>
   );
