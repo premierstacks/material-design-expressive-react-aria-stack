@@ -1,5 +1,5 @@
 import * as stylex from '@stylexjs/stylex';
-import { useEffect, type HTMLProps, type ReactElement, type ReactNode } from 'react';
+import { useEffect, type HTMLProps, type ReactElement } from 'react';
 import { stylexify } from '../helpers/stylex';
 import { useScreen } from '../hooks/media';
 import { youSysColor } from '../vars/sys.stylex';
@@ -12,21 +12,24 @@ const rootStyles = stylex.create({
   },
 });
 
-interface YouBackgroundProps {
-  readonly children?: ReactNode;
-}
-
-// eslint-disable-next-line sonarjs/function-return-type
-export function YouBackground({ children }: YouBackgroundProps): ReactNode {
+export function YouBackground(): null {
   useEffect(() => {
+    const className = document.documentElement.className;
+    const style = document.documentElement.style;
+
     stylexify(
       document.documentElement,
       rootStyles.base,
       true,
     );
+
+    return () => {
+      document.documentElement.className = className;
+      document.documentElement.style.cssText = style.cssText;
+    };
   }, []);
 
-  return children;
+  return null;
 }
 
 interface YouBackgroundContentProps extends Omit<HTMLProps<HTMLDivElement>, 'style' | 'className'> {
