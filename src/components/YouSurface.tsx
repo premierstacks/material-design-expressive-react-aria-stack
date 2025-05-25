@@ -11,25 +11,36 @@ interface SurfaceProps extends Omit<HTMLProps<HTMLDivElement>, 'style' | 'classN
   readonly bottomleft?: boolean;
 }
 
-const styles = stylex.create({
+const rootStyles = stylex.create({
   base: {
     backgroundColor: `rgb(${youSysColor.surface})`,
-    color: `rgb(${youSysColor.onSurface})`,
-  },
-  topleft: {
-    borderTopLeftRadius: youSysShape.cornerLarge,
-  },
-  topright: {
-    borderTopRightRadius: youSysShape.cornerLarge,
-  },
-  bottomright: {
-    borderBottomRightRadius: youSysShape.cornerLarge,
-  },
-  bottomleft: {
     borderBottomLeftRadius: youSysShape.cornerLarge,
+    borderBottomRightRadius: youSysShape.cornerLarge,
+    borderTopLeftRadius: youSysShape.cornerLarge,
+    borderTopRightRadius: youSysShape.cornerLarge,
+    color: `rgb(${youSysColor.onSurface})`,
   },
 });
 
-export function Surface({ xstyle, topleft = false, topright = false, bottomleft = false, bottomright = false, ...props }: SurfaceProps): ReactElement {
-  return <div {...stylex.props(styles.base, topleft ? styles.topleft : null, topright ? styles.topright : null, bottomleft ? styles.bottomleft : null, bottomright ? styles.bottomright : null, xstyle)} {...props} />;
+export function Surface({ xstyle, ...props }: SurfaceProps): ReactElement {
+  return <div {...stylex.props(rootStyles.base, xstyle)} {...props} />;
 }
+
+interface YouSurfaceContentProps extends Omit<HTMLProps<HTMLDivElement>, 'style' | 'className'> {
+  readonly xstyle?: stylex.StyleXStyles;
+}
+
+const contentStyles = stylex.create({
+  base: {
+    paddingBottom: 16,
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 16,
+  },
+});
+
+export function YouSurfaceContent({ xstyle, ...props }: YouSurfaceContentProps): ReactElement {
+  return <div {...stylex.props(contentStyles.base, xstyle)} {...props} />;
+}
+
+Surface.Content = YouSurfaceContent;

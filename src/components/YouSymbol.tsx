@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement, ReactNode } from 'react';
 
-interface YouSymbolProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className'> {
+interface YouSymbolProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'style' | 'className'> {
   readonly size?: number;
   readonly xstyle?: stylex.StyleXStyles;
   readonly symbol?: ReactNode;

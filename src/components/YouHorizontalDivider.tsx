@@ -2,7 +2,7 @@ import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement } from 'react';
 import { youSysColor } from '../vars/sys.stylex';
 
-interface YouHorizontalRuleProps extends Omit<HTMLAttributes<HTMLHRElement>, 'style' | 'className' | 'children'> {
+interface YouHorizontalDividerProps extends Omit<HTMLAttributes<HTMLHRElement>, 'style' | 'className' | 'children'> {
   readonly xstyle?: stylex.StyleXStyles;
 }
 
@@ -14,9 +14,10 @@ const styles = stylex.create({
     borderLeftWidth: 0,
     borderRightStyle: 'none',
     borderRightWidth: 0,
-    borderTopColor: `rgb(${youSysColor.outlineVariant})`,
+    borderTopColor: 'currentColor',
     borderTopStyle: 'solid',
     borderTopWidth: '1px',
+    color: `rgb(${youSysColor.outlineVariant})`,
     marginBottom: 0,
     marginLeft: 0,
     marginRight: 0,
@@ -25,6 +26,6 @@ const styles = stylex.create({
   },
 });
 
-export function YouHorizontalRule({ xstyle, ...props }: YouHorizontalRuleProps): ReactElement {
+export function YouHorizontalDivider({ xstyle, ...props }: YouHorizontalDividerProps): ReactElement {
   return <hr {...stylex.props(styles.base, xstyle)} {...props} />;
 }

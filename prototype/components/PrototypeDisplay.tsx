@@ -1,11 +1,11 @@
 /* eslint-disable react/no-array-index-key */
 
 import stylex from '@stylexjs/stylex';
-import type { ReactElement, ReactNode } from 'react';
+import { Children, type ReactElement, type ReactNode } from 'react';
 import { youSysColor } from '../../src/vars/sys.stylex';
 
 interface PrototypeDisplayProps {
-  readonly children: Iterable<ReactNode>;
+  readonly children: ReactNode;
 }
 
 const styles = stylex.create({
@@ -32,11 +32,13 @@ const styles = stylex.create({
 export function PrototypeDisplay({ children }: PrototypeDisplayProps): ReactElement {
   return (
     <main {...stylex.props(styles.base)}>
-      {[...children].map((child, index) => (
-        <div key={index} {...stylex.props(styles.child)}>
-          {child}
-        </div>
-      ))}
+      {Children.map(children, (child, index) => {
+        return (
+          <div key={index} {...stylex.props(styles.child)}>
+            {child}
+          </div>
+        );
+      })}
     </main>
   );
 }

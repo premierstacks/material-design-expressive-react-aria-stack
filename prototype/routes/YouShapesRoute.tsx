@@ -13,13 +13,11 @@ const styles = stylex.create({
 export function YouShapesRoute(): ReactElement {
   return (
     <PrototypeDisplay>
-      {[
-        <YouCircleShape xstyle={styles.base} key={1} />,
-        <YouFlowerShape xstyle={styles.base} key={2} />,
-        <YouPillShape xstyle={styles.base} key={3} />,
-        <YouRectShape xstyle={styles.base} key={4} />,
-        <YouTriangleShape xstyle={styles.base} key={5} />,
-      ]}
+      <YouCircleShape xstyle={styles.base} />
+      <YouFlowerShape xstyle={styles.base} />
+      <YouPillShape xstyle={styles.base} />
+      <YouRectShape xstyle={styles.base} />
+      <YouTriangleShape xstyle={styles.base} />
     </PrototypeDisplay>
   );
 }

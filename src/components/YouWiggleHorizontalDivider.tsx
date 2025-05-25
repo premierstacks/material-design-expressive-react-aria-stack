@@ -3,7 +3,7 @@ import type { ReactElement, SVGAttributes } from 'react';
 import { useId } from 'react';
 import { youSysColor } from '../vars/sys.stylex';
 
-interface YouWiggleRuleProps extends Omit<SVGAttributes<SVGSVGElement>, 'style' | 'className' | 'children'> {
+interface YouWiggleHorizontalDividerProps extends Omit<SVGAttributes<SVGSVGElement>, 'style' | 'className' | 'children'> {
   readonly xstyle?: stylex.StyleXStyles;
 }
 
@@ -15,7 +15,7 @@ const styles = stylex.create({
   },
 });
 
-export function YouWiggleRule({ xstyle, ...props }: YouWiggleRuleProps): ReactElement {
+export function YouWiggleHorizontalDivider({ xstyle, ...props }: YouWiggleHorizontalDividerProps): ReactElement {
   const id = useId();
 
   return (
