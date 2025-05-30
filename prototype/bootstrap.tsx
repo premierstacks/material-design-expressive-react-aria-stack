@@ -1,13 +1,18 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { App } from './App';
+import { RouterProvider } from 'react-router';
+import { YouBackground } from '../src';
+import { createRouter } from './router';
 
 const el = document.createElement('div');
 
 document.body.appendChild(el);
 
+const router = createRouter();
+
 createRoot(el).render(
   <StrictMode>
-    <App />
+    <YouBackground />
+    <RouterProvider router={router} />
   </StrictMode>,
 );

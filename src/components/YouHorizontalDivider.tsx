@@ -1,8 +1,9 @@
 import * as stylex from '@stylexjs/stylex';
-import type { HTMLAttributes, ReactElement } from 'react';
+import type { ReactElement } from 'react';
+import { useSeparator, type SeparatorProps } from 'react-aria';
 import { youSysColor } from '../vars/sys.stylex';
 
-interface YouHorizontalDividerProps extends Omit<HTMLAttributes<HTMLHRElement>, 'style' | 'className' | 'children'> {
+interface YouHorizontalDividerProps extends Omit<SeparatorProps, 'style' | 'className' | 'children'> {
   readonly xstyle?: stylex.StyleXStyles;
 }
 
@@ -27,5 +28,7 @@ const styles = stylex.create({
 });
 
 export function YouHorizontalDivider({ xstyle, ...props }: YouHorizontalDividerProps): ReactElement {
-  return <hr {...stylex.props(styles.base, xstyle)} {...props} />;
+  const { separatorProps } = useSeparator(props);
+
+  return <hr {...stylex.props(styles.base, xstyle)} {...separatorProps} />;
 }

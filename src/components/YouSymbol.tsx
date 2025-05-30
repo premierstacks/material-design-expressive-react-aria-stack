@@ -1,10 +1,9 @@
 import * as stylex from '@stylexjs/stylex';
-import type { HTMLAttributes, ReactElement, ReactNode } from 'react';
+import type { HTMLAttributes, ReactElement } from 'react';
 
 interface YouSymbolProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'style' | 'className'> {
   readonly size?: number;
   readonly xstyle?: stylex.StyleXStyles;
-  readonly symbol?: ReactNode;
 }
 
 const styles = stylex.create({
@@ -25,10 +24,10 @@ const styles = stylex.create({
   size: (size: number) => ({ fontSize: size }),
 });
 
-export function YouSymbol({ symbol, size, xstyle, children, ...props }: YouSymbolProps): ReactElement {
+export function YouSymbol({ size, xstyle, children, ...props }: YouSymbolProps): ReactElement {
   return (
-    <span {...stylex.props(styles.base, size !== undefined ? styles.size(size) : null, xstyle)} {...props} aria-hidden>
-      {children ?? symbol}
+    <span {...stylex.props(styles.base, size !== undefined ? styles.size(size) : null, xstyle)} {...props}>
+      {children}
     </span>
   );
 }

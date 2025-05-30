@@ -69,7 +69,7 @@ function baseStylex(variant: CardVariant, custom: stylex.StyleXStyles) {
 export function YouCard({ xstyle, children, variant = CardVariant.Filled, ...props }: YouCardProps): ReactElement {
   return (
     <div {...baseStylex(variant, xstyle)} {...props}>
-      <div {...stylex.props(styles.children)}>{children}</div>
+      {children}
       {variant === CardVariant.Outlined ? <YouOutlineLayer /> : null}
     </div>
   );
@@ -104,7 +104,7 @@ export function YouCardLink({ xstyle, children, variant = CardVariant.Filled, ..
       {(args) => (
         <>
           <YouInteractionLayer isHovered={args.isHovered} isDragged={false} isFocused={args.isFocused} isPressed={args.isPressed} />
-          <div {...stylex.props(styles.children)}>{typeof children === 'function' ? children(args) : children}</div>
+          {typeof children === 'function' ? children(args) : children}
           {variant === CardVariant.Outlined ? <YouOutlineLayer isDisabled={args.isDisabled} /> : null}
           <YouFocusLayer isFocusVisible={args.isFocusVisible} />
         </>

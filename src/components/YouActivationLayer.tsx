@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement } from 'react';
-import { youSysColor } from '../vars/sys.stylex';
+import { youSysColor, youSysMotion } from '../vars/sys.stylex';
 
 interface YouActivationLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
   readonly isActive?: boolean;
@@ -20,6 +20,9 @@ const styles = stylex.create({
     position: 'absolute',
     right: 0,
     top: 0,
+    transitionDuration: youSysMotion.durationEmphasized,
+    transitionProperty: 'transform, opacity',
+    transitionTimingFunction: youSysMotion.easingEmphasized,
     userSelect: 'none',
   },
   isActive: {

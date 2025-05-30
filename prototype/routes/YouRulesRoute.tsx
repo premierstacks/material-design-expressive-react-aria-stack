@@ -2,12 +2,18 @@ import type { ReactElement } from 'react';
 import { YouHorizontalDivider, YouTildeHorizontalProvider, YouWiggleHorizontalDivider } from '../../src';
 import { PrototypeDisplay } from '../components/PrototypeDisplay';
 
-export function YouRulesRoute(): ReactElement {
+export function YouDividersRoute(): ReactElement {
   return (
     <PrototypeDisplay>
-      <YouHorizontalDivider />
-      <YouTildeHorizontalProvider />
-      <YouWiggleHorizontalDivider />
+      <PrototypeDisplay.Item>
+        <YouHorizontalDivider />
+      </PrototypeDisplay.Item>
+      <PrototypeDisplay.Item>
+        <YouTildeHorizontalProvider />
+      </PrototypeDisplay.Item>
+      <PrototypeDisplay.Item>
+        <YouWiggleHorizontalDivider />
+      </PrototypeDisplay.Item>
     </PrototypeDisplay>
   );
 }

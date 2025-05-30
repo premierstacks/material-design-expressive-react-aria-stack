@@ -1,13 +1,15 @@
 import { useCallback, type ReactElement } from 'react';
 import { RouterProvider as AriaRouterProvider } from 'react-aria';
-import { createBrowserRouter, Outlet, RouterProvider, ScrollRestoration, useHref, useNavigate, type Location, type NavigateOptions, type To } from 'react-router';
+import { createBrowserRouter, Outlet, ScrollRestoration, useHref, useNavigate, type Location, type NavigateOptions, type To } from 'react-router';
 import { IndexRoute } from './routes/IndexRoute';
 import { RootRoute } from './routes/RootRoute';
+import { YouActivationLayerRoute } from './routes/YouActivationLayerRoute';
+import { YouBackgroundRoute } from './routes/YouBackgroundRoute';
 import { YouCardRoute } from './routes/YouCardRoute';
-import { YouRulesRoute } from './routes/YouRulesRoute';
+import { YouDividersRoute } from './routes/YouRulesRoute';
 import { YouShapesRoute } from './routes/YouShapesRoute';
 
-export function ReactAriaProvider(): ReactElement {
+function ReactAriaProvider(): ReactElement {
   const navigate = useNavigate();
 
   const handleNavigate = useCallback(
@@ -28,36 +30,42 @@ export function ReactAriaProvider(): ReactElement {
   );
 }
 
-const router = createBrowserRouter([
-  {
-    element: <ReactAriaProvider />,
-    children: [
-      {
-        path: '/',
-        element: <RootRoute />,
-        children: [
-          {
-            index: true,
-            element: <IndexRoute />,
-          },
-          {
-            path: 'shapes',
-            element: <YouShapesRoute />,
-          },
-          {
-            path: 'rules',
-            element: <YouRulesRoute />,
-          },
-          {
-            path: 'cards',
-            element: <YouCardRoute />,
-          },
-        ],
-      },
-    ],
-  },
-]);
-
-export function Router(): ReactElement {
-  return <RouterProvider router={router} />;
+export function createRouter() {
+  return createBrowserRouter([
+    {
+      element: <ReactAriaProvider />,
+      children: [
+        {
+          path: '/',
+          element: <RootRoute />,
+          children: [
+            {
+              index: true,
+              element: <IndexRoute />,
+            },
+            {
+              path: 'shapes',
+              element: <YouShapesRoute />,
+            },
+            {
+              path: 'divider',
+              element: <YouDividersRoute />,
+            },
+            {
+              path: 'cards',
+              element: <YouCardRoute />,
+            },
+            {
+              path: 'activation',
+              element: <YouActivationLayerRoute />,
+            },
+            {
+              path: 'background',
+              element: <YouBackgroundRoute />,
+            },
+          ],
+        },
+      ],
+    },
+  ]);
 }
