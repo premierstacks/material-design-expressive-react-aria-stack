@@ -9,19 +9,16 @@ export function IndexRoute(): ReactElement {
           <Link href="/divider">Dividers</Link>
         </div>
         <div>
-          <Link href="/shapes">Shapes</Link>
+          <Link href="/symbols">Symbols</Link>
         </div>
         <div>
-          <Link href="/cards">Cards</Link>
-        </div>
-        <div>
-          <Link href="/activation">Activation Layer</Link>
-        </div>
-        <div>
-          <Link href="/background">Background</Link>
+          <Link href="/interactions">Interactions</Link>
         </div>
         <div>
           <Link href="/buttons">Buttons</Link>
+        </div>
+        <div>
+          <Link href="/app-bars">App Bars</Link>
         </div>
       </nav>
     </main>

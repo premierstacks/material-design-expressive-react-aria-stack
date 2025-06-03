@@ -1,8 +1,8 @@
 import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement } from 'react';
-import { youSysColor, youSysMotion } from '../vars/sys.stylex';
+import { youSysColor, youSysMotion } from '../stylex/sys.stylex';
 
-interface YouActivationLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
+export interface YouActivationLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
   readonly isActive?: boolean;
   readonly xstyle?: stylex.StyleXStyles;
 }

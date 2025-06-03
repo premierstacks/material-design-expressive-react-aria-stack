@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement } from 'react';
-import { youSysColor } from '../vars/sys.stylex';
+import { youSysColor } from '../stylex/sys.stylex';
 
 export interface YouFocusLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
   readonly isFocusVisible?: boolean;
@@ -8,7 +8,7 @@ export interface YouFocusLayerProps extends Omit<HTMLAttributes<HTMLDivElement>,
   readonly xstyle?: stylex.StyleXStyles;
 }
 
-const rootStyles = stylex.create({
+const styles = stylex.create({
   base: {
     borderBottomColor: `rgb(${youSysColor.secondary})`,
     borderBottomLeftRadius: 'inherit',
@@ -41,19 +41,19 @@ const rootStyles = stylex.create({
     userSelect: 'none',
     zIndex: 90,
   },
-  inset: {
+  isInset: {
     borderBottomWidth: 3,
     borderLeftWidth: 3,
     borderRightWidth: 3,
     borderTopWidth: 3,
   },
-  outline: {
+  isOutline: {
     outlineWidth: '3px',
   },
 });
 
 export function YouFocusLayer({ isFocusVisible = false, isInset = false, xstyle, ...props }: YouFocusLayerProps): ReactElement {
-  const inset = isInset ? rootStyles.inset : rootStyles.outline;
+  const variant = isInset ? styles.isInset : styles.isOutline;
 
-  return <div {...stylex.props(rootStyles.base, isFocusVisible ? inset : null, xstyle)} {...props} />;
+  return <div {...stylex.props(styles.base, isFocusVisible ? variant : null, xstyle)} {...props} />;
 }

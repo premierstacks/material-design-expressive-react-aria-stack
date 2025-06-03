@@ -2,12 +2,12 @@ import * as stylex from '@stylexjs/stylex';
 import { useCallback, type CSSProperties, type ReactElement, type ReactNode } from 'react';
 import type { LinkProps, LinkRenderProps } from 'react-aria-components';
 import { Link } from 'react-aria-components';
-import { toClassName, toCssProperties } from '../helpers/utils';
+import { toClassName, toCssProperties } from '../helpers/styles';
 import { YouFocusLayer } from './YouFocusLayer';
 
-interface YouLinkProps extends Omit<LinkProps, 'style' | 'className'> {
+export interface YouLinkProps extends Omit<LinkProps, 'style' | 'className' | 'children'> {
   readonly xstyle?: stylex.StyleXStyles;
-  readonly text?: ReactNode;
+  readonly label?: ReactNode;
 }
 
 const styles = stylex.create({
@@ -18,12 +18,13 @@ const styles = stylex.create({
     position: 'relative',
     textDecorationLine: 'inherit',
   },
-  children: {
+  label: {
+    display: 'inline-block',
     position: 'relative',
   },
 });
 
-export function YouLink({ xstyle, children, text, ...props }: YouLinkProps): ReactElement {
+export function YouLink({ xstyle, label, ...props }: YouLinkProps): ReactElement {
   const ariax = useCallback(() => {
     return stylex.props(styles.base, xstyle);
   }, [xstyle]);
@@ -44,7 +45,7 @@ export function YouLink({ xstyle, children, text, ...props }: YouLinkProps): Rea
     >
       {(args) => (
         <>
-          <span {...stylex.props(styles.children)}>{(typeof children === 'function' ? children(args) : (children ?? text)) ?? args.defaultChildren}</span>
+          <span {...stylex.props(styles.label)}>{label}</span>
           <YouFocusLayer isFocusVisible={args.isFocusVisible} />
         </>
       )}

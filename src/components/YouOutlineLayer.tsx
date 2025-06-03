@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement } from 'react';
-import { youSysColor, youSysState } from '../vars/sys.stylex';
+import { youSysColor, youSysState } from '../stylex/sys.stylex';
 
 export interface YouOutlineLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
   readonly xstyle?: stylex.StyleXStyles;

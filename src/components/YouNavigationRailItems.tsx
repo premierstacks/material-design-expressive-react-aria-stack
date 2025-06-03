@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement } from 'react';
 
-interface YouNavigationRailItemsProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className'> {
+export interface YouNavigationRailItemsProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className'> {
   readonly xstyle?: stylex.StyleXStyles;
 }
 

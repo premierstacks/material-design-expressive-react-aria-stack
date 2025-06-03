@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement } from 'react';
-import { youSysState } from '../vars/sys.stylex';
+import { youSysState } from '../stylex/sys.stylex';
 
 export interface YouInteractionLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
   readonly isDragged?: boolean;
@@ -10,7 +10,7 @@ export interface YouInteractionLayerProps extends Omit<HTMLAttributes<HTMLDivEle
   readonly xstyle?: stylex.StyleXStyles;
 }
 
-const rootStyles = stylex.create({
+const styles = stylex.create({
   base: {
     backgroundColor: 'currentColor',
     borderBottomLeftRadius: 'inherit',
@@ -36,8 +36,8 @@ export function YouInteractionLayer({ isHovered = false, isPressed = false, isFo
   return (
     <div
       {...stylex.props(
-        rootStyles.base,
-        rootStyles.opacity(
+        styles.base,
+        styles.opacity(
           isPressed ? youSysState.pressedStateLayerOpacity : '0',
           isHovered ? youSysState.hoverStateLayerOpacity : '0',
           isFocused ? youSysState.focusStateLayerOpacity : '0',

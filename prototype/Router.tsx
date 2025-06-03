@@ -1,15 +1,14 @@
 import { useCallback, type ReactElement } from 'react';
-import { RouterProvider as AriaRouterProvider } from 'react-aria';
+import { RouterProvider as AriaRouterProvider } from 'react-aria-components';
 import { createBrowserRouter, Outlet, ScrollRestoration, useHref, useNavigate, type Location, type NavigateOptions, type To } from 'react-router';
+import { AppBarsRoute } from './routes/AppBarsRoute';
+import { ButtonsRoute } from './routes/ButtonsRoute';
+import { DividersRoute } from './routes/DividersRoute';
 import { IndexRoute } from './routes/IndexRoute';
-import { RootRoute } from './routes/RootRoute';
-import { YouActivationLayerRoute } from './routes/YouActivationLayerRoute';
-import { YouBackgroundRoute } from './routes/YouBackgroundRoute';
-import { YouCardRoute } from './routes/YouCardRoute';
-import { YouDividersRoute } from './routes/YouRulesRoute';
-import { YouShapesRoute } from './routes/YouShapesRoute';
+import { InteractionsRoute } from './routes/InteractionsRoute';
+import { SymbolsRoute } from './routes/SymbolsRoute';
 
-function ReactAriaProvider(): ReactElement {
+function ReactAriaProviderRoute(): ReactElement {
   const navigate = useNavigate();
 
   const handleNavigate = useCallback(
@@ -19,49 +18,60 @@ function ReactAriaProvider(): ReactElement {
     [navigate],
   );
 
-  const handleKey = useCallback(({ pathname }: Location): string => pathname, []);
-
   return (
     // eslint-disable-next-line react-compiler/react-compiler
     <AriaRouterProvider navigate={handleNavigate} useHref={useHref}>
-      <ScrollRestoration getKey={handleKey} />
       <Outlet />
     </AriaRouterProvider>
+  );
+}
+
+function ScrollRestorationRoute(): ReactElement {
+  const handleKey = useCallback(({ pathname }: Location): string => pathname, []);
+
+  return (
+    <>
+      <ScrollRestoration getKey={handleKey} />
+      <Outlet />
+    </>
   );
 }
 
 export function createRouter() {
   return createBrowserRouter([
     {
-      element: <ReactAriaProvider />,
+      element: <ReactAriaProviderRoute />,
       children: [
         {
-          path: '/',
-          element: <RootRoute />,
+          element: <ScrollRestorationRoute />,
           children: [
             {
-              index: true,
-              element: <IndexRoute />,
-            },
-            {
-              path: 'shapes',
-              element: <YouShapesRoute />,
-            },
-            {
-              path: 'divider',
-              element: <YouDividersRoute />,
-            },
-            {
-              path: 'cards',
-              element: <YouCardRoute />,
-            },
-            {
-              path: 'activation',
-              element: <YouActivationLayerRoute />,
-            },
-            {
-              path: 'background',
-              element: <YouBackgroundRoute />,
+              children: [
+                {
+                  index: true,
+                  element: <IndexRoute />,
+                },
+                {
+                  path: 'symbols',
+                  element: <SymbolsRoute />,
+                },
+                {
+                  path: 'divider',
+                  element: <DividersRoute />,
+                },
+                {
+                  path: 'interactions',
+                  element: <InteractionsRoute />,
+                },
+                {
+                  path: 'buttons',
+                  element: <ButtonsRoute />,
+                },
+                {
+                  path: 'app-bars',
+                  element: <AppBarsRoute />,
+                },
+              ],
             },
           ],
         },

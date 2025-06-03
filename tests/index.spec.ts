@@ -1,7 +1,6 @@
 import { test } from '@playwright/test';
-import { waitForIdle } from './assertions';
+import { setup } from './test';
 
 test('/', async ({ page }) => {
-  await page.goto('/');
-  await waitForIdle(page);
+  await setup(page, '/');
 });

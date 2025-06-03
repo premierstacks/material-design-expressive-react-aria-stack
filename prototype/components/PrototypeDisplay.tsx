@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
 import type { ReactElement, ReactNode } from 'react';
-import { youSysColor } from '../../src/vars/sys.stylex';
+import { youSysColor } from '../../src/stylex/sys.stylex';
 
 interface PrototypeDisplayProps {
   readonly children: ReactNode;

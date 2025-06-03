@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement } from 'react';
 
-interface YouOverscrollProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className'> {
+export interface YouOverscrollProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
   readonly xstyle?: stylex.StyleXStyles;
 }
 
