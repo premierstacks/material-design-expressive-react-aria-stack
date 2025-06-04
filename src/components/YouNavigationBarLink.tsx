@@ -117,13 +117,33 @@ export function NavigationBarLink({ label, symbol, xstyle, isActive = false, ...
     >
       {(args) => (
         <>
-          <div {...stylex.props(indicatorStyles.base, isActive || args.isCurrent ? indicatorStyles.isActive : null, args.isDisabled ? indicatorStyles.isDisabled : null)}>
-            <YouActivationLayer isActive={isActive || args.isCurrent} />
-            <YouInteractionLayer isHovered={args.isHovered} isDragged={false} isFocused={args.isFocused} isPressed={args.isPressed} />
-            <span {...stylex.props(symbolStyles.base)}>{symbol}</span>
-            <YouFocusLayer isFocusVisible={args.isFocusVisible} isInset />
+          <div
+            {...stylex.props(indicatorStyles.base, isActive || args.isCurrent ? indicatorStyles.isActive : null, args.isDisabled ? indicatorStyles.isDisabled : null)}
+          >
+            <YouActivationLayer
+              isActive={isActive || args.isCurrent}
+            />
+            <YouInteractionLayer
+              isHovered={args.isHovered}
+              isDragged={false}
+              isFocused={args.isFocused}
+              isPressed={args.isPressed}
+            />
+            <span
+              {...stylex.props(symbolStyles.base)}
+            >
+              {symbol}
+            </span>
+            <YouFocusLayer
+              isFocusVisible={args.isFocusVisible}
+              isInset
+            />
           </div>
-          <div {...stylex.props(labelStyles.base)}>{label}</div>
+          <div
+            {...stylex.props(labelStyles.base)}
+          >
+            {label}
+          </div>
         </>
       )}
     </Link>

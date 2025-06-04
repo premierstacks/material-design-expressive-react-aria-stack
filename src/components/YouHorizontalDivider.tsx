@@ -30,5 +30,10 @@ const styles = stylex.create({
 export function YouHorizontalDivider({ xstyle, ...props }: YouHorizontalDividerProps): ReactElement {
   const { separatorProps } = useSeparator(props);
 
-  return <hr {...stylex.props(styles.base, xstyle)} {...mergeProps(separatorProps, props)} />;
+  return (
+    <hr
+      {...stylex.props(styles.base, xstyle)}
+      {...mergeProps(separatorProps, props)}
+    />
+  );
 }

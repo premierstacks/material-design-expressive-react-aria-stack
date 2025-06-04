@@ -19,7 +19,10 @@ const styles = stylex.create({
 
 export function YouTouchTarget({ xstyle, children, ...props }: YouTouchTargetProps): ReactElement {
   return (
-    <span {...stylex.props(styles.base, xstyle)} {...props}>
+    <span
+      {...stylex.props(styles.base, xstyle)}
+      {...props}
+    >
       {children}
     </span>
   );

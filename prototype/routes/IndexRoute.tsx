@@ -6,19 +6,39 @@ export function IndexRoute(): ReactElement {
     <main>
       <nav>
         <div>
-          <Link href="/divider">Dividers</Link>
+          <Link
+            href="/divider"
+          >
+            Dividers
+          </Link>
         </div>
         <div>
-          <Link href="/symbols">Symbols</Link>
+          <Link
+            href="/symbols"
+          >
+            Symbols
+          </Link>
         </div>
         <div>
-          <Link href="/interactions">Interactions</Link>
+          <Link
+            href="/interactions"
+          >
+            Interactions
+          </Link>
         </div>
         <div>
-          <Link href="/buttons">Buttons</Link>
+          <Link
+            href="/buttons"
+          >
+            Buttons
+          </Link>
         </div>
         <div>
-          <Link href="/app-bars">App Bars</Link>
+          <Link
+            href="/app-bars"
+          >
+            App Bars
+          </Link>
         </div>
       </nav>
     </main>

@@ -36,5 +36,10 @@ const styles = stylex.create({
 });
 
 export function YouActivationLayer({ isActive = false, xstyle, ...props }: YouActivationLayerProps): ReactElement {
-  return <div {...stylex.props(styles.base, isActive ? styles.isActive : styles.isInactive, xstyle)} {...props} />;
+  return (
+    <div
+      {...stylex.props(styles.base, isActive ? styles.isActive : styles.isInactive, xstyle)}
+      {...props}
+    />
+  );
 }

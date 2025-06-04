@@ -86,10 +86,29 @@ export function YouTonalButton({ symbol, xstyle, label, ...props }: YouTonalButt
     >
       {(args) => (
         <>
-          <YouInteractionLayer isHovered={args.isHovered} isDragged={false} isFocused={args.isFocused} isPressed={args.isPressed} />
-          {symbol !== undefined ? <span {...stylex.props(styles.symbol)}>{symbol}</span> : null}
-          <span {...stylex.props(styles.label, youPresetTypography.labelLarge)}>{label}</span>
-          <YouFocusLayer isFocusVisible={args.isFocusVisible} />
+          <YouInteractionLayer
+            isHovered={args.isHovered}
+            isDragged={false}
+            isFocused={args.isFocused}
+            isPressed={args.isPressed}
+          />
+          {symbol !== undefined
+            ? (
+                <span
+                  {...stylex.props(styles.symbol)}
+                >
+                  {symbol}
+                </span>
+              )
+            : null}
+          <span
+            {...stylex.props(styles.label, youPresetTypography.labelLarge)}
+          >
+            {label}
+          </span>
+          <YouFocusLayer
+            isFocusVisible={args.isFocusVisible}
+          />
         </>
       )}
     </Button>

@@ -29,7 +29,10 @@ const styles = stylex.create({
 
 export function YouFilledCard({ xstyle, children, ...props }: YouFilledCardProps): ReactElement {
   return (
-    <div {...stylex.props(styles.base, xstyle)} {...props}>
+    <div
+      {...stylex.props(styles.base, xstyle)}
+      {...props}
+    >
       {children}
     </div>
   );

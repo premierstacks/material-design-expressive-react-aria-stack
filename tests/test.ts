@@ -1,4 +1,4 @@
-import type { Page } from '@playwright/test';
+import { expect, type Page } from '@playwright/test';
 
 export async function waitForIdle(page: Page): Promise<void> {
   await page.waitForLoadState('load');
@@ -9,4 +9,5 @@ export async function waitForIdle(page: Page): Promise<void> {
 export async function setup(page: Page, url: string): Promise<void> {
   await page.goto(url);
   await waitForIdle(page);
+  await expect(page.getByTestId('sentinel')).toBeAttached();
 }

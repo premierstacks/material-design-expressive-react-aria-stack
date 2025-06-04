@@ -16,5 +16,10 @@ const styles = stylex.create({
 });
 
 export function YouNavigationRailItems({ xstyle, ...props }: YouNavigationRailItemsProps): ReactElement {
-  return <div {...stylex.props(styles.base, xstyle)} {...props} />;
+  return (
+    <div
+      {...stylex.props(styles.base, xstyle)}
+      {...props}
+    />
+  );
 }

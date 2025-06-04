@@ -13,11 +13,31 @@ const styles = stylex.create({
 export function SymbolsRoute(): ReactElement {
   return (
     <PrototypeDisplay>
-      <PrototypeDisplay.Item><YouSymbolCircle xstyle={styles.base} /></PrototypeDisplay.Item>
-      <PrototypeDisplay.Item><YouSymbolFlower xstyle={styles.base} /></PrototypeDisplay.Item>
-      <PrototypeDisplay.Item><YouSymbolPill xstyle={styles.base} /></PrototypeDisplay.Item>
-      <PrototypeDisplay.Item><YouSymbolRect xstyle={styles.base} /></PrototypeDisplay.Item>
-      <PrototypeDisplay.Item><YouSymbolTriangle xstyle={styles.base} /></PrototypeDisplay.Item>
+      <PrototypeDisplay.Item>
+        <YouSymbolCircle
+          xstyle={styles.base}
+        />
+      </PrototypeDisplay.Item>
+      <PrototypeDisplay.Item>
+        <YouSymbolFlower
+          xstyle={styles.base}
+        />
+      </PrototypeDisplay.Item>
+      <PrototypeDisplay.Item>
+        <YouSymbolPill
+          xstyle={styles.base}
+        />
+      </PrototypeDisplay.Item>
+      <PrototypeDisplay.Item>
+        <YouSymbolRect
+          xstyle={styles.base}
+        />
+      </PrototypeDisplay.Item>
+      <PrototypeDisplay.Item>
+        <YouSymbolTriangle
+          xstyle={styles.base}
+        />
+      </PrototypeDisplay.Item>
     </PrototypeDisplay>
   );
 }

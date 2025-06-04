@@ -45,8 +45,14 @@ export function YouLink({ xstyle, label, ...props }: YouLinkProps): ReactElement
     >
       {(args) => (
         <>
-          <span {...stylex.props(styles.label)}>{label}</span>
-          <YouFocusLayer isFocusVisible={args.isFocusVisible} />
+          <span
+            {...stylex.props(styles.label)}
+          >
+            {label}
+          </span>
+          <YouFocusLayer
+            isFocusVisible={args.isFocusVisible}
+          />
         </>
       )}
     </Link>

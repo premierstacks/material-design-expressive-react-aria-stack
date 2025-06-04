@@ -6,7 +6,12 @@ import { PrototypeDisplay } from '../components/PrototypeDisplay';
 export function ButtonsRoute(): ReactElement {
   return (
     <PrototypeDisplay>
-      <PrototypeDisplay.Item><YouElevatedButton label="Elevated Button" symbol={<YouSymbolCircle />} /></PrototypeDisplay.Item>
+      <PrototypeDisplay.Item>
+        <YouElevatedButton
+          label="Elevated Button"
+          symbol={<YouSymbolCircle />}
+        />
+      </PrototypeDisplay.Item>
     </PrototypeDisplay>
   );
 }

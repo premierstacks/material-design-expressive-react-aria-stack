@@ -44,5 +44,10 @@ const styles = stylex.create({
 });
 
 export function YouOutlineLayer({ isDisabled = false, xstyle, ...props }: YouOutlineLayerProps): ReactElement {
-  return <div {...stylex.props(styles.base, isDisabled ? styles.isDisabled : null, xstyle)} {...props} />;
+  return (
+    <div
+      {...stylex.props(styles.base, isDisabled ? styles.isDisabled : null, xstyle)}
+      {...props}
+    />
+  );
 }

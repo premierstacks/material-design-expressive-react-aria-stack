@@ -25,8 +25,20 @@ export function InteractionsRoute(): ReactElement {
 
   return (
     <PrototypeDisplay>
-      <PrototypeDisplay.Item xstyle={styles.base}><YouActivationLayer isActive={isActive} /></PrototypeDisplay.Item>
-      <PrototypeDisplay.Item xstyle={styles.base}><YouActivationLayer isActive={!isActive} /></PrototypeDisplay.Item>
+      <PrototypeDisplay.Item
+        xstyle={styles.base}
+      >
+        <YouActivationLayer
+          isActive={isActive}
+        />
+      </PrototypeDisplay.Item>
+      <PrototypeDisplay.Item
+        xstyle={styles.base}
+      >
+        <YouActivationLayer
+          isActive={!isActive}
+        />
+      </PrototypeDisplay.Item>
     </PrototypeDisplay>
   );
 }

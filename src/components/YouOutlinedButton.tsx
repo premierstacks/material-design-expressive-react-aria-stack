@@ -87,11 +87,32 @@ export function YouOutlineButton({ symbol, xstyle, label, ...props }: YouOutline
     >
       {(args) => (
         <>
-          <YouInteractionLayer isHovered={args.isHovered} isDragged={false} isFocused={args.isFocused} isPressed={args.isPressed} />
-          {symbol !== undefined ? <span {...stylex.props(styles.symbol)}>{symbol}</span> : null}
-          <span {...stylex.props(styles.label, youPresetTypography.labelLarge)}>{label}</span>
-          <YouOutlineLayer isDisabled={args.isDisabled} />
-          <YouFocusLayer isFocusVisible={args.isFocusVisible} />
+          <YouInteractionLayer
+            isHovered={args.isHovered}
+            isDragged={false}
+            isFocused={args.isFocused}
+            isPressed={args.isPressed}
+          />
+          {symbol !== undefined
+            ? (
+                <span
+                  {...stylex.props(styles.symbol)}
+                >
+                  {symbol}
+                </span>
+              )
+            : null}
+          <span
+            {...stylex.props(styles.label, youPresetTypography.labelLarge)}
+          >
+            {label}
+          </span>
+          <YouOutlineLayer
+            isDisabled={args.isDisabled}
+          />
+          <YouFocusLayer
+            isFocusVisible={args.isFocusVisible}
+          />
         </>
       )}
     </Button>

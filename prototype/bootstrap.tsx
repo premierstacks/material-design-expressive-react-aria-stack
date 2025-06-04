@@ -13,6 +13,8 @@ const router = createRouter();
 createRoot(el).render(
   <StrictMode>
     <YouRootThemeEffect />
-    <RouterProvider router={router} />
+    <RouterProvider
+      router={router}
+    />
   </StrictMode>,
 );

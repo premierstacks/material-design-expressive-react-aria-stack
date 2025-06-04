@@ -55,5 +55,10 @@ const styles = stylex.create({
 export function YouFocusLayer({ isFocusVisible = false, isInset = false, xstyle, ...props }: YouFocusLayerProps): ReactElement {
   const variant = isInset ? styles.isInset : styles.isOutline;
 
-  return <div {...stylex.props(styles.base, isFocusVisible ? variant : null, xstyle)} {...props} />;
+  return (
+    <div
+      {...stylex.props(styles.base, isFocusVisible ? variant : null, xstyle)}
+      {...props}
+    />
+  );
 }

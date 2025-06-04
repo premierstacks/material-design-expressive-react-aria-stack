@@ -62,7 +62,7 @@ const styles = stylex.create({
   },
 });
 
-export function YouTextCommonButton({ symbol, xstyle, label, ...props }: YouTextButtonProps) {
+export function YouTextButton({ symbol, xstyle, label, ...props }: YouTextButtonProps) {
   const ariax = useCallback((args: ButtonRenderProps) => {
     return stylex.props(
       styles.base,
@@ -87,10 +87,29 @@ export function YouTextCommonButton({ symbol, xstyle, label, ...props }: YouText
     >
       {(args) => (
         <>
-          <YouInteractionLayer isHovered={args.isHovered} isDragged={false} isFocused={args.isFocused} isPressed={args.isPressed} />
-          {symbol !== undefined ? <span {...stylex.props(styles.symbol)}>{symbol}</span> : null}
-          <span {...stylex.props(styles.label, youPresetTypography.labelLarge)}>{label}</span>
-          <YouFocusLayer isFocusVisible={args.isFocusVisible} />
+          <YouInteractionLayer
+            isHovered={args.isHovered}
+            isDragged={false}
+            isFocused={args.isFocused}
+            isPressed={args.isPressed}
+          />
+          {symbol !== undefined
+            ? (
+                <span
+                  {...stylex.props(styles.symbol)}
+                >
+                  {symbol}
+                </span>
+              )
+            : null}
+          <span
+            {...stylex.props(styles.label, youPresetTypography.labelLarge)}
+          >
+            {label}
+          </span>
+          <YouFocusLayer
+            isFocusVisible={args.isFocusVisible}
+          />
         </>
       )}
     </Button>

@@ -23,9 +23,12 @@ const styles = stylex.create({
   size: (size: number) => ({ fontSize: size }),
 });
 
-export function YouSymbol({ size, xstyle, symbol, ...props }: YouSymbolProps): ReactElement {
+export function YouIcon({ size, xstyle, symbol, ...props }: YouSymbolProps): ReactElement {
   return (
-    <span {...stylex.props(styles.base, size !== undefined ? styles.size(size) : null, xstyle)} {...props}>
+    <span
+      {...stylex.props(styles.base, size !== undefined ? styles.size(size) : null, xstyle)}
+      {...props}
+    >
       {symbol}
     </span>
   );

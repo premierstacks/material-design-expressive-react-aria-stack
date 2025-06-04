@@ -65,12 +65,38 @@ export function YouSmallAppBar({
       )}
       {...props}
     >
-      <div {...stylex.props(styles.leading)}>{leading}</div>
-      <div {...stylex.props(styles.content)}>
-        {headline !== undefined ? <div {...stylex.props(styles.headline, youPresetTypography.titleLarge)}>{headline}</div> : null}
-        {subhead !== undefined ? <div {...stylex.props(styles.subhead, youPresetTypography.labelLarge)}>{subhead}</div> : null}
+      <div
+        {...stylex.props(styles.leading)}
+      >
+        {leading}
       </div>
-      <div {...stylex.props(styles.trailing)}>{trailing}</div>
+      <div
+        {...stylex.props(styles.content)}
+      >
+        {headline !== undefined
+          ? (
+              <div
+                {...stylex.props(styles.headline, youPresetTypography.titleLarge)}
+              >
+                {headline}
+              </div>
+            )
+          : null}
+        {subhead !== undefined
+          ? (
+              <div
+                {...stylex.props(styles.subhead, youPresetTypography.labelLarge)}
+              >
+                {subhead}
+              </div>
+            )
+          : null}
+      </div>
+      <div
+        {...stylex.props(styles.trailing)}
+      >
+        {trailing}
+      </div>
     </div>
   );
 }

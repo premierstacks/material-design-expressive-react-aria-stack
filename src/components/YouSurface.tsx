@@ -18,5 +18,10 @@ const rootStyles = stylex.create({
 });
 
 export function Surface({ xstyle, ...props }: SurfaceProps): ReactElement {
-  return <div {...stylex.props(rootStyles.base, xstyle)} {...props} />;
+  return (
+    <div
+      {...stylex.props(rootStyles.base, xstyle)}
+      {...props}
+    />
+  );
 }

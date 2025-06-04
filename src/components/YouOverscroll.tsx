@@ -13,5 +13,10 @@ const styles = stylex.create({
 });
 
 export function YouOverscroll({ xstyle, ...props }: YouOverscrollProps): ReactElement {
-  return <div {...stylex.props(styles.base, xstyle)} {...props} />;
+  return (
+    <div
+      {...stylex.props(styles.base, xstyle)}
+      {...props}
+    />
+  );
 }

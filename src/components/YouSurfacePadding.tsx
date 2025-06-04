@@ -15,5 +15,10 @@ const styles = stylex.create({
 });
 
 export function YouSurfacePadding({ xstyle, ...props }: YouSurfacePaddingProps): ReactElement {
-  return <div {...stylex.props(styles.base, xstyle)} {...props} />;
+  return (
+    <div
+      {...stylex.props(styles.base, xstyle)}
+      {...props}
+    />
+  );
 }
