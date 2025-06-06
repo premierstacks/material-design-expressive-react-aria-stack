@@ -8,10 +8,14 @@ interface PrototypeDisplayProps {
 
 const styles = stylex.create({
   base: {
+    columnGap: '1rem',
     display: 'flex',
     flexDirection: 'column',
-    gap: '1rem',
-    padding: '1rem',
+    paddingBottom: '1rem',
+    paddingLeft: '1rem',
+    paddingRight: '1rem',
+    paddingTop: '1rem',
+    rowGap: '1rem',
   },
 });
 

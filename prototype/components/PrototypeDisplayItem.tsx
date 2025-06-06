@@ -13,7 +13,10 @@ const styles = stylex.create({
     borderBottomRightRadius: 8,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
-    padding: '1rem',
+    paddingBottom: '1rem',
+    paddingLeft: '1rem',
+    paddingRight: '1rem',
+    paddingTop: '1rem',
   },
 });
 
