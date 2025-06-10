@@ -15,35 +15,35 @@ export function NavigationRailRoute(): ReactElement {
               href="#home"
               label="Home"
               aria-current={location.hash === '#home' ? 'page' : undefined}
-              routerOptions={{replace: true}}
+              routerOptions={{ replace: true }}
               symbol={<YouSymbolCircle />}
             />
             <YouNavigationRailLink
               href="#about"
               label="About"
               aria-current={location.hash === '#about' ? 'page' : undefined}
-              routerOptions={{replace: true}}
+              routerOptions={{ replace: true }}
               symbol={<YouSymbolFlower />}
             />
             <YouNavigationRailLink
               href="#contact"
               label="Contact"
               aria-current={location.hash === '#contact' ? 'page' : undefined}
-              routerOptions={{replace: true}}
+              routerOptions={{ replace: true }}
               symbol={<YouSymbolPill />}
             />
             <YouNavigationRailLink
               href="#profile"
               label="Profile"
               aria-current={location.hash === '#profile' ? 'page' : undefined}
-              routerOptions={{replace: true}}
+              routerOptions={{ replace: true }}
               symbol={<YouSymbolRect />}
             />
             <YouNavigationRailLink
               href="#shop"
               label="Shop"
               aria-current={location.hash === '#shop' ? 'page' : undefined}
-              routerOptions={{replace: true}}
+              routerOptions={{ replace: true }}
               isDisabled
               symbol={<YouSymbolTriangle />}
             />

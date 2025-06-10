@@ -9,12 +9,7 @@ interface PrototypeDisplayProps {
 const styles = stylex.create({
   base: {
     columnGap: '1rem',
-    display: 'flex',
-    flexDirection: 'column',
-    paddingBottom: '1rem',
-    paddingLeft: '1rem',
-    paddingRight: '1rem',
-    paddingTop: '1rem',
+    display: 'grid',
     rowGap: '1rem',
   },
 });

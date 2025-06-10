@@ -9,7 +9,7 @@ export * from './hooks/media';
 export * from './helpers/styles';
 
 export * from './components/YouActivationLayer';
-export * from './components/YouBackgroundPadding';
+export * from './components/YouBackgroundEffect';
 export * from './components/YouElevatedButton';
 export * from './components/YouElevatedLink';
 export * from './components/YouFilledButton';
@@ -29,7 +29,8 @@ export * from './components/YouOutlinedButton';
 export * from './components/YouOutlinedLink';
 export * from './components/YouOutlineLayer';
 export * from './components/YouOverscroll';
-export * from './components/YouRootThemeProvider';
+export * from './components/YouPaneLayout';
+export * from './components/YouPanePadding';
 export * from './components/YouSmallAppBar';
 export * from './components/YouSurface';
 export * from './components/YouSurfacePadding';

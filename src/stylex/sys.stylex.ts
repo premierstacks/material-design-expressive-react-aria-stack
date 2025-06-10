@@ -65,7 +65,10 @@ export const youSysElevation = stylex.defineVars({
 
 export const youSysShape = stylex.defineVars({
   cornerFull: stylex.types.length(9999),
+  cornerExtraExtraLarge: stylex.types.length(48),
+  cornerExtraLargeIncreased: stylex.types.length(32),
   cornerExtraLarge: stylex.types.length(28),
+  cornerLargeIncreased: stylex.types.length(20),
   cornerLarge: stylex.types.length(16),
   cornerMedium: stylex.types.length(12),
   cornerSmall: stylex.types.length(8),
@@ -74,6 +77,7 @@ export const youSysShape = stylex.defineVars({
 });
 
 export const youSysMotion = stylex.defineVars({
+  // legacy
   easingEmphasizedDecelerate: 'cubic-bezier(0.05, 0.7, 0.1, 1)',
   easingEmphasizedAccelerate: 'cubic-bezier(0.3, 0, 0.8, 0.15)',
   easingStandardDecelerate: 'cubic-bezier(0, 0, 0, 1)',
@@ -109,6 +113,35 @@ export const youSysMotion = stylex.defineVars({
   durationStandardDecelerate: stylex.types.time('250ms'),
   durationStandardAccelerate: stylex.types.time('200ms'),
   durationLinear: stylex.types.time('200ms'),
+
+  // expressive
+  easingExpressiveFastSpatial: 'cubic-bezier(0.42, 1.67, 0.21, 0.90)',
+  easingExpressiveDefaultSpatial: 'cubic-bezier(0.38, 1.21, 0.22, 1.00)',
+  easingExpressiveSlowSpatial: 'cubic-bezier(0.39, 1.29, 0.35, 0.98)',
+  easingExpressiveFastEffects: 'cubic-bezier(0.31, 0.94, 0.34, 1.00)',
+  easingExpressiveDefaultEffects: 'cubic-bezier(0.34, 0.80, 0.34, 1.00)',
+  easingExpressiveSlowEffects: 'cubic-bezier(0.34, 0.88, 0.34, 1.00)',
+
+  easingStandardFastSpatial: 'cubic-bezier(0.27, 1.06, 0.18, 1.00)',
+  easingStandardDefaultSpatial: 'cubic-bezier(0.27, 1.06, 0.18, 1.00)',
+  easingStandardSlowSpatial: 'cubic-bezier(0.27, 1.06, 0.18, 1.00)',
+  easingStandardFastEffects: 'cubic-bezier(0.31, 0.94, 0.34, 1.00)',
+  easingStandardDefaultEffects: 'cubic-bezier(0.34, 0.80, 0.34, 1.00)',
+  easingStandardSlowEffects: 'cubic-bezier(0.34, 0.88, 0.34, 1.00)',
+
+  durationExpressiveFastSpatial: stylex.types.time('350ms'),
+  durationExpressiveDefaultSpatial: stylex.types.time('500ms'),
+  durationExpressiveSlowSpatial: stylex.types.time('650ms'),
+  durationExpressiveFastEffects: stylex.types.time('150ms'),
+  durationExpressiveDefaultEffects: stylex.types.time('200ms'),
+  durationExpressiveSlowEffects: stylex.types.time('300ms'),
+
+  durationStandardFastSpatial: stylex.types.time('350ms'),
+  durationStandardDefaultSpatial: stylex.types.time('500ms'),
+  durationStandardSlowSpatial: stylex.types.time('750ms'),
+  durationStandardFastEffects: stylex.types.time('150ms'),
+  durationStandardDefaultEffects: stylex.types.time('200ms'),
+  durationStandardSlowEffects: stylex.types.time('300ms'),
 });
 
 export const youSysState = stylex.defineVars({

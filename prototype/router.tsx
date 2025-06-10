@@ -8,6 +8,7 @@ import { NavigationRailRoute } from './routes/NavigationRailRoute';
 import { ReactAriaProviderRoute } from './routes/ReactAriaProviderRoute';
 import { ScrollRestorationRoute } from './routes/ScrollRestorationRoute';
 import { SentinelRoute } from './routes/SentinelRoute';
+import { SplitRoute } from './routes/SplitRoute';
 import { SymbolsRoute } from './routes/SymbolsRoute';
 
 export function createRouter() {
@@ -22,6 +23,7 @@ export function createRouter() {
               element: <ScrollRestorationRoute />,
               children: [
                 {
+                  element: <SplitRoute />,
                   children: [
                     {
                       index: true,
