@@ -8,10 +8,9 @@ import { YouActivationLayer } from './YouActivationLayer';
 import { YouFocusLayer } from './YouFocusLayer';
 import { YouInteractionLayer } from './YouInteractionLayer';
 
-export interface NavigationBarLinkProps extends Omit<LinkProps, 'style' | 'className' | 'children'> {
+export interface YouNavigationBarLinkProps extends Omit<LinkProps, 'style' | 'className' | 'children'> {
   readonly symbol: ReactNode;
   readonly label: ReactNode;
-  readonly isActive?: boolean;
   readonly xstyle?: stylex.StyleXStyles;
 }
 
@@ -41,7 +40,7 @@ const styles = stylex.create({
     transitionTimingFunction: youSysMotion.easingEmphasized,
     whiteSpace: 'nowrap',
   },
-  isHovered: {
+  isActive: {
     color: `rgb(${youSysColor.onSurface})`,
   },
   isDisabled: {
@@ -96,9 +95,9 @@ const labelStyles = stylex.create({
   },
 });
 
-export function NavigationBarLink({ label, symbol, xstyle, isActive = false, ...props }: NavigationBarLinkProps): ReactElement {
+export function YouNavigationBarLink({ label, symbol, xstyle, ...props }: YouNavigationBarLinkProps): ReactElement {
   const ariax = useCallback((args: LinkRenderProps) => {
-    return stylex.props(styles.base, args.isHovered ? styles.isHovered : null, args.isDisabled ? styles.isDisabled : null, youPresetTypography.labelMedium, xstyle);
+    return stylex.props(styles.base, args.isCurrent || args.isHovered ? styles.isActive : null, args.isDisabled ? styles.isDisabled : null, youPresetTypography.labelMedium, xstyle);
   }, [xstyle]);
 
   const handleClassName = useCallback((args: LinkRenderProps & { defaultClassName: string | undefined }) => {
@@ -118,10 +117,10 @@ export function NavigationBarLink({ label, symbol, xstyle, isActive = false, ...
       {(args) => (
         <>
           <div
-            {...stylex.props(indicatorStyles.base, isActive || args.isCurrent ? indicatorStyles.isActive : null, args.isDisabled ? indicatorStyles.isDisabled : null)}
+            {...stylex.props(indicatorStyles.base, args.isCurrent ? indicatorStyles.isActive : null, args.isDisabled ? indicatorStyles.isDisabled : null)}
           >
             <YouActivationLayer
-              isActive={isActive || args.isCurrent}
+              isActive={args.isCurrent}
             />
             <YouInteractionLayer
               isHovered={args.isHovered}

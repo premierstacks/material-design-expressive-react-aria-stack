@@ -62,7 +62,7 @@ const styles = stylex.create({
   },
 });
 
-export function YouOutlineButton({ symbol, xstyle, label, ...props }: YouOutlinedButtonProps) {
+export function YouOutlinedButton({ symbol, xstyle, label, ...props }: YouOutlinedButtonProps) {
   const ariax = useCallback((args: ButtonRenderProps) => {
     return stylex.props(
       styles.base,

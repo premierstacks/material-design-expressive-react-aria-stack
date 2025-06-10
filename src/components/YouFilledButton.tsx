@@ -51,7 +51,6 @@ const styles = stylex.create({
     display: 'inline-flex',
     fontSize: 18,
     justifyContent: 'center',
-    marginRight: 8,
     maxHeight: 18,
     maxWidth: 18,
     position: 'relative',

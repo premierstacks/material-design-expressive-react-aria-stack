@@ -40,6 +40,13 @@ export function IndexRoute(): ReactElement {
             App Bars
           </Link>
         </div>
+        <div>
+          <Link
+            href="/navigation-rail"
+          >
+            Navigation Rail
+          </Link>
+        </div>
       </nav>
     </main>
   );

@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement, ReactNode } from 'react';
 
-export interface YouSymbolProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'style' | 'className' | 'children'> {
+export interface YouIconProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'style' | 'className' | 'children'> {
   readonly size?: number;
   readonly xstyle?: stylex.StyleXStyles;
   readonly symbol?: ReactNode;
@@ -23,7 +23,7 @@ const styles = stylex.create({
   size: (size: number) => ({ fontSize: size }),
 });
 
-export function YouIcon({ size, xstyle, symbol, ...props }: YouSymbolProps): ReactElement {
+export function YouIcon({ size, xstyle, symbol, ...props }: YouIconProps): ReactElement {
   return (
     <span
       {...stylex.props(styles.base, size !== undefined ? styles.size(size) : null, xstyle)}

@@ -4,6 +4,7 @@ import { ButtonsRoute } from './routes/ButtonsRoute';
 import { DividersRoute } from './routes/DividersRoute';
 import { IndexRoute } from './routes/IndexRoute';
 import { InteractionsRoute } from './routes/InteractionsRoute';
+import { NavigationRailRoute } from './routes/NavigationRailRoute';
 import { ReactAriaProviderRoute } from './routes/ReactAriaProviderRoute';
 import { ScrollRestorationRoute } from './routes/ScrollRestorationRoute';
 import { SentinelRoute } from './routes/SentinelRoute';
@@ -45,6 +46,10 @@ export function createRouter() {
                     {
                       path: 'app-bars',
                       element: <AppBarsRoute />,
+                    },
+                    {
+                      path: 'navigation-rail',
+                      element: <NavigationRailRoute />,
                     },
                   ],
                 },

@@ -1,21 +1,20 @@
 import * as stylex from '@stylexjs/stylex';
-import { useEffect, type ReactElement } from 'react';
 import { youSysColor } from '../stylex/sys.stylex';
 
 const styles = stylex.create({
-  base: {
+  background: {
     backgroundColor: `rgb(${youSysColor.surfaceContainer})`,
+  },
+  color: {
     color: `rgb(${youSysColor.onSurface})`,
+  },
+  scrollbar: {
     scrollbarColor: `rgb(${youSysColor.outline}) transparent`,
   },
 });
 
-export interface YouRootThemeProviderProps {
-  children: ReactElement;
-}
-
-export function applyRootTheme(): () => void {
-  const { className } = stylex.props(styles.base);
+export function applyRootTheme(background: stylex.StyleXStyles = styles.background, color: stylex.StyleXStyles = styles.color, scrollbar: stylex.StyleXStyles = styles.scrollbar): () => void {
+  const { className } = stylex.props(background, color, scrollbar);
 
   if (className === undefined) {
     return function () {
@@ -30,10 +29,4 @@ export function applyRootTheme(): () => void {
   return () => {
     document.documentElement.classList.remove(...classes);
   };
-}
-
-export function YouRootThemeProvider({ children }: YouRootThemeProviderProps): ReactElement {
-  useEffect(applyRootTheme, []);
-
-  return children;
 }

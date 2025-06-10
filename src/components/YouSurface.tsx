@@ -2,7 +2,7 @@ import * as stylex from '@stylexjs/stylex';
 import type { HTMLProps, ReactElement } from 'react';
 import { youSysColor, youSysShape } from '../stylex/sys.stylex';
 
-export interface SurfaceProps extends Omit<HTMLProps<HTMLDivElement>, 'style' | 'className'> {
+export interface YouSurfaceProps extends Omit<HTMLProps<HTMLDivElement>, 'style' | 'className'> {
   readonly xstyle?: stylex.StyleXStyles;
 }
 
@@ -17,7 +17,7 @@ const rootStyles = stylex.create({
   },
 });
 
-export function Surface({ xstyle, ...props }: SurfaceProps): ReactElement {
+export function YouSurface({ xstyle, ...props }: YouSurfaceProps): ReactElement {
   return (
     <div
       {...stylex.props(rootStyles.base, xstyle)}

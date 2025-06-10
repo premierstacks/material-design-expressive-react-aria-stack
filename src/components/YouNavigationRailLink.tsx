@@ -11,7 +11,6 @@ import { YouInteractionLayer } from './YouInteractionLayer';
 export interface YouNavigationRailLinkProps extends Omit<LinkProps, 'style' | 'className' | 'children'> {
   readonly symbol?: ReactNode;
   readonly label?: ReactNode;
-  readonly isActive?: boolean;
   readonly xstyle?: stylex.StyleXStyles;
 }
 
@@ -88,10 +87,10 @@ const labelStyles = stylex.create({
   },
 });
 
-export function YouNavigationRailLink({ xstyle, label, symbol, isActive = false, ...props }: YouNavigationRailLinkProps): ReactElement {
+export function YouNavigationRailLink({ xstyle, label, symbol, ...props }: YouNavigationRailLinkProps): ReactElement {
   const ariax = useCallback((args: LinkRenderProps) => {
-    return stylex.props(styles.base, youPresetTypography.labelMedium, isActive || args.isCurrent || args.isHovered ? styles.isActive : null, args.isDisabled ? styles.isDisabled : null, xstyle);
-  }, [isActive, xstyle]);
+    return stylex.props(styles.base, youPresetTypography.labelMedium, args.isCurrent || args.isHovered ? styles.isActive : null, args.isDisabled ? styles.isDisabled : null, xstyle);
+  }, [xstyle]);
 
   const handleClassName = useCallback((args: LinkRenderProps & { defaultClassName: string | undefined }) => {
     return toClassName(args.defaultClassName, ariax(args).className);
@@ -110,10 +109,10 @@ export function YouNavigationRailLink({ xstyle, label, symbol, isActive = false,
       {(args) => (
         <>
           <div
-            {...stylex.props(indicatorStyles.base, isActive || args.isCurrent ? indicatorStyles.isActive : null, args.isDisabled ? indicatorStyles.isDisabled : null)}
+            {...stylex.props(indicatorStyles.base, args.isCurrent ? indicatorStyles.isActive : null, args.isDisabled ? indicatorStyles.isDisabled : null)}
           >
             <YouActivationLayer
-              isActive={isActive || args.isCurrent}
+              isActive={args.isCurrent}
             />
             <YouInteractionLayer
               isHovered={args.isHovered}
