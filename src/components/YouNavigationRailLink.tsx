@@ -2,7 +2,7 @@ import * as stylex from '@stylexjs/stylex';
 import { useCallback, type CSSProperties, type ReactElement, type ReactNode } from 'react';
 import { Link, type LinkProps, type LinkRenderProps } from 'react-aria-components';
 import { toClassName, toCssProperties } from '../helpers/styles';
-import { youPresetTypography } from '../stylex/preset.stylex';
+import { youPresetMotion, youPresetTypography } from '../stylex/preset.stylex';
 import { youSysColor, youSysShape, youSysState } from '../stylex/sys.stylex';
 import { YouActivationLayer } from './YouActivationLayer';
 import { YouFocusLayer } from './YouFocusLayer';
@@ -89,7 +89,7 @@ const labelStyles = stylex.create({
 
 export function YouNavigationRailLink({ xstyle, label, symbol, ...props }: YouNavigationRailLinkProps): ReactElement {
   const ariax = useCallback((args: LinkRenderProps) => {
-    return stylex.props(styles.base, youPresetTypography.labelMedium, args.isCurrent || args.isHovered ? styles.isActive : null, args.isDisabled ? styles.isDisabled : null, xstyle);
+    return stylex.props(styles.base, youPresetTypography.emphasizedLabelMedium, args.isCurrent || args.isHovered ? styles.isActive : null, args.isDisabled ? styles.isDisabled : null, youPresetMotion.expressiveFastEffects, xstyle);
   }, [xstyle]);
 
   const handleClassName = useCallback((args: LinkRenderProps & { defaultClassName: string | undefined }) => {

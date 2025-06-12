@@ -2,8 +2,8 @@ import * as stylex from '@stylexjs/stylex';
 import { useCallback, type CSSProperties, type ReactElement, type ReactNode } from 'react';
 import { Link, type LinkProps, type LinkRenderProps } from 'react-aria-components';
 import { toClassName, toCssProperties } from '../helpers/styles';
-import { youPresetTypography } from '../stylex/preset.stylex';
-import { youSysColor, youSysMotion, youSysShape, youSysState } from '../stylex/sys.stylex';
+import { youPresetMotion, youPresetTypography } from '../stylex/preset.stylex';
+import { youSysColor, youSysShape, youSysState } from '../stylex/sys.stylex';
 import { YouActivationLayer } from './YouActivationLayer';
 import { YouFocusLayer } from './YouFocusLayer';
 import { YouInteractionLayer } from './YouInteractionLayer';
@@ -35,9 +35,7 @@ const styles = stylex.create({
     paddingTop: 12,
     position: 'relative',
     textAlign: 'center',
-    transitionDuration: youSysMotion.durationEmphasized,
     transitionProperty: 'color',
-    transitionTimingFunction: youSysMotion.easingEmphasized,
     whiteSpace: 'nowrap',
   },
   isActive: {
@@ -97,7 +95,7 @@ const labelStyles = stylex.create({
 
 export function YouNavigationBarLink({ label, symbol, xstyle, ...props }: YouNavigationBarLinkProps): ReactElement {
   const ariax = useCallback((args: LinkRenderProps) => {
-    return stylex.props(styles.base, args.isCurrent || args.isHovered ? styles.isActive : null, args.isDisabled ? styles.isDisabled : null, youPresetTypography.labelMedium, xstyle);
+    return stylex.props(styles.base, args.isCurrent || args.isHovered ? styles.isActive : null, args.isDisabled ? styles.isDisabled : null, youPresetTypography.emphasizedLabelMedium, youPresetMotion.expressiveFastEffects, xstyle);
   }, [xstyle]);
 
   const handleClassName = useCallback((args: LinkRenderProps & { defaultClassName: string | undefined }) => {

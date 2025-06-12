@@ -3,8 +3,8 @@ import { useCallback, type CSSProperties, type ReactNode } from 'react';
 import type { ButtonProps, ButtonRenderProps } from 'react-aria-components';
 import { Button } from 'react-aria-components';
 import { toClassName, toCssProperties } from '../helpers/styles';
-import { youPresetTypography } from '../stylex/preset.stylex';
-import { youSysColor, youSysMotion, youSysShape, youSysState } from '../stylex/sys.stylex';
+import { youPresetTypography, youPresetMotion } from '../stylex/preset.stylex';
+import { youSysColor, youSysShape, youSysState } from '../stylex/sys.stylex';
 import { YouFocusLayer } from './YouFocusLayer';
 import { YouInteractionLayer } from './YouInteractionLayer';
 
@@ -37,9 +37,7 @@ const styles = stylex.create({
     position: 'relative',
     textAlign: 'center',
     textDecorationLine: 'inherit',
-    transitionDuration: youSysMotion.durationEmphasized,
     transitionProperty: 'background-color, color, border-color',
-    transitionTimingFunction: youSysMotion.easingEmphasized,
     whiteSpace: 'nowrap',
   },
   isDisabled: {
@@ -65,6 +63,7 @@ export function YouElevatedButton({ symbol, xstyle, label, ...props }: YouElevat
   const ariax = useCallback((args: ButtonRenderProps) => {
     return stylex.props(
       styles.base,
+      youPresetMotion.expressiveFastEffects,
       args.isDisabled || args.isPending ? styles.isDisabled : null,
       xstyle,
     );
@@ -102,7 +101,7 @@ export function YouElevatedButton({ symbol, xstyle, label, ...props }: YouElevat
               )
             : null}
           <span
-            {...stylex.props(styles.label, youPresetTypography.labelLarge)}
+            {...stylex.props(styles.label, youPresetTypography.emphasizedLabelLarge)}
           >
             {label}
           </span>

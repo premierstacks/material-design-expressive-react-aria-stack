@@ -1,7 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement, ReactNode } from 'react';
-import { youPresetTypography } from '../stylex/preset.stylex';
-import { youSysColor, youSysMotion } from '../stylex/sys.stylex';
+import { youPresetMotion, youPresetTypography } from '../stylex/preset.stylex';
+import { youSysColor } from '../stylex/sys.stylex';
 
 export interface YouSmallAppBarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
   readonly xstyle?: stylex.StyleXStyles;
@@ -23,9 +23,7 @@ const styles = stylex.create({
     paddingLeft: 16,
     paddingRight: 16,
     position: 'relative',
-    transitionDuration: youSysMotion.durationEmphasized,
     transitionProperty: 'left, right, top, bottom, transform',
-    transitionTimingFunction: youSysMotion.easingEmphasized,
   },
   leading: {
     alignItems: 'center',
@@ -61,6 +59,7 @@ export function YouSmallAppBar({
     <div
       {...stylex.props(
         styles.base,
+        youPresetMotion.expressiveDefaultSpatial,
         xstyle,
       )}
       {...props}
@@ -76,7 +75,7 @@ export function YouSmallAppBar({
         {headline !== undefined
           ? (
               <div
-                {...stylex.props(styles.headline, youPresetTypography.titleLarge)}
+                {...stylex.props(styles.headline, youPresetTypography.emphasizedTitleLarge)}
               >
                 {headline}
               </div>
@@ -85,7 +84,7 @@ export function YouSmallAppBar({
         {subhead !== undefined
           ? (
               <div
-                {...stylex.props(styles.subhead, youPresetTypography.labelLarge)}
+                {...stylex.props(styles.subhead, youPresetTypography.emphasizedLabelLarge)}
               >
                 {subhead}
               </div>
