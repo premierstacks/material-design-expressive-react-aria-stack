@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { RouterProvider } from 'react-router';
-import { YouBackgroundEffect } from '../src/components/YouBackgroundEffect';
+import { YouDocumentBackgroundEffect } from '../src/components/YouDocumentBackgroundEffect';
 import { createRouter } from './router';
 
 const el = document.createElement('div');
@@ -12,10 +12,10 @@ const router = createRouter();
 
 createRoot(el).render(
   <StrictMode>
-    <YouBackgroundEffect>
+    <YouDocumentBackgroundEffect>
       <RouterProvider
         router={router}
       />
-    </YouBackgroundEffect>
+    </YouDocumentBackgroundEffect>
   </StrictMode>,
 );

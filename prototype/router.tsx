@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router';
 import { AppBarsRoute } from './routes/AppBarsRoute';
 import { ButtonsRoute } from './routes/ButtonsRoute';
 import { DividersRoute } from './routes/DividersRoute';
+import { IconButtonsRoute } from './routes/IconButtonsRoute';
 import { IndexRoute } from './routes/IndexRoute';
 import { InteractionsRoute } from './routes/InteractionsRoute';
 import { NavigationRailRoute } from './routes/NavigationRailRoute';
@@ -52,6 +53,10 @@ export function createRouter() {
                     {
                       path: 'navigation-rail',
                       element: <NavigationRailRoute />,
+                    },
+                    {
+                      path: 'icon-buttons',
+                      element: <IconButtonsRoute />,
                     },
                   ],
                 },

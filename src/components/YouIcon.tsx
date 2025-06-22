@@ -2,7 +2,7 @@ import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement, ReactNode } from 'react';
 
 export interface YouIconProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'style' | 'className' | 'children'> {
-  readonly size?: number;
+  readonly size?: number | string;
   readonly xstyle?: stylex.StyleXStyles;
   readonly symbol?: ReactNode;
 }
@@ -12,15 +12,15 @@ const styles = stylex.create({
     alignItems: 'center',
     display: 'inline-flex',
     fontSize: 'inherit',
-    height: '1em',
     justifyContent: 'center',
+    maxHeight: '1em',
+    maxWidth: '1em',
     overflowX: 'hidden',
     overflowY: 'hidden',
     position: 'relative',
     verticalAlign: 'middle',
-    width: '1em',
   },
-  size: (size: number) => ({ fontSize: size }),
+  size: (size: number | string) => ({ fontSize: size }),
 });
 
 export function YouIcon({ size, xstyle, symbol, ...props }: YouIconProps): ReactElement {

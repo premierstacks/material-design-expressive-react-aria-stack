@@ -14,7 +14,7 @@ const styles = stylex.create({
   },
 });
 
-export function applyBackground(background: stylex.StyleXStyles = styles.background, color: stylex.StyleXStyles = styles.color, scrollbar: stylex.StyleXStyles = styles.scrollbar): () => void {
+export function applyDocumentBackground(background: stylex.StyleXStyles = styles.background, color: stylex.StyleXStyles = styles.color, scrollbar: stylex.StyleXStyles = styles.scrollbar): () => void {
   const { className } = stylex.props(background, color, scrollbar);
 
   if (className === undefined) {
@@ -32,16 +32,16 @@ export function applyBackground(background: stylex.StyleXStyles = styles.backgro
   };
 }
 
-export interface YouBackgroundEffectProps {
+export interface YouDocumentBackgroundEffectProps {
   readonly background?: stylex.StyleXStyles;
   readonly color?: stylex.StyleXStyles;
   readonly scrollbar?: stylex.StyleXStyles;
   readonly children?: ReactElement;
 }
 
-export function YouBackgroundEffect({ background, color, scrollbar, children }: YouBackgroundEffectProps): ReactElement | undefined {
+export function YouDocumentBackgroundEffect({ background, color, scrollbar, children }: YouDocumentBackgroundEffectProps): ReactElement | undefined {
   useEffect(() => {
-    return applyBackground(background, color, scrollbar);
+    return applyDocumentBackground(background, color, scrollbar);
   }, [background, color, scrollbar]);
 
   return children;

@@ -1,19 +1,19 @@
 import * as stylex from '@stylexjs/stylex';
 import type { HTMLProps, ReactElement } from 'react';
-import { youSysColor, youSysShape } from '../stylex/sys.stylex';
+import { youSysColor } from '../stylex/sys.stylex';
 
 export interface YouSurfaceProps extends Omit<HTMLProps<HTMLDivElement>, 'style' | 'className'> {
   readonly xstyle?: stylex.StyleXStyles;
-  readonly elevation?: 0 | 1 | 2 | 3 | 4 | 5;
-  readonly topleft?: boolean;
-  readonly topright?: boolean;
-  readonly bottomleft?: boolean;
-  readonly bottomright?: boolean;
-  readonly radius?: number | string;
+  readonly surface?: -1 | 0 | 1 | 2 | 3 | 4 | 5;
 }
 
 const rootStyles = stylex.create({
   base: {
+    backgroundColor: 'transparent',
+    borderBottomLeftRadius: 'inherit',
+    borderBottomRightRadius: 'inherit',
+    borderTopLeftRadius: 'inherit',
+    borderTopRightRadius: 'inherit',
     color: `rgb(${youSysColor.onSurface})`,
   },
   surface: {
@@ -34,42 +34,19 @@ const rootStyles = stylex.create({
   surfaceContainerHighest: {
     backgroundColor: `rgb(${youSysColor.surfaceContainerHighest})`,
   },
-  topleft: (radius: number | string) => ({
-    borderTopLeftRadius: radius,
-  }),
-  topright: (radius: number | string) => ({
-    borderTopRightRadius: radius,
-  }),
-  bottomleft: (radius: number | string) => ({
-    borderBottomLeftRadius: radius,
-  }),
-  bottomright: (radius: number | string) => ({
-    borderBottomRightRadius: radius,
-  }),
 });
 
-export function YouSurface({ xstyle, radius = youSysShape.cornerLarge, elevation = 1, topleft, topright, bottomleft, bottomright, ...props }: YouSurfaceProps): ReactElement {
-  if (topleft === undefined && topright === undefined && bottomleft === undefined && bottomright === undefined) {
-    topleft = true;
-    topright = true;
-    bottomleft = true;
-    bottomright = true;
-  }
-
+export function YouSurface({ xstyle, surface = 1, ...props }: YouSurfaceProps): ReactElement {
   return (
     <div
       {...stylex.props(
         rootStyles.base,
-        elevation === 0 ? rootStyles.surfaceContainerLowest : null,
-        elevation === 1 ? rootStyles.surface : null,
-        elevation === 2 ? rootStyles.surfaceContainerLow : null,
-        elevation === 3 ? rootStyles.surfaceContainer : null,
-        elevation === 4 ? rootStyles.surfaceContainerHigh : null,
-        elevation === 5 ? rootStyles.surfaceContainerHighest : null,
-        topleft === true ? rootStyles.topleft(radius) : null,
-        topright === true ? rootStyles.topright(radius) : null,
-        bottomleft === true ? rootStyles.bottomleft(radius) : null,
-        bottomright === true ? rootStyles.bottomright(radius) : null,
+        surface === 0 ? rootStyles.surfaceContainerLowest : null,
+        surface === 1 ? rootStyles.surface : null,
+        surface === 2 ? rootStyles.surfaceContainerLow : null,
+        surface === 3 ? rootStyles.surfaceContainer : null,
+        surface === 4 ? rootStyles.surfaceContainerHigh : null,
+        surface === 5 ? rootStyles.surfaceContainerHighest : null,
         xstyle,
       )}
       {...props}

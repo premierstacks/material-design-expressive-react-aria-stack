@@ -1,6 +1,7 @@
 import * as stylex from '@stylexjs/stylex';
 import type { ReactElement } from 'react';
-import { mergeProps, useSeparator, type SeparatorProps } from 'react-aria';
+import type { SeparatorProps } from 'react-aria';
+import { Separator } from 'react-aria-components';
 import { youSysColor } from '../stylex/sys.stylex';
 
 export interface YouHorizontalDividerProps extends Omit<SeparatorProps, 'style' | 'className' | 'children'> {
@@ -28,12 +29,11 @@ const styles = stylex.create({
 });
 
 export function YouHorizontalDivider({ xstyle, ...props }: YouHorizontalDividerProps): ReactElement {
-  const { separatorProps } = useSeparator(props);
-
   return (
-    <hr
+    <Separator
       {...stylex.props(styles.base, xstyle)}
-      {...mergeProps(separatorProps, props)}
+      {...props}
+      orientation="horizontal"
     />
   );
 }
