@@ -1,18 +1,20 @@
 import type { ReactElement } from 'react';
-import { YouSymbolCircle } from '../../src';
-import { YouIcon } from '../../src/components/YouIcon';
-import { YouSmallAppBar } from '../../src/components/YouSmallAppBar';
+import { ExpressiveRandomSymbol } from '../../src';
+import { ExpressiveIcon } from '../../src/components/ExpressiveIcon';
+import { ExpressiveSmallAppBar } from '../../src/components/ExpressiveSmallAppBar';
 import { PrototypeDisplay } from '../components/PrototypeDisplay';
 
 export function AppBarsRoute(): ReactElement {
   return (
     <PrototypeDisplay>
-      <PrototypeDisplay.Item>
-        <YouSmallAppBar
+      <PrototypeDisplay.Item
+        label="Small App Bar"
+      >
+        <ExpressiveSmallAppBar
           leading={(
-            <YouIcon
+            <ExpressiveIcon
               size={40}
-              symbol={<YouSymbolCircle />}
+              symbol={<ExpressiveRandomSymbol />}
             />
           )}
           headline="Title Large"

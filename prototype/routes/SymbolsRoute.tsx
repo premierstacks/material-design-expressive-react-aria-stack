@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 import type { ReactElement } from 'react';
-import { YouSymbolCircle, YouSymbolFlower, YouSymbolPill, YouSymbolRect, YouSymbolTriangle } from '../../src';
+import { ExpressiveRandomSymbol } from '../../src';
 import { PrototypeDisplay } from '../components/PrototypeDisplay';
 
 const styles = stylex.create({
@@ -13,28 +13,38 @@ const styles = stylex.create({
 export function SymbolsRoute(): ReactElement {
   return (
     <PrototypeDisplay>
-      <PrototypeDisplay.Item>
-        <YouSymbolCircle
+      <PrototypeDisplay.Item
+        label="Symbol Circle"
+      >
+        <ExpressiveRandomSymbol
           xstyle={styles.base}
         />
       </PrototypeDisplay.Item>
-      <PrototypeDisplay.Item>
-        <YouSymbolFlower
+      <PrototypeDisplay.Item
+        label="Symbol Flower"
+      >
+        <ExpressiveRandomSymbol
           xstyle={styles.base}
         />
       </PrototypeDisplay.Item>
-      <PrototypeDisplay.Item>
-        <YouSymbolPill
+      <PrototypeDisplay.Item
+        label="Symbol Pill"
+      >
+        <ExpressiveRandomSymbol
           xstyle={styles.base}
         />
       </PrototypeDisplay.Item>
-      <PrototypeDisplay.Item>
-        <YouSymbolRect
+      <PrototypeDisplay.Item
+        label="Symbol Rectangle"
+      >
+        <ExpressiveRandomSymbol
           xstyle={styles.base}
         />
       </PrototypeDisplay.Item>
-      <PrototypeDisplay.Item>
-        <YouSymbolTriangle
+      <PrototypeDisplay.Item
+        label="Symbol Triangle"
+      >
+        <ExpressiveRandomSymbol
           xstyle={styles.base}
         />
       </PrototypeDisplay.Item>

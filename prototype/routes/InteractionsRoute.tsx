@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 import { useEffect, useState, type ReactElement } from 'react';
-import { YouActivationLayer } from '../../src/components/YouActivationLayer';
+import { ExpressiveActivationLayer } from '../../src/components/ExpressiveActivationLayer';
 import { PrototypeDisplay } from '../components/PrototypeDisplay';
 
 const styles = stylex.create({
@@ -16,7 +16,7 @@ export function InteractionsRoute(): ReactElement {
   useEffect(() => {
     const interval = setInterval(() => {
       setIsActive((prev) => !prev);
-    }, 2000);
+    }, 1000);
 
     return () => {
       clearInterval(interval);
@@ -26,16 +26,17 @@ export function InteractionsRoute(): ReactElement {
   return (
     <PrototypeDisplay>
       <PrototypeDisplay.Item
+        label="Activation Layer"
         xstyle={styles.base}
       >
-        <YouActivationLayer
+        <ExpressiveActivationLayer
           isActive={isActive}
         />
       </PrototypeDisplay.Item>
       <PrototypeDisplay.Item
         xstyle={styles.base}
       >
-        <YouActivationLayer
+        <ExpressiveActivationLayer
           isActive={!isActive}
         />
       </PrototypeDisplay.Item>

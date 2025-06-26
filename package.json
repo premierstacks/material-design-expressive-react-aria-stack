@@ -1,16 +1,16 @@
 {
-  "name": "@premierstacks/material-design-you-react-aria-stack",
-  "description": "material design you react aria stack",
+  "name": "@premierstacks/material-design-expressive-react-aria-stack",
+  "description": "material design expressive react aria stack",
   "keywords": [
     "tomchochola",
     "tomaschochola",
     "premierstacks",
-    "material-design-you-react-aria-stack"
+    "material-design-expressive-react-aria-stack"
   ],
-  "homepage": "https://github.com/premierstacks/material-design-you-react-aria-stack",
+  "homepage": "https://github.com/premierstacks/material-design-expressive-react-aria-stack",
   "bugs": {
     "email": "chocholatom1997@gmail.com",
-    "url": "https://github.com/premierstacks/material-design-you-react-aria-stack/issues"
+    "url": "https://github.com/premierstacks/material-design-expressive-react-aria-stack/issues"
   },
   "license": "Apache-2.0",
   "author": {
@@ -29,7 +29,7 @@
     "type": "github",
     "url": "https://github.com/sponsors/tomchochola"
   },
-  "repository": "github:premierstacks/material-design-you-react-aria-stack",
+  "repository": "github:premierstacks/material-design-expressive-react-aria-stack",
   "dependencies": {
     "@stylexjs/stylex": "^0.13.0",
     "react": "^19.1.0",
@@ -61,12 +61,12 @@
   ],
   "main": "./src/index.ts",
   "scripts": {
-    "check": "npm run lint && npm run stan && npm run test && npm run security",
+    "check": "npm run stan && npm run lint && npm run test && npm run security",
     "clean": "npm run clean:npm && npm run clean:dist",
     "clean:dist": "git clean -xfd ./dist",
     "clean:npm": "git clean -xfd ./node_modules ./package-lock.json",
-    "commit": "npm run local && npm run fix && npm run check",
-    "fix": "npm run fix:eslint && npm run fix:stylelint && npm run fix:prettier",
+    "commit": "npm run fix && npm run check && npm run local",
+    "fix": "npm run stan && npm run fix:eslint && npm run fix:stylelint && npm run fix:prettier",
     "fix:eslint": "eslint --fix .",
     "fix:prettier": "prettier -w .",
     "fix:stylelint": "stylelint --fix ./**/*.{sass,scss,css}",

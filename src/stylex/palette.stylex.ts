@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
 
-export const youPalleteDefault = stylex.defineConsts({
+export const expressivePaletteDefault = stylex.defineConsts({
   background: '254 247 255',
   error: '179 38 30',
   errorContainer: '249 222 220',
@@ -52,7 +52,7 @@ export const youPalleteDefault = stylex.defineConsts({
   tertiaryFixedDim: '239 184 200',
 });
 
-export const youPalleteBlue = stylex.defineConsts({
+export const expressivePaletteBlue = stylex.defineConsts({
   background: '249 249 255',
   error: '186 26 26',
   errorContainer: '255 218 214',
@@ -104,7 +104,7 @@ export const youPalleteBlue = stylex.defineConsts({
   tertiaryFixedDim: '221 188 224',
 });
 
-export const youPalleteGreen = stylex.defineConsts({
+export const expressivePaletteGreen = stylex.defineConsts({
   background: '249 250 239',
   error: '186 26 26',
   errorContainer: '255 218 214',
@@ -156,7 +156,7 @@ export const youPalleteGreen = stylex.defineConsts({
   tertiaryFixedDim: '160 208 203',
 });
 
-export const youPalleteRed = stylex.defineConsts({
+export const expressivePaletteRed = stylex.defineConsts({
   background: '255 248 246',
   error: '186 26 26',
   errorContainer: '255 218 214',
@@ -208,7 +208,7 @@ export const youPalleteRed = stylex.defineConsts({
   tertiaryFixedDim: '216 197 141',
 });
 
-export const youPalleteYellow = stylex.defineConsts({
+export const expressivePaletteYellow = stylex.defineConsts({
   background: '255 249 238',
   error: '186 26 26',
   errorContainer: '255 218 214',

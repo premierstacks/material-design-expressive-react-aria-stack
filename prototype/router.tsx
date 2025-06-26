@@ -1,11 +1,16 @@
 import { createBrowserRouter } from 'react-router';
 import { AppBarsRoute } from './routes/AppBarsRoute';
 import { ButtonsRoute } from './routes/ButtonsRoute';
+import { ColorsRoute } from './routes/ColorsRoute';
 import { DividersRoute } from './routes/DividersRoute';
+import { FontsRoute } from './routes/FontsRoute';
+import { HeadingsRoute } from './routes/HeadingsRoute';
 import { IconButtonsRoute } from './routes/IconButtonsRoute';
 import { IndexRoute } from './routes/IndexRoute';
 import { InteractionsRoute } from './routes/InteractionsRoute';
+import { LinksRoute } from './routes/LinksRoute';
 import { NavigationRailRoute } from './routes/NavigationRailRoute';
+import { RadiusRoute } from './routes/RadiusRoute';
 import { ReactAriaProviderRoute } from './routes/ReactAriaProviderRoute';
 import { ScrollRestorationRoute } from './routes/ScrollRestorationRoute';
 import { SentinelRoute } from './routes/SentinelRoute';
@@ -47,6 +52,10 @@ export function createRouter() {
                       element: <ButtonsRoute />,
                     },
                     {
+                      path: 'links',
+                      element: <LinksRoute />,
+                    },
+                    {
                       path: 'app-bars',
                       element: <AppBarsRoute />,
                     },
@@ -57,6 +66,22 @@ export function createRouter() {
                     {
                       path: 'icon-buttons',
                       element: <IconButtonsRoute />,
+                    },
+                    {
+                      path: 'fonts',
+                      element: <FontsRoute />,
+                    },
+                    {
+                      path: 'headings',
+                      element: <HeadingsRoute />,
+                    },
+                    {
+                      path: 'colors',
+                      element: <ColorsRoute />,
+                    },
+                    {
+                      path: 'radius',
+                      element: <RadiusRoute />,
                     },
                   ],
                 },

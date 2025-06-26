@@ -1,10 +1,6 @@
 import type { CSSProperties } from 'react';
 
-export function toCssText(style: Record<string, string | number>): string {
-  return Object.keys(style).map((key) => `${key}:${(style[key] ?? '').toString()};`).join('');
-}
-
-export function toClassName(
+export function toClass(
   a: string | null | undefined,
   b: string | null | undefined,
 ): string {

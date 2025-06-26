@@ -1,32 +1,32 @@
 import { useEffect, useMemo, useState } from 'react';
 
-export const compactQuery = 'screen and (max-width: 599px)';
-export const mediumQuery = 'screen and (min-width: 600px) and (max-width: 839px)';
-export const expandedQuery = 'screen and (min-width: 840px) and (max-width: 1199px)';
-export const largeQuery = 'screen and (min-width: 1200px) and (max-width: 1599px)';
-export const extraLargeQuery = 'screen and (min-width: 1600px)';
-export const portraitQuery = '(orientation: portrait)';
-export const landscapeQuery = '(orientation: landscape)';
-export const phoneQuery = 'screen and (max-width: 599px)';
-export const tabletQuery = 'screen and (min-width: 600px) and (max-width: 1199px)';
-export const desktopQuery = 'screen and (min-width: 1200px)';
-export const darkThemeQuery = '(prefers-color-scheme: dark)';
-export const noAnimationQuery = '(prefers-reduced-motion: reduce)';
+export const expressiveCompactQuery = 'screen and (max-width: 599px)';
+export const expressiveMediumQuery = 'screen and (min-width: 600px) and (max-width: 839px)';
+export const expressiveExpandedQuery = 'screen and (min-width: 840px) and (max-width: 1199px)';
+export const expressiveLargeQuery = 'screen and (min-width: 1200px) and (max-width: 1599px)';
+export const expressiveExtraLargeQuery = 'screen and (min-width: 1600px)';
+export const expressivePortraitQuery = '(orientation: portrait)';
+export const expressiveLandscapeQuery = '(orientation: landscape)';
+export const expressivePhoneQuery = 'screen and (max-width: 599px)';
+export const expressiveTabletQuery = 'screen and (min-width: 600px) and (max-width: 1199px)';
+export const expressiveDesktopQuery = 'screen and (min-width: 1200px)';
+export const expressivePrefersDarkQuery = '(prefers-color-scheme: dark)';
+export const expressivePrefersReduceMotionQuery = '(prefers-reduced-motion: reduce)';
 
-export const compactMedia: MediaQueryList = window.matchMedia(compactQuery);
-export const mediumMedia: MediaQueryList = window.matchMedia(mediumQuery);
-export const expandedMedia: MediaQueryList = window.matchMedia(expandedQuery);
-export const largeMedia: MediaQueryList = window.matchMedia(largeQuery);
-export const extraLargeMedia: MediaQueryList = window.matchMedia(extraLargeQuery);
-export const portraitMedia: MediaQueryList = window.matchMedia(portraitQuery);
-export const landscapeMedia: MediaQueryList = window.matchMedia(landscapeQuery);
-export const phoneMedia: MediaQueryList = window.matchMedia(phoneQuery);
-export const tabletMedia: MediaQueryList = window.matchMedia(tabletQuery);
-export const desktopMedia: MediaQueryList = window.matchMedia(desktopQuery);
-export const darkThemeMedia: MediaQueryList = window.matchMedia(darkThemeQuery);
-export const noAnimationMedia: MediaQueryList = window.matchMedia(noAnimationQuery);
+export const expressiveCompactMedia: MediaQueryList = window.matchMedia(expressiveCompactQuery);
+export const expressiveMediumMedia: MediaQueryList = window.matchMedia(expressiveMediumQuery);
+export const expressiveExpandedMedia: MediaQueryList = window.matchMedia(expressiveExpandedQuery);
+export const expressiveLargeMedia: MediaQueryList = window.matchMedia(expressiveLargeQuery);
+export const expressiveExtraLargeMedia: MediaQueryList = window.matchMedia(expressiveExtraLargeQuery);
+export const expressivePortraitMedia: MediaQueryList = window.matchMedia(expressivePortraitQuery);
+export const expressiveLandscapeMedia: MediaQueryList = window.matchMedia(expressiveLandscapeQuery);
+export const expressivePhoneMedia: MediaQueryList = window.matchMedia(expressivePhoneQuery);
+export const expressiveTabletMedia: MediaQueryList = window.matchMedia(expressiveTabletQuery);
+export const expressiveDesktopMedia: MediaQueryList = window.matchMedia(expressiveDesktopQuery);
+export const expressivePrefersDarkMedia: MediaQueryList = window.matchMedia(expressivePrefersDarkQuery);
+export const expressivePrefersReduceMotionMedia: MediaQueryList = window.matchMedia(expressivePrefersReduceMotionQuery);
 
-export function useMatchMedia(media: MediaQueryList): boolean {
+export function useExpressiveMedia(media: MediaQueryList): boolean {
   const [matches, setMatches] = useState<boolean>(media.matches);
 
   useEffect(() => {
@@ -46,75 +46,75 @@ export function useMatchMedia(media: MediaQueryList): boolean {
   return matches;
 }
 
-export function useMediaCompact(): boolean {
-  return useMatchMedia(compactMedia);
+export function useExpressiveCompactMedia(): boolean {
+  return useExpressiveMedia(expressiveCompactMedia);
 }
 
-export function useMediaMedium(): boolean {
-  return useMatchMedia(mediumMedia);
+export function useExpressiveMediumMedia(): boolean {
+  return useExpressiveMedia(expressiveMediumMedia);
 }
 
-export function useMediaExpanded(): boolean {
-  return useMatchMedia(expandedMedia);
+export function useExpressiveExpandedMedia(): boolean {
+  return useExpressiveMedia(expressiveExpandedMedia);
 }
 
-export function useMediaLarge(): boolean {
-  return useMatchMedia(largeMedia);
+export function useExpressiveLargeMedia(): boolean {
+  return useExpressiveMedia(expressiveLargeMedia);
 }
 
-export function useMediaExtraLarge(): boolean {
-  return useMatchMedia(extraLargeMedia);
+export function useExpressiveExtraLargeMedia(): boolean {
+  return useExpressiveMedia(expressiveExtraLargeMedia);
 }
 
-export function useMediaPortrait(): boolean {
-  return useMatchMedia(portraitMedia);
+export function useExpressivePortraitMedia(): boolean {
+  return useExpressiveMedia(expressivePortraitMedia);
 }
 
-export function useMediaLandscape(): boolean {
-  return useMatchMedia(landscapeMedia);
+export function useExpressiveLandscapeMedia(): boolean {
+  return useExpressiveMedia(expressiveLandscapeMedia);
 }
 
-export function useMediaPhone(): boolean {
-  return useMatchMedia(phoneMedia);
+export function useExpressivePhoneMedia(): boolean {
+  return useExpressiveMedia(expressivePhoneMedia);
 }
 
-export function useMediaTablet(): boolean {
-  return useMatchMedia(tabletMedia);
+export function useExpressiveTabletMedia(): boolean {
+  return useExpressiveMedia(expressiveTabletMedia);
 }
 
-export function useMediaDesktop(): boolean {
-  return useMatchMedia(desktopMedia);
+export function useExpressiveDesktopMedia(): boolean {
+  return useExpressiveMedia(expressiveDesktopMedia);
 }
 
-export function useMediaDarkTheme(): boolean {
-  return useMatchMedia(darkThemeMedia);
+export function useExpressiveDarkDarkMedia(): boolean {
+  return useExpressiveMedia(expressivePrefersDarkMedia);
 }
 
-export function useMediaNoAnimation(): boolean {
-  return useMatchMedia(noAnimationMedia);
+export function useExpressivePrefersReduceMotionMedia(): boolean {
+  return useExpressiveMedia(expressivePrefersReduceMotionMedia);
 }
 
-export function useMatchQuery(query: string): boolean {
+export function useExpressiveMediaQuery(query: string): boolean {
   const media = useMemo(() => window.matchMedia(query), [query]);
 
-  return useMatchMedia(media);
+  return useExpressiveMedia(media);
 }
 
-export interface DeviceArgs {
+export interface ExpressiveDevices {
   phone: boolean;
   tablet: boolean;
   desktop: boolean;
 }
 
-export function useDevice(): DeviceArgs {
+export function useExpressiveDevices(): ExpressiveDevices {
   return {
-    phone: useMediaPhone(),
-    tablet: useMediaTablet(),
-    desktop: useMediaDesktop(),
+    phone: useExpressivePhoneMedia(),
+    tablet: useExpressiveTabletMedia(),
+    desktop: useExpressiveDesktopMedia(),
   };
 }
 
-export interface ScreenArgs {
+export interface ExpressiveScreens {
   compact: boolean;
   medium: boolean;
   expanded: boolean;
@@ -122,12 +122,12 @@ export interface ScreenArgs {
   extraLarge: boolean;
 }
 
-export function useScreen(): ScreenArgs {
+export function useExpressiveScreens(): ExpressiveScreens {
   return {
-    compact: useMediaCompact(),
-    medium: useMediaMedium(),
-    expanded: useMediaExpanded(),
-    large: useMediaLarge(),
-    extraLarge: useMediaExtraLarge(),
+    compact: useExpressiveCompactMedia(),
+    medium: useExpressiveMediumMedia(),
+    expanded: useExpressiveExpandedMedia(),
+    large: useExpressiveLargeMedia(),
+    extraLarge: useExpressiveExtraLargeMedia(),
   };
 }

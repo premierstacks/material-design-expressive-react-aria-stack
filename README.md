@@ -1,4 +1,4 @@
-# [Material Design You React Aria Stack](https://github.com/premierstacks/material-design-you-react-aria-stack) by [Tomáš Chochola](https://github.com/tomchochola)
+# [Material Design Expressive React Aria Stack](https://github.com/premierstacks/material-design-expressive-react-aria-stack) by [Tomáš Chochola](https://github.com/tomchochola)
 
 ## What is Premierstacks
 

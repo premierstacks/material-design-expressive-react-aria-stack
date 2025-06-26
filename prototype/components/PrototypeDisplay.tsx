@@ -1,23 +1,24 @@
 import * as stylex from '@stylexjs/stylex';
 import type { ReactElement, ReactNode } from 'react';
 import { PrototypeDisplayItem } from './PrototypeDisplayItem';
+import { PrototypeDisplayItems } from './PrototypeDisplayItems';
 
 interface PrototypeDisplayProps {
   readonly children: ReactNode;
 }
 
-const styles = stylex.create({
+const rootStyles = stylex.create({
   base: {
-    columnGap: '1rem',
+    columnGap: '4rem',
     display: 'grid',
-    rowGap: '1rem',
+    rowGap: '4rem',
   },
 });
 
 export function PrototypeDisplay({ children }: PrototypeDisplayProps): ReactElement {
   return (
     <main
-      {...stylex.props(styles.base)}
+      {...stylex.props(rootStyles.base)}
     >
       {children}
     </main>
@@ -25,3 +26,4 @@ export function PrototypeDisplay({ children }: PrototypeDisplayProps): ReactElem
 }
 
 PrototypeDisplay.Item = PrototypeDisplayItem;
+PrototypeDisplay.Items = PrototypeDisplayItems;

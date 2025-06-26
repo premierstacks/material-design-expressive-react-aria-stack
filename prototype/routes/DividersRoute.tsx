@@ -1,20 +1,26 @@
 import type { ReactElement } from 'react';
-import { YouHorizontalDivider } from '../../src/components/YouHorizontalDivider';
-import { YouTildeHorizontalDivider } from '../../src/components/YouTildeHorizontalDivider';
-import { YouWiggleHorizontalDivider } from '../../src/components/YouWiggleHorizontalDivider';
+import { ExpressiveHorizontalDivider } from '../../src/components/ExpressiveHorizontalDivider';
+import { ExpressiveTildeHorizontalDivider } from '../../src/components/ExpressiveTildeHorizontalDivider';
+import { ExpressiveWiggleHorizontalDivider } from '../../src/components/ExpressiveWiggleHorizontalDivider';
 import { PrototypeDisplay } from '../components/PrototypeDisplay';
 
 export function DividersRoute(): ReactElement {
   return (
     <PrototypeDisplay>
-      <PrototypeDisplay.Item>
-        <YouHorizontalDivider />
+      <PrototypeDisplay.Item
+        label="Horizontal Divider"
+      >
+        <ExpressiveHorizontalDivider />
       </PrototypeDisplay.Item>
-      <PrototypeDisplay.Item>
-        <YouTildeHorizontalDivider />
+      <PrototypeDisplay.Item
+        label="Tilde Horizontal Divider"
+      >
+        <ExpressiveTildeHorizontalDivider />
       </PrototypeDisplay.Item>
-      <PrototypeDisplay.Item>
-        <YouWiggleHorizontalDivider />
+      <PrototypeDisplay.Item
+        label="Wiggle Horizontal Divider"
+      >
+        <ExpressiveWiggleHorizontalDivider />
       </PrototypeDisplay.Item>
     </PrototypeDisplay>
   );

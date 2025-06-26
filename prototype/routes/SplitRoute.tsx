@@ -2,17 +2,31 @@ import * as stylex from '@stylexjs/stylex';
 import type { ReactElement } from 'react';
 import { Link } from 'react-aria-components';
 import { Outlet } from 'react-router';
-import { YouSurface, YouSurfacePadding } from '../../src';
-import { YouContainerPadding } from '../../src/components/YouContainerPadding';
-import { YouPaneGrid } from '../../src/components/YouPaneGrid';
-import { YouSurfaceRadius } from '../../src/components/YouSurfaceRadius';
+import { ExpressiveSurface, ExpressiveSurfacePadding } from '../../src';
+import { ExpressiveContainerPadding } from '../../src/components/ExpressiveContainerPadding';
+import { ExpressivePaneGrid } from '../../src/components/ExpressivePaneGrid';
+import { ExpressiveSurfaceRadius } from '../../src/components/ExpressiveSurfaceRadius';
 
 function Nav(): ReactElement {
   return (
-    <YouSurfaceRadius>
-      <YouSurface>
-        <YouSurfacePadding>
+    <ExpressiveSurfaceRadius>
+      <ExpressiveSurface>
+        <ExpressiveSurfacePadding>
           <nav>
+            <div>
+              <Link
+                href="/fonts"
+              >
+                Fonts
+              </Link>
+            </div>
+            <div>
+              <Link
+                href="/headings"
+              >
+                Headings
+              </Link>
+            </div>
             <div>
               <Link
                 href="/divider"
@@ -43,6 +57,13 @@ function Nav(): ReactElement {
             </div>
             <div>
               <Link
+                href="/links"
+              >
+                Links
+              </Link>
+            </div>
+            <div>
+              <Link
                 href="/app-bars"
               >
                 App Bars
@@ -62,31 +83,45 @@ function Nav(): ReactElement {
                 Icon Buttons
               </Link>
             </div>
+            <div>
+              <Link
+                href="/colors"
+              >
+                Colors
+              </Link>
+            </div>
+            <div>
+              <Link
+                href="/radius"
+              >
+                Radius
+              </Link>
+            </div>
           </nav>
-        </YouSurfacePadding>
-      </YouSurface>
-    </YouSurfaceRadius>
+        </ExpressiveSurfacePadding>
+      </ExpressiveSurface>
+    </ExpressiveSurfaceRadius>
   );
 }
 
-const styles = stylex.create({ layout: { alignItems: 'start' } });
+const styles = stylex.create({ laexpressivet: { alignItems: 'start' } });
 
 export function SplitRoute(): ReactElement {
   return (
-    <YouContainerPadding
+    <ExpressiveContainerPadding
       left
       right
       top
       bottom
+      padding={24}
     >
-      <YouPaneGrid
-        compact="1fr"
-        expanded="max-content 1fr"
-        xstyle={styles.layout}
+      <ExpressivePaneGrid
+        columns="max-content 1fr"
+        xstyle={styles.laexpressivet}
       >
         <Nav />
         <Outlet />
-      </YouPaneGrid>
-    </YouContainerPadding>
+      </ExpressivePaneGrid>
+    </ExpressiveContainerPadding>
   );
 }

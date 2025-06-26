@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react';
 import { useLocation } from 'react-router';
-import { YouNavigationRail, YouNavigationRailItems, YouNavigationRailLink, YouSymbolCircle, YouSymbolFlower, YouSymbolPill, YouSymbolRect, YouSymbolTriangle } from '../../src';
+import { ExpressiveNavigationRail, ExpressiveNavigationRailItems, ExpressiveNavigationRailLink, ExpressiveRandomSymbol } from '../../src';
 import { PrototypeDisplay } from '../components/PrototypeDisplay';
 
 export function NavigationRailRoute(): ReactElement {
@@ -8,47 +8,49 @@ export function NavigationRailRoute(): ReactElement {
 
   return (
     <PrototypeDisplay>
-      <PrototypeDisplay.Item>
-        <YouNavigationRail>
-          <YouNavigationRailItems>
-            <YouNavigationRailLink
+      <PrototypeDisplay.Item
+        label="Navigation Rail"
+      >
+        <ExpressiveNavigationRail>
+          <ExpressiveNavigationRailItems>
+            <ExpressiveNavigationRailLink
               href="#home"
               label="Home"
               aria-current={location.hash === '#home' ? 'page' : undefined}
               routerOptions={{ replace: true }}
-              symbol={<YouSymbolCircle />}
+              symbol={<ExpressiveRandomSymbol />}
             />
-            <YouNavigationRailLink
+            <ExpressiveNavigationRailLink
               href="#about"
               label="About"
               aria-current={location.hash === '#about' ? 'page' : undefined}
               routerOptions={{ replace: true }}
-              symbol={<YouSymbolFlower />}
+              symbol={<ExpressiveRandomSymbol />}
             />
-            <YouNavigationRailLink
+            <ExpressiveNavigationRailLink
               href="#contact"
               label="Contact"
               aria-current={location.hash === '#contact' ? 'page' : undefined}
               routerOptions={{ replace: true }}
-              symbol={<YouSymbolPill />}
+              symbol={<ExpressiveRandomSymbol />}
             />
-            <YouNavigationRailLink
+            <ExpressiveNavigationRailLink
               href="#profile"
               label="Profile"
               aria-current={location.hash === '#profile' ? 'page' : undefined}
               routerOptions={{ replace: true }}
-              symbol={<YouSymbolRect />}
+              symbol={<ExpressiveRandomSymbol />}
             />
-            <YouNavigationRailLink
+            <ExpressiveNavigationRailLink
               href="#shop"
               label="Shop"
               aria-current={location.hash === '#shop' ? 'page' : undefined}
               routerOptions={{ replace: true }}
               isDisabled
-              symbol={<YouSymbolTriangle />}
+              symbol={<ExpressiveRandomSymbol />}
             />
-          </YouNavigationRailItems>
-        </YouNavigationRail>
+          </ExpressiveNavigationRailItems>
+        </ExpressiveNavigationRail>
       </PrototypeDisplay.Item>
     </PrototypeDisplay>
   );
