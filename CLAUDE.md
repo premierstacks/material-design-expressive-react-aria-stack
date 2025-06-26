@@ -210,7 +210,6 @@ export interface ExpressiveComponentProps extends Omit<ButtonProps, 'style' | 'c
 **CRITICAL: This codebase has very strict boolean type checking enabled:**
 
 1. **Mixed Type Props** - When a prop accepts multiple types (e.g., `boolean | string | number`):
-
    - **NEVER use `&&` or `||` operators** for conditional logic
    - **ALWAYS use explicit ternary operators** with `typeof` checks
    - **ALWAYS use explicit equality checks** (`===`, `!==`)
@@ -485,7 +484,6 @@ export function ComponentRoute(): ReactElement {
 **Required steps for every new route:**
 
 1. **Add to Router Configuration** (`/prototype/router.tsx`):
-
    - Import the route component
    - Add route configuration with appropriate path
    - Follow existing patterns exactly
