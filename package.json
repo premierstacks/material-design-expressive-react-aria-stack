@@ -12,7 +12,7 @@
     "email": "chocholatom1997@gmail.com",
     "url": "https://github.com/premierstacks/material-design-expressive-react-aria-stack/issues"
   },
-  "license": "Apache-2.0",
+  "license": "CC-BY-ND-4.0",
   "author": {
     "email": "chocholatom1997@gmail.com",
     "name": "Tomáš Chochola",
@@ -70,7 +70,7 @@
     "fix:eslint": "eslint --fix .",
     "fix:prettier": "prettier -w .",
     "fix:stylelint": "stylelint --fix ./**/*.{sass,scss,css}",
-    "lint": "npm run lint:eslint && npm run lint:stylelint && npm run lint:prettier",
+    "lint": "npm run stan && npm run lint:eslint && npm run lint:stylelint && npm run lint:prettier",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier -c .",
     "lint:stylelint": "stylelint ./**/*.{sass,scss,css}",

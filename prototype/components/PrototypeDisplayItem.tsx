@@ -23,7 +23,7 @@ const itemStyles = stylex.create({
 
 const labelStyles = stylex.create({
   base: {
-    paddingLeft: '2rem',
+    textAlign: 'center',
   },
 });
 
