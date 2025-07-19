@@ -2,7 +2,7 @@ import * as stylex from '@stylexjs/stylex';
 import type { ReactElement } from 'react';
 import { ExpressiveBorderLayer, ExpressiveFontLabelLarge } from '../../src';
 import { expressiveSysColor, expressiveSysRadius } from '../../src/stylex/sys.stylex';
-import { PrototypeDisplay } from '../components/PrototypeDisplay';
+import { StorybookDisplay } from '../components/StorybookDisplay';
 
 const styles = stylex.create({
   box: {
@@ -51,8 +51,8 @@ function ColorBox({ name, color, text }: ColorBoxProps): ReactElement {
 
 export function ColorsRoute(): ReactElement {
   return (
-    <PrototypeDisplay>
-      <PrototypeDisplay.Items
+    <StorybookDisplay>
+      <StorybookDisplay.Items
         label="Primary colors"
       >
         <ColorBox
@@ -75,9 +75,9 @@ export function ColorsRoute(): ReactElement {
           color={expressiveSysColor.onPrimaryContainer}
           text={expressiveSysColor.primaryContainer}
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Secondary colors"
       >
         <ColorBox
@@ -100,9 +100,9 @@ export function ColorsRoute(): ReactElement {
           color={expressiveSysColor.onSecondaryContainer}
           text={expressiveSysColor.secondaryContainer}
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Tertiary colors"
       >
         <ColorBox
@@ -125,9 +125,9 @@ export function ColorsRoute(): ReactElement {
           color={expressiveSysColor.onTertiaryContainer}
           text={expressiveSysColor.tertiaryContainer}
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Error colors"
       >
         <ColorBox
@@ -150,9 +150,9 @@ export function ColorsRoute(): ReactElement {
           color={expressiveSysColor.onErrorContainer}
           text={expressiveSysColor.errorContainer}
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Surface colors"
       >
         <ColorBox
@@ -215,9 +215,9 @@ export function ColorsRoute(): ReactElement {
           color={expressiveSysColor.surfaceTint}
           text={expressiveSysColor.onPrimary}
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Outline colors"
       >
         <ColorBox
@@ -230,9 +230,9 @@ export function ColorsRoute(): ReactElement {
           color={expressiveSysColor.outlineVariant}
           text={expressiveSysColor.onSurface}
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Add-ons / Primary colors"
       >
         <ColorBox
@@ -260,9 +260,9 @@ export function ColorsRoute(): ReactElement {
           color={expressiveSysColor.inversePrimary}
           text={expressiveSysColor.inverseSurface}
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Add-ons / Secondary colors"
       >
         <ColorBox
@@ -285,9 +285,9 @@ export function ColorsRoute(): ReactElement {
           color={expressiveSysColor.onSecondaryFixedVariant}
           text={expressiveSysColor.secondaryFixed}
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Add-ons / Tertiary colors"
       >
         <ColorBox
@@ -310,9 +310,9 @@ export function ColorsRoute(): ReactElement {
           color={expressiveSysColor.onTertiaryFixedVariant}
           text={expressiveSysColor.tertiaryFixed}
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Add-ons / Surface colors"
       >
         <ColorBox
@@ -345,7 +345,7 @@ export function ColorsRoute(): ReactElement {
           color={expressiveSysColor.shadow}
           text={expressiveSysColor.surface}
         />
-      </PrototypeDisplay.Items>
-    </PrototypeDisplay>
+      </StorybookDisplay.Items>
+    </StorybookDisplay>
   );
 }

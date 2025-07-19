@@ -1,11 +1,11 @@
 import type { ReactElement } from 'react';
 import { ExpressiveFilledCard, ExpressiveSurfacePadding } from '../../src';
-import { PrototypeDisplay } from '../components/PrototypeDisplay';
+import { StorybookDisplay } from '../components/StorybookDisplay';
 
 export function CardsRoute(): ReactElement {
   return (
-    <PrototypeDisplay>
-      <PrototypeDisplay.Item
+    <StorybookDisplay>
+      <StorybookDisplay.Item
         label="Filled Card"
       >
         <ExpressiveFilledCard>
@@ -13,7 +13,7 @@ export function CardsRoute(): ReactElement {
             Filled Card
           </ExpressiveSurfacePadding>
         </ExpressiveFilledCard>
-      </PrototypeDisplay.Item>
-    </PrototypeDisplay>
+      </StorybookDisplay.Item>
+    </StorybookDisplay>
   );
 }

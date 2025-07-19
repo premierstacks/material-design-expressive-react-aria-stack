@@ -16,12 +16,12 @@ import {
   ExpressiveHeadingTitleMedium,
   ExpressiveHeadingTitleSmall,
 } from '../../src';
-import { PrototypeDisplay } from '../components/PrototypeDisplay';
+import { StorybookDisplay } from '../components/StorybookDisplay';
 
 export function HeadingsRoute(): ReactElement {
   return (
-    <PrototypeDisplay>
-      <PrototypeDisplay.Item
+    <StorybookDisplay>
+      <StorybookDisplay.Item
         label="H1"
       >
         <ExpressiveHeadingDisplayLarge
@@ -129,9 +129,9 @@ export function HeadingsRoute(): ReactElement {
         >
           Label Small
         </ExpressiveHeadingLabelSmall>
-      </PrototypeDisplay.Item>
+      </StorybookDisplay.Item>
 
-      <PrototypeDisplay.Item
+      <StorybookDisplay.Item
         label="H2"
       >
         <ExpressiveHeadingDisplayLarge
@@ -239,9 +239,9 @@ export function HeadingsRoute(): ReactElement {
         >
           Label Small
         </ExpressiveHeadingLabelSmall>
-      </PrototypeDisplay.Item>
+      </StorybookDisplay.Item>
 
-      <PrototypeDisplay.Item
+      <StorybookDisplay.Item
         label="H3"
       >
         <ExpressiveHeadingDisplayLarge
@@ -349,9 +349,9 @@ export function HeadingsRoute(): ReactElement {
         >
           Label Small
         </ExpressiveHeadingLabelSmall>
-      </PrototypeDisplay.Item>
+      </StorybookDisplay.Item>
 
-      <PrototypeDisplay.Item
+      <StorybookDisplay.Item
         label="H4"
       >
         <ExpressiveHeadingDisplayLarge
@@ -459,9 +459,9 @@ export function HeadingsRoute(): ReactElement {
         >
           Label Small
         </ExpressiveHeadingLabelSmall>
-      </PrototypeDisplay.Item>
+      </StorybookDisplay.Item>
 
-      <PrototypeDisplay.Item
+      <StorybookDisplay.Item
         label="H5"
       >
         <ExpressiveHeadingDisplayLarge
@@ -569,9 +569,9 @@ export function HeadingsRoute(): ReactElement {
         >
           Label Small
         </ExpressiveHeadingLabelSmall>
-      </PrototypeDisplay.Item>
+      </StorybookDisplay.Item>
 
-      <PrototypeDisplay.Item
+      <StorybookDisplay.Item
         label="H6"
       >
         <ExpressiveHeadingDisplayLarge
@@ -679,7 +679,7 @@ export function HeadingsRoute(): ReactElement {
         >
           Label Small
         </ExpressiveHeadingLabelSmall>
-      </PrototypeDisplay.Item>
-    </PrototypeDisplay>
+      </StorybookDisplay.Item>
+    </StorybookDisplay>
   );
 }

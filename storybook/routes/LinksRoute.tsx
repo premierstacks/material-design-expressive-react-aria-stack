@@ -1,11 +1,11 @@
 import type { ReactElement } from 'react';
 import { ExpressiveElevatedLink, ExpressiveFilledLink, ExpressiveOutlinedLink, ExpressiveRandomSymbol, ExpressiveTextLink, ExpressiveTonalLink } from '../../src';
-import { PrototypeDisplay } from '../components/PrototypeDisplay';
+import { StorybookDisplay } from '../components/StorybookDisplay';
 
 export function LinksRoute(): ReactElement {
   return (
-    <PrototypeDisplay>
-      <PrototypeDisplay.Items
+    <StorybookDisplay>
+      <StorybookDisplay.Items
         label="Elevated Link"
       >
         <ExpressiveElevatedLink
@@ -28,8 +28,8 @@ export function LinksRoute(): ReactElement {
           isDisabled
           href="#fake"
         />
-      </PrototypeDisplay.Items>
-      <PrototypeDisplay.Items
+      </StorybookDisplay.Items>
+      <StorybookDisplay.Items
         label="Tonal Link"
       >
         <ExpressiveTonalLink
@@ -52,8 +52,8 @@ export function LinksRoute(): ReactElement {
           isDisabled
           href="#fake"
         />
-      </PrototypeDisplay.Items>
-      <PrototypeDisplay.Items
+      </StorybookDisplay.Items>
+      <StorybookDisplay.Items
         label="Filled Link"
       >
         <ExpressiveFilledLink
@@ -76,8 +76,8 @@ export function LinksRoute(): ReactElement {
           isDisabled
           href="#fake"
         />
-      </PrototypeDisplay.Items>
-      <PrototypeDisplay.Items
+      </StorybookDisplay.Items>
+      <StorybookDisplay.Items
         label="Outlined Link"
       >
         <ExpressiveOutlinedLink
@@ -100,8 +100,8 @@ export function LinksRoute(): ReactElement {
           isDisabled
           href="#fake"
         />
-      </PrototypeDisplay.Items>
-      <PrototypeDisplay.Items
+      </StorybookDisplay.Items>
+      <StorybookDisplay.Items
         label="Text Link"
       >
         <ExpressiveTextLink
@@ -124,7 +124,7 @@ export function LinksRoute(): ReactElement {
           isDisabled
           href="#fake"
         />
-      </PrototypeDisplay.Items>
-    </PrototypeDisplay>
+      </StorybookDisplay.Items>
+    </StorybookDisplay>
   );
 }

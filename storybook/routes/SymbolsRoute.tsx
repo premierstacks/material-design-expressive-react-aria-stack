@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 import type { ReactElement } from 'react';
 import { ExpressiveIcon, ExpressiveSymbolCircle, ExpressiveSymbolFlower, ExpressiveSymbolPill, ExpressiveSymbolRect, ExpressiveSymbolTriangle } from '../../src';
-import { PrototypeDisplay } from '../components/PrototypeDisplay';
+import { StorybookDisplay } from '../components/StorybookDisplay';
 
 const styles = stylex.create({
   base: {
@@ -12,8 +12,8 @@ const styles = stylex.create({
 
 export function SymbolsRoute(): ReactElement {
   return (
-    <PrototypeDisplay>
-      <PrototypeDisplay.Item
+    <StorybookDisplay>
+      <StorybookDisplay.Item
         label="Circle"
       >
         <ExpressiveIcon
@@ -23,8 +23,8 @@ export function SymbolsRoute(): ReactElement {
             />
           )}
         />
-      </PrototypeDisplay.Item>
-      <PrototypeDisplay.Item
+      </StorybookDisplay.Item>
+      <StorybookDisplay.Item
         label="Flower"
       >
         <ExpressiveIcon
@@ -34,8 +34,8 @@ export function SymbolsRoute(): ReactElement {
             />
           )}
         />
-      </PrototypeDisplay.Item>
-      <PrototypeDisplay.Item
+      </StorybookDisplay.Item>
+      <StorybookDisplay.Item
         label="Pill"
       >
         <ExpressiveIcon
@@ -45,8 +45,8 @@ export function SymbolsRoute(): ReactElement {
             />
           )}
         />
-      </PrototypeDisplay.Item>
-      <PrototypeDisplay.Item
+      </StorybookDisplay.Item>
+      <StorybookDisplay.Item
         label="Rect"
       >
         <ExpressiveIcon
@@ -56,8 +56,8 @@ export function SymbolsRoute(): ReactElement {
             />
           )}
         />
-      </PrototypeDisplay.Item>
-      <PrototypeDisplay.Item
+      </StorybookDisplay.Item>
+      <StorybookDisplay.Item
         label="Triangle"
       >
         <ExpressiveIcon
@@ -67,7 +67,7 @@ export function SymbolsRoute(): ReactElement {
             />
           )}
         />
-      </PrototypeDisplay.Item>
-    </PrototypeDisplay>
+      </StorybookDisplay.Item>
+    </StorybookDisplay>
   );
 }

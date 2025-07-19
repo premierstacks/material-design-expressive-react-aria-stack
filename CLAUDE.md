@@ -162,16 +162,16 @@ Complete transition presets:
 3. **DIRECT TOKEN USAGE** - Use only sys.stylex.ts and preset.stylex.ts tokens
 4. **NO NEW TOKENS** - Never create custom StyleX tokens or variables
 5. **ONE COMPONENT PER FILE** - Each component in its own file
-6. **PROTOTYPE ROUTE REQUIRED** - Every component needs a demo route
+6. **STORYBOOK ROUTE REQUIRED** - Every component needs a demo route
 
 ### File Structure Pattern
 
 ```
 /src/components/ExpressiveComponentName.tsx      # Component implementation
 /src/index.ts                            # Export component
-/prototype/routes/ComponentNameRoute.tsx  # Demo route
-/prototype/routes/SplitRoute.tsx          # Add navigation link here
-/prototype/router.tsx                     # Add route configuration here
+/storybook/routes/ComponentNameRoute.tsx  # Demo route
+/storybook/routes/SplitRoute.tsx          # Add navigation link here
+/storybook/router.tsx                     # Add route configuration here
 ```
 
 ### Required Import Pattern
@@ -417,27 +417,27 @@ All interactive components use React Aria and follow this pattern:
 - `expressiveFocusLayer` - Focus ring management
 - `expressiveDocumentBackgroundEffect` - Global document styling
 
-## Prototype Route Requirements
+## Storybook Route Requirements
 
-**CRITICAL: Before implementing any prototype route, you MUST read the complete content of 5 random existing prototype routes from `/prototype/routes/` to understand the current patterns, PrototypeDisplay usage, and organizational approaches.**
+**CRITICAL: Before implementing any storybook route, you MUST read the complete content of 5 random existing storybook routes from `/storybook/routes/` to understand the current patterns, StorybookDisplay usage, and organizational approaches.**
 
-### PrototypeDisplay Layout Rules
+### StorybookDisplay Layout Rules
 
-**ALWAYS use PrototypeDisplay components for layout - NEVER create custom grids or layout components:**
+**ALWAYS use StorybookDisplay components for layout - NEVER create custom grids or layout components:**
 
-1. **PrototypeDisplay.Item** - For single sections or grouped content:
+1. **StorybookDisplay.Item** - For single sections or grouped content:
 
    ```typescript
-   <PrototypeDisplay.Item label="Section Description">
+   <StorybookDisplay.Item label="Section Description">
      {/* Multiple related components grouped together */}
-   </PrototypeDisplay.Item>
+   </StorybookDisplay.Item>
    ```
 
-2. **PrototypeDisplay.Items** - For collections of similar variants:
+2. **StorybookDisplay.Items** - For collections of similar variants:
    ```typescript
-   <PrototypeDisplay.Items label="Component Type">
+   <StorybookDisplay.Items label="Component Type">
      {/* Multiple component states/variants */}
-   </PrototypeDisplay.Items>
+   </StorybookDisplay.Items>
    ```
 
 ### Route Structure Pattern
@@ -446,7 +446,7 @@ All interactive components use React Aria and follow this pattern:
 import * as stylex from '@stylexjs/stylex';
 import type { ReactElement } from 'react';
 import { ExpressiveComponent } from '../../src';
-import { PrototypeDisplay } from '../components/PrototypeDisplay';
+import { StorybookDisplay } from '../components/StorybookDisplay';
 
 // Optional: Only for component-specific styling (boxes, etc.)
 const styles = stylex.create({
@@ -457,24 +457,24 @@ const styles = stylex.create({
 
 export function ComponentRoute(): ReactElement {
   return (
-    <PrototypeDisplay>
-      <PrototypeDisplay.Item label="Basic Usage">
+    <StorybookDisplay>
+      <StorybookDisplay.Item label="Basic Usage">
         <ExpressiveComponent>Example usage</ExpressiveComponent>
-      </PrototypeDisplay.Item>
+      </StorybookDisplay.Item>
 
-      <PrototypeDisplay.Items label="Variants">
+      <StorybookDisplay.Items label="Variants">
         <ExpressiveComponent variant="primary">Primary</ExpressiveComponent>
         <ExpressiveComponent variant="secondary">Secondary</ExpressiveComponent>
-      </PrototypeDisplay.Items>
-    </PrototypeDisplay>
+      </StorybookDisplay.Items>
+    </StorybookDisplay>
   );
 }
 ```
 
 **Key Requirements:**
 
-- **NO custom grid layouts** - use PrototypeDisplay.Item/Items
-- **NO section divs with marginBottom** - PrototypeDisplay handles spacing
+- **NO custom grid layouts** - use StorybookDisplay.Item/Items
+- **NO section divs with marginBottom** - StorybookDisplay handles spacing
 - **ALWAYS use label prop** to describe content
 - **Group related content** within same Item/Items
 - **Study existing routes** before implementing to match patterns
@@ -483,12 +483,12 @@ export function ComponentRoute(): ReactElement {
 
 **Required steps for every new route:**
 
-1. **Add to Router Configuration** (`/prototype/router.tsx`):
+1. **Add to Router Configuration** (`/storybook/router.tsx`):
    - Import the route component
    - Add route configuration with appropriate path
    - Follow existing patterns exactly
 
-2. **Add Navigation Link** (`/prototype/routes/SplitRoute.tsx`):
+2. **Add Navigation Link** (`/storybook/routes/SplitRoute.tsx`):
    - Add a new `<Link>` element in the `Nav` component
    - Use the same path as in router configuration
    - Use descriptive link text
@@ -511,7 +511,7 @@ export function ComponentRoute(): ReactElement {
 </div>
 ```
 
-**Both steps are mandatory - routes without navigation links cannot be easily accessed in the prototype.**
+**Both steps are mandatory - routes without navigation links cannot be easily accessed in the storybook.**
 
 ## Testing Requirements
 
@@ -551,10 +551,10 @@ export function ComponentRoute(): ReactElement {
 - `/src/components/ExpressiveSurface.tsx` - Surface with elevation
 - `/src/components/ExpressiveContainerPadding.tsx` - Layout container
 
-**Prototype Routes:**
+**Storybook Routes:**
 
-- `/prototype/routes/FontsRoute.tsx` - Typography showcase
-- `/prototype/routes/ButtonsRoute.tsx` - Interactive components
+- `/storybook/routes/FontsRoute.tsx` - Typography showcase
+- `/storybook/routes/ButtonsRoute.tsx` - Interactive components
 
 ## Quality Assurance
 
@@ -617,12 +617,12 @@ This ensures:
 - **ALWAYS** use `typeof prop === 'string' || typeof prop === 'number'` for mixed type checks
 - **NEVER** use `typeof prop !== 'boolean'` pattern
 
-**Prototype Route Requirements (Updated):**
+**Storybook Route Requirements (Updated):**
 
-- **ALL** storybook examples **MUST** be wrapped in `PrototypeDisplay.Item` for dotted background
-- **NEVER** render components directly in PrototypeDisplay without Item wrapper
-- **USE label prop** on `PrototypeDisplay.Item` to describe the content instead of separate headings
-- **GROUP related components** within single `PrototypeDisplay.Item` rather than separate items for better visual organization
+- **ALL** storybook examples **MUST** be wrapped in `StorybookDisplay.Item` for dotted background
+- **NEVER** render components directly in StorybookDisplay without Item wrapper
+- **USE label prop** on `StorybookDisplay.Item` to describe the content instead of separate headings
+- **GROUP related components** within single `StorybookDisplay.Item` rather than separate items for better visual organization
 
 **Typography Hierarchy (Updated):**
 
@@ -649,11 +649,11 @@ This ensures:
 - **Storybook Routes:** Use single `styles` instance for all route-specific styling
 - **Semantic Naming:** Choose descriptive names based on element purpose rather than generic names
 
-**Prototype Route Layout Patterns (Updated):**
+**Storybook Route Layout Patterns (Updated):**
 
-- **ALWAYS** use `PrototypeDisplay.Item` or `PrototypeDisplay.Items` for all content sections
+- **ALWAYS** use `StorybookDisplay.Item` or `StorybookDisplay.Items` for all content sections
 - **NEVER** create custom grids, section divs with marginBottom, or custom layout components
-- **PrototypeDisplay.Item** for single sections or grouped content with `label` prop
-- **PrototypeDisplay.Items** for collections of similar variants with `label` prop
-- **CRITICAL:** Read 5 existing prototype routes before implementing to understand current patterns
-- **NO custom styling** for layout - rely on PrototypeDisplay components for consistent spacing and backgrounds
+- **StorybookDisplay.Item** for single sections or grouped content with `label` prop
+- **StorybookDisplay.Items** for collections of similar variants with `label` prop
+- **CRITICAL:** Read 5 existing storybook routes before implementing to understand current patterns
+- **NO custom styling** for layout - rely on StorybookDisplay components for consistent spacing and backgrounds

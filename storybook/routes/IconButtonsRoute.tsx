@@ -1,12 +1,12 @@
 import type { ReactElement } from 'react';
 import { ExpressiveRandomSymbol, ExpressiveTouchTarget } from '../../src';
 import { ExpressiveStandardIconButton } from '../../src/components/ExpressiveStandardIconButton';
-import { PrototypeDisplay } from '../components/PrototypeDisplay';
+import { StorybookDisplay } from '../components/StorybookDisplay';
 
 export function IconButtonsRoute(): ReactElement {
   return (
-    <PrototypeDisplay>
-      <PrototypeDisplay.Items
+    <StorybookDisplay>
+      <StorybookDisplay.Items
         label="Standard Icon Button"
       >
         <ExpressiveTouchTarget>
@@ -20,7 +20,7 @@ export function IconButtonsRoute(): ReactElement {
             isDisabled
           />
         </ExpressiveTouchTarget>
-      </PrototypeDisplay.Items>
-    </PrototypeDisplay>
+      </StorybookDisplay.Items>
+    </StorybookDisplay>
   );
 }

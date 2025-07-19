@@ -16,12 +16,12 @@ import {
   ExpressiveFontTitleMedium,
   ExpressiveFontTitleSmall,
 } from '../../src';
-import { PrototypeDisplay } from '../components/PrototypeDisplay';
+import { StorybookDisplay } from '../components/StorybookDisplay';
 
 export function FontsRoute(): ReactElement {
   return (
-    <PrototypeDisplay>
-      <PrototypeDisplay.Item
+    <StorybookDisplay>
+      <StorybookDisplay.Item
         label="Typography"
       >
         <ExpressiveFontDisplayLarge
@@ -99,7 +99,7 @@ export function FontsRoute(): ReactElement {
         >
           Label Small
         </ExpressiveFontLabelSmall>
-      </PrototypeDisplay.Item>
-    </PrototypeDisplay>
+      </StorybookDisplay.Item>
+    </StorybookDisplay>
   );
 }

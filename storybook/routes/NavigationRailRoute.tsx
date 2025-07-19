@@ -1,14 +1,14 @@
 import type { ReactElement } from 'react';
 import { useLocation } from 'react-router';
 import { ExpressiveNavigationRail, ExpressiveNavigationRailItems, ExpressiveNavigationRailLink, ExpressiveRandomSymbol } from '../../src';
-import { PrototypeDisplay } from '../components/PrototypeDisplay';
+import { StorybookDisplay } from '../components/StorybookDisplay';
 
 export function NavigationRailRoute(): ReactElement {
   const location = useLocation();
 
   return (
-    <PrototypeDisplay>
-      <PrototypeDisplay.Item
+    <StorybookDisplay>
+      <StorybookDisplay.Item
         label="Navigation Rail"
       >
         <ExpressiveNavigationRail>
@@ -51,7 +51,7 @@ export function NavigationRailRoute(): ReactElement {
             />
           </ExpressiveNavigationRailItems>
         </ExpressiveNavigationRail>
-      </PrototypeDisplay.Item>
-    </PrototypeDisplay>
+      </StorybookDisplay.Item>
+    </StorybookDisplay>
   );
 }

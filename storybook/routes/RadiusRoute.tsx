@@ -2,7 +2,7 @@ import * as stylex from '@stylexjs/stylex';
 import type { ReactElement } from 'react';
 import { ExpressiveFontLabelLarge } from '../../src';
 import { expressiveSysColor, expressiveSysRadius } from '../../src/stylex/sys.stylex';
-import { PrototypeDisplay } from '../components/PrototypeDisplay';
+import { StorybookDisplay } from '../components/StorybookDisplay';
 
 const styles = stylex.create({
   box: {
@@ -82,8 +82,8 @@ function RadiusBox({ label, radius, corner }: RadiusBoxProps): ReactElement {
 
 export function RadiusRoute(): ReactElement {
   return (
-    <PrototypeDisplay>
-      <PrototypeDisplay.Items
+    <StorybookDisplay>
+      <StorybookDisplay.Items
         label="None"
       >
         <RadiusBox
@@ -111,9 +111,9 @@ export function RadiusRoute(): ReactElement {
           radius={expressiveSysRadius.none}
           corner="all"
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Extra Small"
       >
         <RadiusBox
@@ -141,9 +141,9 @@ export function RadiusRoute(): ReactElement {
           radius={expressiveSysRadius.extraSmall}
           corner="all"
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Small"
       >
         <RadiusBox
@@ -171,9 +171,9 @@ export function RadiusRoute(): ReactElement {
           radius={expressiveSysRadius.small}
           corner="all"
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Medium"
       >
         <RadiusBox
@@ -201,9 +201,9 @@ export function RadiusRoute(): ReactElement {
           radius={expressiveSysRadius.medium}
           corner="all"
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Large"
       >
         <RadiusBox
@@ -231,9 +231,9 @@ export function RadiusRoute(): ReactElement {
           radius={expressiveSysRadius.large}
           corner="all"
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Large Increased"
       >
         <RadiusBox
@@ -261,9 +261,9 @@ export function RadiusRoute(): ReactElement {
           radius={expressiveSysRadius.largeIncreased}
           corner="all"
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Extra Large"
       >
         <RadiusBox
@@ -291,9 +291,9 @@ export function RadiusRoute(): ReactElement {
           radius={expressiveSysRadius.extraLarge}
           corner="all"
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Extra Large Increased"
       >
         <RadiusBox
@@ -321,9 +321,9 @@ export function RadiusRoute(): ReactElement {
           radius={expressiveSysRadius.extraLargeIncreased}
           corner="all"
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Extra Extra Large"
       >
         <RadiusBox
@@ -351,9 +351,9 @@ export function RadiusRoute(): ReactElement {
           radius={expressiveSysRadius.extraExtraLarge}
           corner="all"
         />
-      </PrototypeDisplay.Items>
+      </StorybookDisplay.Items>
 
-      <PrototypeDisplay.Items
+      <StorybookDisplay.Items
         label="Full"
       >
         <RadiusBox
@@ -381,7 +381,7 @@ export function RadiusRoute(): ReactElement {
           radius={expressiveSysRadius.full}
           corner="all"
         />
-      </PrototypeDisplay.Items>
-    </PrototypeDisplay>
+      </StorybookDisplay.Items>
+    </StorybookDisplay>
   );
 }

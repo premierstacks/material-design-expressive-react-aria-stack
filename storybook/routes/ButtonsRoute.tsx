@@ -1,12 +1,12 @@
 import type { ReactElement } from 'react';
 import { ExpressiveFilledButton, ExpressiveOutlinedButton, ExpressiveRandomSymbol, ExpressiveTextButton, ExpressiveTonalButton } from '../../src';
 import { ExpressiveElevatedButton } from '../../src/components/ExpressiveElevatedButton';
-import { PrototypeDisplay } from '../components/PrototypeDisplay';
+import { StorybookDisplay } from '../components/StorybookDisplay';
 
 export function ButtonsRoute(): ReactElement {
   return (
-    <PrototypeDisplay>
-      <PrototypeDisplay.Items
+    <StorybookDisplay>
+      <StorybookDisplay.Items
         label="Elevated Button"
       >
         <ExpressiveElevatedButton
@@ -25,8 +25,8 @@ export function ButtonsRoute(): ReactElement {
           label="Elevated Button"
           isDisabled
         />
-      </PrototypeDisplay.Items>
-      <PrototypeDisplay.Items
+      </StorybookDisplay.Items>
+      <StorybookDisplay.Items
         label="Tonal Button"
       >
         <ExpressiveTonalButton
@@ -45,8 +45,8 @@ export function ButtonsRoute(): ReactElement {
           label="Tonal Button"
           isDisabled
         />
-      </PrototypeDisplay.Items>
-      <PrototypeDisplay.Items
+      </StorybookDisplay.Items>
+      <StorybookDisplay.Items
         label="Filled Button"
       >
         <ExpressiveFilledButton
@@ -65,8 +65,8 @@ export function ButtonsRoute(): ReactElement {
           label="Filled Button"
           isDisabled
         />
-      </PrototypeDisplay.Items>
-      <PrototypeDisplay.Items
+      </StorybookDisplay.Items>
+      <StorybookDisplay.Items
         label="Outlined Button"
       >
         <ExpressiveOutlinedButton
@@ -85,8 +85,8 @@ export function ButtonsRoute(): ReactElement {
           label="Outlined Button"
           isDisabled
         />
-      </PrototypeDisplay.Items>
-      <PrototypeDisplay.Items
+      </StorybookDisplay.Items>
+      <StorybookDisplay.Items
         label="Text Button"
       >
         <ExpressiveTextButton
@@ -105,7 +105,7 @@ export function ButtonsRoute(): ReactElement {
           label="Text Button"
           isDisabled
         />
-      </PrototypeDisplay.Items>
-    </PrototypeDisplay>
+      </StorybookDisplay.Items>
+    </StorybookDisplay>
   );
 }

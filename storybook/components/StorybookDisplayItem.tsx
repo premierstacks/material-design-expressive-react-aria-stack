@@ -1,9 +1,11 @@
 import * as stylex from '@stylexjs/stylex';
 import type { ReactElement, ReactNode } from 'react';
+import { ExpressiveHeadingHeadlineLarge } from '../../src';
+import { expressiveSysColor } from '../../src/stylex/sys.stylex';
 
 const itemStyles = stylex.create({
   base: {
-    backgroundImage: `radial-gradient(circle, rgb(0 0 100 / 0.2) 1px, transparent 1px), radial-gradient(circle, rgb(0 0 100 / 0.2) 1px, transparent 1px)`,
+    backgroundImage: `radial-gradient(circle, rgb(${expressiveSysColor.primary} / 0.2) 1px, transparent 1px), radial-gradient(circle, rgb(${expressiveSysColor.primary} / 0.2) 1px, transparent 1px)`,
     backgroundPositionX: '0px, 5px',
     backgroundPositionY: '0px, 5px',
     backgroundRepeat: 'repeat',
@@ -21,7 +23,6 @@ const itemStyles = stylex.create({
 
 const labelStyles = stylex.create({
   base: {
-    marginBottom: '0.5lh',
     textAlign: 'center',
   },
 });
@@ -37,11 +38,13 @@ export function StorybookDisplayItem({ children, label, xstyle }: StorybookDispl
     <div>
       {label !== undefined
         ? (
-            <div
-              {...stylex.props(labelStyles.base)}
+            <ExpressiveHeadingHeadlineLarge
+              bottom
+              block
+              xstyle={labelStyles.base}
             >
               {label}
-            </div>
+            </ExpressiveHeadingHeadlineLarge>
           )
         : null}
       <div

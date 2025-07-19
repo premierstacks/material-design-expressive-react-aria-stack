@@ -2,26 +2,26 @@ import type { ReactElement } from 'react';
 import { ExpressiveHorizontalDivider } from '../../src/components/ExpressiveHorizontalDivider';
 import { ExpressiveTildeHorizontalDivider } from '../../src/components/ExpressiveTildeHorizontalDivider';
 import { ExpressiveWiggleHorizontalDivider } from '../../src/components/ExpressiveWiggleHorizontalDivider';
-import { PrototypeDisplay } from '../components/PrototypeDisplay';
+import { StorybookDisplay } from '../components/StorybookDisplay';
 
 export function DividersRoute(): ReactElement {
   return (
-    <PrototypeDisplay>
-      <PrototypeDisplay.Item
+    <StorybookDisplay>
+      <StorybookDisplay.Item
         label="Horizontal Divider"
       >
         <ExpressiveHorizontalDivider />
-      </PrototypeDisplay.Item>
-      <PrototypeDisplay.Item
+      </StorybookDisplay.Item>
+      <StorybookDisplay.Item
         label="Tilde Horizontal Divider"
       >
         <ExpressiveTildeHorizontalDivider />
-      </PrototypeDisplay.Item>
-      <PrototypeDisplay.Item
+      </StorybookDisplay.Item>
+      <StorybookDisplay.Item
         label="Wiggle Horizontal Divider"
       >
         <ExpressiveWiggleHorizontalDivider />
-      </PrototypeDisplay.Item>
-    </PrototypeDisplay>
+      </StorybookDisplay.Item>
+    </StorybookDisplay>
   );
 }

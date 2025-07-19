@@ -1,7 +1,7 @@
 import stylex from '@stylexjs/stylex';
 import { useEffect, useState, type ReactElement } from 'react';
 import { ExpressiveActivationLayer } from '../../src/components/ExpressiveActivationLayer';
-import { PrototypeDisplay } from '../components/PrototypeDisplay';
+import { StorybookDisplay } from '../components/StorybookDisplay';
 
 const styles = stylex.create({
   base: {
@@ -24,22 +24,22 @@ export function InteractionsRoute(): ReactElement {
   }, [setIsActive]);
 
   return (
-    <PrototypeDisplay>
-      <PrototypeDisplay.Item
+    <StorybookDisplay>
+      <StorybookDisplay.Item
         label="Activation Layer"
         xstyle={styles.base}
       >
         <ExpressiveActivationLayer
           isActive={isActive}
         />
-      </PrototypeDisplay.Item>
-      <PrototypeDisplay.Item
+      </StorybookDisplay.Item>
+      <StorybookDisplay.Item
         xstyle={styles.base}
       >
         <ExpressiveActivationLayer
           isActive={!isActive}
         />
-      </PrototypeDisplay.Item>
-    </PrototypeDisplay>
+      </StorybookDisplay.Item>
+    </StorybookDisplay>
   );
 }
