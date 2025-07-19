@@ -12,7 +12,7 @@ export default defineConfig([
     }
   },
   {
-    files: ['./prototype/**/*.tsx'],
+    files: ['./storybook/**/*.tsx'],
     rules: {
       'react/jsx-no-literals': 'off',
     }
