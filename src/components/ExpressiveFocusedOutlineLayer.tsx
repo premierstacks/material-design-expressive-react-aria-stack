@@ -2,7 +2,7 @@ import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement } from 'react';
 import { expressiveSysColor, expressiveSysDuration, expressiveSysTimingFunction } from '../stylex/sys.stylex';
 
-export interface ExpressiveFocusLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
+export interface ExpressiveFocusOutlineLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
   readonly isFocusVisible?: boolean;
   readonly isInset?: boolean;
   readonly xstyle?: stylex.StyleXStyles;
@@ -90,7 +90,7 @@ const rootStyles = stylex.create({
   },
 });
 
-export function ExpressiveFocusLayer({ isFocusVisible = false, isInset = false, xstyle, ...props }: ExpressiveFocusLayerProps): ReactElement {
+export function ExpressiveFocusedOutlineLayer({ isFocusVisible = false, isInset = false, xstyle, ...props }: ExpressiveFocusOutlineLayerProps): ReactElement {
   const variant = isInset ? rootStyles.isInset : rootStyles.isOutline;
 
   return (

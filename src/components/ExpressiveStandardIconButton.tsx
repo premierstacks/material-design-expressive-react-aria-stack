@@ -4,9 +4,11 @@ import { Button, type ButtonProps, type ButtonRenderProps } from 'react-aria-com
 import { toClass, toCssProperties } from '../helpers/styles';
 import { expressivePresetTransition } from '../stylex/preset.stylex';
 import { expressiveSysColor, expressiveSysOpacity, expressiveSysRadius } from '../stylex/sys.stylex';
-import { ExpressiveFocusLayer } from './ExpressiveFocusLayer';
+import { ExpressiveFocusedStateLayer } from './ExpressiveFocusedStateLayer';
+import { ExpressiveFocusedOutlineLayer } from './ExpressiveFocusedOutlineLayer';
+import { ExpressiveHoveredStateLayer } from './ExpressiveHovererdStateLayer';
 import { ExpressiveIcon } from './ExpressiveIcon';
-import { ExpressiveInteractionLayer } from './ExpressiveInteractionLayer';
+import { ExpressivePressedStateLayer } from './ExpressivePressedStateLayer';
 
 interface ExpressiveStandardIconButtonProps extends Omit<ButtonProps, 'style' | 'className' | 'children'> {
   readonly xstyle?: stylex.StyleXStyles;
@@ -78,17 +80,20 @@ export function ExpressiveStandardIconButton({ xstyle, symbol, ...props }: Expre
       {(args) => {
         return (
           <>
-            <ExpressiveInteractionLayer
+            <ExpressiveHoveredStateLayer
               isHovered={args.isHovered}
-              isDragged={false}
-              isFocused={args.isFocusVisible}
+            />
+            <ExpressivePressedStateLayer
               isPressed={args.isPressed}
+            />
+            <ExpressiveFocusedStateLayer
+              isFocused={args.isFocusVisible}
             />
             <ExpressiveIcon
               size="calc(24/16*1rem)"
               symbol={symbol}
             />
-            <ExpressiveFocusLayer
+            <ExpressiveFocusedOutlineLayer
               isFocusVisible={args.isFocusVisible}
             />
           </>

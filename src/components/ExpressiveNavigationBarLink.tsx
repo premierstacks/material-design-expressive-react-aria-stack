@@ -5,8 +5,10 @@ import { toClass, toCssProperties } from '../helpers/styles';
 import { expressivePresetFont, expressivePresetTransition } from '../stylex/preset.stylex';
 import { expressiveSysColor, expressiveSysOpacity, expressiveSysRadius } from '../stylex/sys.stylex';
 import { ExpressiveActivationLayer } from './ExpressiveActivationLayer';
-import { ExpressiveFocusLayer } from './ExpressiveFocusLayer';
-import { ExpressiveInteractionLayer } from './ExpressiveInteractionLayer';
+import { ExpressiveFocusedStateLayer } from './ExpressiveFocusedStateLayer';
+import { ExpressiveFocusedOutlineLayer } from './ExpressiveFocusedOutlineLayer';
+import { ExpressiveHoveredStateLayer } from './ExpressiveHovererdStateLayer';
+import { ExpressivePressedStateLayer } from './ExpressivePressedStateLayer';
 
 export interface ExpressiveNavigationBarLinkProps extends Omit<LinkProps, 'style' | 'className' | 'children'> {
   readonly symbol: ReactNode;
@@ -120,18 +122,21 @@ export function ExpressiveNavigationBarLink({ label, symbol, xstyle, ...props }:
             <ExpressiveActivationLayer
               isActive={args.isCurrent}
             />
-            <ExpressiveInteractionLayer
+            <ExpressiveHoveredStateLayer
               isHovered={args.isHovered}
-              isDragged={false}
-              isFocused={args.isFocusVisible}
+            />
+            <ExpressivePressedStateLayer
               isPressed={args.isPressed}
+            />
+            <ExpressiveFocusedStateLayer
+              isFocused={args.isFocusVisible}
             />
             <span
               {...stylex.props(symbolStyles.base)}
             >
               {symbol}
             </span>
-            <ExpressiveFocusLayer
+            <ExpressiveFocusedOutlineLayer
               isFocusVisible={args.isFocusVisible}
               isInset
             />

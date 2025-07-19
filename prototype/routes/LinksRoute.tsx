@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import { ExpressiveElevatedLink, ExpressiveOutlinedLink, ExpressiveRandomSymbol, ExpressiveTextLink, ExpressiveTonalLink } from '../../src';
+import { ExpressiveElevatedLink, ExpressiveFilledLink, ExpressiveOutlinedLink, ExpressiveRandomSymbol, ExpressiveTextLink, ExpressiveTonalLink } from '../../src';
 import { PrototypeDisplay } from '../components/PrototypeDisplay';
 
 export function LinksRoute(): ReactElement {
@@ -56,22 +56,22 @@ export function LinksRoute(): ReactElement {
       <PrototypeDisplay.Items
         label="Filled Link"
       >
-        <ExpressiveElevatedLink
+        <ExpressiveFilledLink
           label="Filled Link"
           symbol={<ExpressiveRandomSymbol />}
           href="#fake"
         />
-        <ExpressiveElevatedLink
+        <ExpressiveFilledLink
           label="Filled Link"
           symbol={<ExpressiveRandomSymbol />}
           isDisabled
           href="#fake"
         />
-        <ExpressiveElevatedLink
+        <ExpressiveFilledLink
           label="Filled Link"
           href="#fake"
         />
-        <ExpressiveElevatedLink
+        <ExpressiveFilledLink
           label="Filled Link"
           isDisabled
           href="#fake"

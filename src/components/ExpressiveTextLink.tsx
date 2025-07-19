@@ -5,8 +5,10 @@ import { Link } from 'react-aria-components';
 import { toClass, toCssProperties } from '../helpers/styles';
 import { expressivePresetFont, expressivePresetTransition } from '../stylex/preset.stylex';
 import { expressiveSysColor, expressiveSysOpacity, expressiveSysRadius } from '../stylex/sys.stylex';
-import { ExpressiveFocusLayer } from './ExpressiveFocusLayer';
-import { ExpressiveInteractionLayer } from './ExpressiveInteractionLayer';
+import { ExpressiveFocusedStateLayer } from './ExpressiveFocusedStateLayer';
+import { ExpressiveFocusedOutlineLayer } from './ExpressiveFocusedOutlineLayer';
+import { ExpressiveHoveredStateLayer } from './ExpressiveHovererdStateLayer';
+import { ExpressivePressedStateLayer } from './ExpressivePressedStateLayer';
 
 export interface ExpressiveTextLinkProps extends Omit<LinkProps, 'style' | 'className' | 'children'> {
   readonly symbol?: ReactNode;
@@ -91,11 +93,14 @@ export function ExpressiveTextLink({ symbol, xstyle, label, ...props }: Expressi
     >
       {(args) => (
         <>
-          <ExpressiveInteractionLayer
+          <ExpressiveHoveredStateLayer
             isHovered={args.isHovered}
-            isDragged={false}
-            isFocused={args.isFocusVisible}
+          />
+          <ExpressivePressedStateLayer
             isPressed={args.isPressed}
+          />
+          <ExpressiveFocusedStateLayer
+            isFocused={args.isFocusVisible}
           />
           {symbol !== undefined
             ? (
@@ -111,7 +116,7 @@ export function ExpressiveTextLink({ symbol, xstyle, label, ...props }: Expressi
           >
             {label}
           </span>
-          <ExpressiveFocusLayer
+          <ExpressiveFocusedOutlineLayer
             isFocusVisible={args.isFocusVisible}
           />
         </>

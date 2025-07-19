@@ -7,7 +7,7 @@ import { ExpressiveSymbolPill } from '../symbols/ExpressiveSymbolPill';
 import { ExpressiveSymbolRect } from '../symbols/ExpressiveSymbolRect';
 import { ExpressiveSymbolTriangle } from '../symbols/ExpressiveSymbolTriangle';
 
-const symbols = [
+export const ExpressiveRandomSymbolPool = [
   ExpressiveSymbolCircle,
   ExpressiveSymbolFlower,
   ExpressiveSymbolPill,
@@ -26,9 +26,9 @@ interface ExpressiveRandomSymbolProps extends Omit<SVGAttributes<SVGSVGElement>,
 }
 
 export function ExpressiveRandomSymbol(props: ExpressiveRandomSymbolProps): ReactElement {
-  const draw = useMemo(() => next() % symbols.length, []);
+  const draw = useMemo(() => next() % ExpressiveRandomSymbolPool.length, []);
 
-  const SymbolComponent = symbols[draw];
+  const SymbolComponent = ExpressiveRandomSymbolPool[draw];
 
   if (SymbolComponent === undefined) {
     throw new Error(`ExpressiveRandomSymbol: no symbol component found for index ${draw.toString()}`);

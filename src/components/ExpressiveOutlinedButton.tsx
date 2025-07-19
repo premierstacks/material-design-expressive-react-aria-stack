@@ -5,9 +5,11 @@ import { Button } from 'react-aria-components';
 import { toClass, toCssProperties } from '../helpers/styles';
 import { expressivePresetFont, expressivePresetTransition } from '../stylex/preset.stylex';
 import { expressiveSysColor, expressiveSysOpacity, expressiveSysRadius } from '../stylex/sys.stylex';
-import { ExpressiveFocusLayer } from './ExpressiveFocusLayer';
-import { ExpressiveInteractionLayer } from './ExpressiveInteractionLayer';
-import { ExpressiveOutlineLayer } from './ExpressiveOutlineLayer';
+import { ExpressiveBorderLayer } from './ExpressiveBorderLayer';
+import { ExpressiveFocusedStateLayer } from './ExpressiveFocusedStateLayer';
+import { ExpressiveFocusedOutlineLayer } from './ExpressiveFocusedOutlineLayer';
+import { ExpressiveHoveredStateLayer } from './ExpressiveHovererdStateLayer';
+import { ExpressivePressedStateLayer } from './ExpressivePressedStateLayer';
 
 export interface ExpressiveOutlinedButtonProps extends Omit<ButtonProps, 'style' | 'className' | 'children'> {
   readonly symbol?: ReactNode;
@@ -92,11 +94,14 @@ export function ExpressiveOutlinedButton({ symbol, xstyle, label, ...props }: Ex
     >
       {(args) => (
         <>
-          <ExpressiveInteractionLayer
+          <ExpressiveHoveredStateLayer
             isHovered={args.isHovered}
-            isDragged={false}
-            isFocused={args.isFocusVisible}
+          />
+          <ExpressivePressedStateLayer
             isPressed={args.isPressed}
+          />
+          <ExpressiveFocusedStateLayer
+            isFocused={args.isFocusVisible}
           />
           {symbol !== undefined
             ? (
@@ -112,10 +117,10 @@ export function ExpressiveOutlinedButton({ symbol, xstyle, label, ...props }: Ex
           >
             {label}
           </span>
-          <ExpressiveOutlineLayer
+          <ExpressiveBorderLayer
             isDisabled={args.isDisabled}
           />
-          <ExpressiveFocusLayer
+          <ExpressiveFocusedOutlineLayer
             isFocusVisible={args.isFocusVisible}
           />
         </>

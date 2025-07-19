@@ -3,10 +3,13 @@ import { useCallback, type CSSProperties, type ReactNode } from 'react';
 import type { ButtonProps, ButtonRenderProps } from 'react-aria-components';
 import { Button } from 'react-aria-components';
 import { toClass, toCssProperties } from '../helpers/styles';
-import { expressivePresetFont, expressivePresetTransition } from '../stylex/preset.stylex';
+import { expressivePresetFont, expressivePresetReset, expressivePresetTransition } from '../stylex/preset.stylex';
 import { expressiveSysColor, expressiveSysOpacity, expressiveSysRadius } from '../stylex/sys.stylex';
-import { ExpressiveFocusLayer } from './ExpressiveFocusLayer';
-import { ExpressiveInteractionLayer } from './ExpressiveInteractionLayer';
+import { ExpressiveFocusedStateLayer } from './ExpressiveFocusedStateLayer';
+import { ExpressiveFocusedOutlineLayer } from './ExpressiveFocusedOutlineLayer';
+import { ExpressiveHoveredStateLayer } from './ExpressiveHovererdStateLayer';
+import { ExpressiveIcon } from './ExpressiveIcon';
+import { ExpressivePressedStateLayer } from './ExpressivePressedStateLayer';
 
 export interface ExpressiveFilledButtonProps extends Omit<ButtonProps, 'style' | 'className' | 'children'> {
   readonly symbol?: ReactNode;
@@ -20,23 +23,17 @@ const rootStyles = stylex.create({
     backgroundColor: `rgb(${expressiveSysColor.primary})`,
     borderBottomLeftRadius: expressiveSysRadius.full,
     borderBottomRightRadius: expressiveSysRadius.full,
-    borderBottomStyle: 'none',
-    borderLeftStyle: 'none',
-    borderRightStyle: 'none',
     borderTopLeftRadius: expressiveSysRadius.full,
     borderTopRightRadius: expressiveSysRadius.full,
-    borderTopStyle: 'none',
     color: `rgb(${expressiveSysColor.onPrimary})`,
     columnGap: 8,
     display: 'inline-flex',
     height: 40,
     justifyContent: 'center',
-    outlineStyle: 'none',
     paddingLeft: 16,
     paddingRight: 16,
     position: 'relative',
     textAlign: 'center',
-    textDecorationLine: 'inherit',
     transitionProperty: 'background-color, color, border-color',
     whiteSpace: 'nowrap',
   },
@@ -46,30 +43,22 @@ const rootStyles = stylex.create({
   },
 });
 
-const symbolStyles = stylex.create({
+const labelStyles = stylex.create({
   base: {
     alignItems: 'center',
     display: 'inline-flex',
-    fontSize: 18,
-    justifyContent: 'center',
-    maxHeight: 18,
-    maxWidth: 18,
+    flexShrink: 0,
     position: 'relative',
-  },
-});
-
-const labelStyles = stylex.create({
-  base: {
-    display: 'inline-block',
-    position: 'relative',
+    whiteSpace: 'nowrap',
   },
 });
 
 export function ExpressiveFilledButton({ symbol, xstyle, label, ...props }: ExpressiveFilledButtonProps) {
   const ariax = useCallback((args: ButtonRenderProps) => {
     return stylex.props(
-      rootStyles.base,
+      expressivePresetReset.button,
       expressivePresetTransition.effectsFast,
+      rootStyles.base,
       args.isDisabled || args.isPending ? rootStyles.isDisabled : null,
       xstyle,
     );
@@ -91,27 +80,29 @@ export function ExpressiveFilledButton({ symbol, xstyle, label, ...props }: Expr
     >
       {(args) => (
         <>
-          <ExpressiveInteractionLayer
+          <ExpressiveHoveredStateLayer
             isHovered={args.isHovered}
-            isDragged={false}
-            isFocused={args.isFocusVisible}
+          />
+          <ExpressivePressedStateLayer
             isPressed={args.isPressed}
+          />
+          <ExpressiveFocusedStateLayer
+            isFocused={args.isFocusVisible}
           />
           {symbol !== undefined
             ? (
-                <span
-                  {...stylex.props(symbolStyles.base)}
-                >
-                  {symbol}
-                </span>
+                <ExpressiveIcon
+                  size={18}
+                  symbol={symbol}
+                />
               )
             : null}
           <span
-            {...stylex.props(labelStyles.base, expressivePresetFont.labelLarge)}
+            {...stylex.props(expressivePresetFont.labelLarge, labelStyles.base)}
           >
             {label}
           </span>
-          <ExpressiveFocusLayer
+          <ExpressiveFocusedOutlineLayer
             isFocusVisible={args.isFocusVisible}
           />
         </>

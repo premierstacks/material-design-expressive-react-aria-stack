@@ -11,14 +11,14 @@ const rootStyles = stylex.create({
   base: {
     alignItems: 'center',
     display: 'inline-flex',
-    fontSize: 'inherit',
-    justifyContent: 'center',
-    maxHeight: '1em',
-    maxWidth: '1em',
+    flexShrink: 0,
+    fontSize: 'calc(24/16*1rem)',
+    height: '1em',
+    maxHeight: '100%',
     position: 'relative',
-    verticalAlign: 'middle',
+    whiteSpace: 'nowrap',
   },
-  size: (size: number | string) => ({ fontSize: size }),
+  size: (size: number | string) => ({ fontSize: typeof size === 'number' ? `calc(${size.toFixed()}/16*1rem)` : size }),
 });
 
 export function ExpressiveIcon({ size, xstyle, symbol, ...props }: ExpressiveIconProps): ReactElement {

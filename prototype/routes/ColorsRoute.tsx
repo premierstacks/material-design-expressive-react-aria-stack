@@ -1,6 +1,6 @@
 import * as stylex from '@stylexjs/stylex';
 import type { ReactElement } from 'react';
-import { ExpressiveFontLabelLarge, ExpressiveOutlineLayer } from '../../src';
+import { ExpressiveBorderLayer, ExpressiveFontLabelLarge } from '../../src';
 import { expressiveSysColor, expressiveSysRadius } from '../../src/stylex/sys.stylex';
 import { PrototypeDisplay } from '../components/PrototypeDisplay';
 
@@ -44,7 +44,7 @@ function ColorBox({ name, color, text }: ColorBoxProps): ReactElement {
       >
         {name}
       </ExpressiveFontLabelLarge>
-      <ExpressiveOutlineLayer />
+      <ExpressiveBorderLayer />
     </div>
   );
 }

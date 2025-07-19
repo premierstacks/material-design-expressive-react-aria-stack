@@ -19,7 +19,7 @@ const rootStyles = stylex.create({
     columnGap: 16,
     display: 'grid',
     gridTemplateColumns: 'auto 1fr auto',
-    height: 64,
+    minHeight: 64,
     paddingLeft: 16,
     paddingRight: 16,
     position: 'relative',
@@ -53,12 +53,14 @@ const trailingStyles = stylex.create({
 const headlineStyles = stylex.create({
   base: {
     color: `rgb(${expressiveSysColor.onSurface})`,
+    lineHeight: 1,
   },
 });
 
 const subheadStyles = stylex.create({
   base: {
     color: `rgb(${expressiveSysColor.onSurfaceVariant})`,
+    lineHeight: 1,
   },
 });
 
@@ -90,7 +92,7 @@ export function ExpressiveSmallAppBar({
         {headline !== undefined
           ? (
               <div
-                {...stylex.props(headlineStyles.base, expressivePresetFont.titleLarge)}
+                {...stylex.props(expressivePresetFont.titleLarge, headlineStyles.base)}
               >
                 {headline}
               </div>
@@ -99,7 +101,7 @@ export function ExpressiveSmallAppBar({
         {subhead !== undefined
           ? (
               <div
-                {...stylex.props(subheadStyles.base, expressivePresetFont.labelLarge)}
+                {...stylex.props(expressivePresetFont.labelLarge, subheadStyles.base)}
               >
                 {subhead}
               </div>

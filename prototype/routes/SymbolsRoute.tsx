@@ -1,6 +1,6 @@
 import stylex from '@stylexjs/stylex';
 import type { ReactElement } from 'react';
-import { ExpressiveRandomSymbol } from '../../src';
+import { ExpressiveIcon, ExpressiveSymbolCircle, ExpressiveSymbolFlower, ExpressiveSymbolPill, ExpressiveSymbolRect, ExpressiveSymbolTriangle } from '../../src';
 import { PrototypeDisplay } from '../components/PrototypeDisplay';
 
 const styles = stylex.create({
@@ -14,38 +14,58 @@ export function SymbolsRoute(): ReactElement {
   return (
     <PrototypeDisplay>
       <PrototypeDisplay.Item
-        label="Symbol Circle"
+        label="Circle"
       >
-        <ExpressiveRandomSymbol
-          xstyle={styles.base}
+        <ExpressiveIcon
+          symbol={(
+            <ExpressiveSymbolCircle
+              xstyle={styles.base}
+            />
+          )}
         />
       </PrototypeDisplay.Item>
       <PrototypeDisplay.Item
-        label="Symbol Flower"
+        label="Flower"
       >
-        <ExpressiveRandomSymbol
-          xstyle={styles.base}
+        <ExpressiveIcon
+          symbol={(
+            <ExpressiveSymbolFlower
+              xstyle={styles.base}
+            />
+          )}
         />
       </PrototypeDisplay.Item>
       <PrototypeDisplay.Item
-        label="Symbol Pill"
+        label="Pill"
       >
-        <ExpressiveRandomSymbol
-          xstyle={styles.base}
+        <ExpressiveIcon
+          symbol={(
+            <ExpressiveSymbolPill
+              xstyle={styles.base}
+            />
+          )}
         />
       </PrototypeDisplay.Item>
       <PrototypeDisplay.Item
-        label="Symbol Rectangle"
+        label="Rect"
       >
-        <ExpressiveRandomSymbol
-          xstyle={styles.base}
+        <ExpressiveIcon
+          symbol={(
+            <ExpressiveSymbolRect
+              xstyle={styles.base}
+            />
+          )}
         />
       </PrototypeDisplay.Item>
       <PrototypeDisplay.Item
-        label="Symbol Triangle"
+        label="Triangle"
       >
-        <ExpressiveRandomSymbol
-          xstyle={styles.base}
+        <ExpressiveIcon
+          symbol={(
+            <ExpressiveSymbolTriangle
+              xstyle={styles.base}
+            />
+          )}
         />
       </PrototypeDisplay.Item>
     </PrototypeDisplay>

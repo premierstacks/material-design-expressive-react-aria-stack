@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import { ExpressiveOutlinedButton, ExpressiveRandomSymbol, ExpressiveTextButton, ExpressiveTonalButton } from '../../src';
+import { ExpressiveFilledButton, ExpressiveOutlinedButton, ExpressiveRandomSymbol, ExpressiveTextButton, ExpressiveTonalButton } from '../../src';
 import { ExpressiveElevatedButton } from '../../src/components/ExpressiveElevatedButton';
 import { PrototypeDisplay } from '../components/PrototypeDisplay';
 
@@ -49,19 +49,19 @@ export function ButtonsRoute(): ReactElement {
       <PrototypeDisplay.Items
         label="Filled Button"
       >
-        <ExpressiveElevatedButton
+        <ExpressiveFilledButton
           label="Filled Button"
           symbol={<ExpressiveRandomSymbol />}
         />
-        <ExpressiveElevatedButton
+        <ExpressiveFilledButton
           label="Filled Button"
           symbol={<ExpressiveRandomSymbol />}
           isDisabled
         />
-        <ExpressiveElevatedButton
+        <ExpressiveFilledButton
           label="Filled Button"
         />
-        <ExpressiveElevatedButton
+        <ExpressiveFilledButton
           label="Filled Button"
           isDisabled
         />

@@ -2,7 +2,7 @@ import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement } from 'react';
 import { expressiveSysOpacity } from '../stylex/sys.stylex';
 
-export interface ExpressiveInteractionLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
+export interface ExpressiveStateLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
   readonly isDragged?: boolean;
   readonly isFocused?: boolean;
   readonly isHovered?: boolean;
@@ -19,6 +19,7 @@ const rootStyles = stylex.create({
     borderTopRightRadius: 'inherit',
     bottom: 0,
     left: 0,
+    opacity: 0,
     overflowX: 'hidden',
     overflowY: 'hidden',
     pointerEvents: 'none',
@@ -27,22 +28,29 @@ const rootStyles = stylex.create({
     top: 0,
     userSelect: 'none',
   },
-  opacity: (pressed: string, hovered: string, focused: string, dragged: string) => ({
-    opacity: `calc(${pressed} + ${hovered} + ${focused} + ${dragged})`,
-  }),
+  hovered: {
+    opacity: expressiveSysOpacity.hovered,
+  },
+  pressed: {
+    opacity: expressiveSysOpacity.pressed,
+  },
+  focused: {
+    opacity: expressiveSysOpacity.focused,
+  },
+  dragged: {
+    opacity: expressiveSysOpacity.dragged,
+  },
 });
 
-export function ExpressiveInteractionLayer({ isHovered = false, isPressed = false, isFocused = false, isDragged = false, xstyle, ...props }: ExpressiveInteractionLayerProps): ReactElement {
+export function ExpressiveStateLayer({ isHovered = false, isPressed = false, isFocused = false, isDragged = false, xstyle, ...props }: ExpressiveStateLayerProps): ReactElement {
   return (
     <div
       {...stylex.props(
         rootStyles.base,
-        rootStyles.opacity(
-          isPressed ? expressiveSysOpacity.pressed : '0',
-          isHovered ? expressiveSysOpacity.hovered : '0',
-          isFocused ? expressiveSysOpacity.focused : '0',
-          isDragged ? expressiveSysOpacity.dragged : '0',
-        ),
+        isHovered ? rootStyles.hovered : null,
+        isFocused ? rootStyles.focused : null,
+        isPressed ? rootStyles.pressed : null,
+        isDragged ? rootStyles.dragged : null,
         xstyle,
       )}
       {...props}

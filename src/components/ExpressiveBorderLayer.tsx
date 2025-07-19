@@ -2,7 +2,7 @@ import * as stylex from '@stylexjs/stylex';
 import type { HTMLAttributes, ReactElement } from 'react';
 import { expressiveSysColor, expressiveSysOpacity } from '../stylex/sys.stylex';
 
-export interface ExpressiveOutlineLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
+export interface ExpressiveBorderLayerProps extends Omit<HTMLAttributes<HTMLDivElement>, 'style' | 'className' | 'children'> {
   readonly xstyle?: stylex.StyleXStyles;
   readonly isDisabled?: boolean;
 }
@@ -43,7 +43,7 @@ const rootStyles = stylex.create({
   },
 });
 
-export function ExpressiveOutlineLayer({ isDisabled = false, xstyle, ...props }: ExpressiveOutlineLayerProps): ReactElement {
+export function ExpressiveBorderLayer({ isDisabled = false, xstyle, ...props }: ExpressiveBorderLayerProps): ReactElement {
   return (
     <div
       {...stylex.props(rootStyles.base, isDisabled ? rootStyles.isDisabled : null, xstyle)}
