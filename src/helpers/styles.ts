@@ -1,59 +1,52 @@
 import type { CSSProperties } from 'react';
+import type { StandardLonghandProperties } from 'csstype';
 
-export function toClass(
-  a: string | null | undefined,
-  b: string | null | undefined,
-): string {
-  const classes: string[] = [];
+export function mergeClassNames(...names: (string | null | undefined | boolean)[]): string {
+  const result = new Set<string>();
 
-  if (typeof a === 'string' && a.trim() !== '') {
-    classes.push(...a.trim().split(/\s+/));
+  for (const name of names) {
+    if (typeof name === 'string') {
+      name.trim().split(/\s+/).forEach((cls) => result.add(cls));
+    }
   }
 
-  if (typeof b === 'string' && b.trim() !== '') {
-    classes.push(...b.trim().split(/\s+/));
-  }
-
-  return classes.join(' ');
+  return Array.from(result).join(' ');
 }
 
-export function toCssProperties(
-  a: CSSProperties | null | undefined,
-  b: CSSProperties | null | undefined,
-): CSSProperties {
-  return Object.assign({}, a, b);
+export function mergeCssProperties(...properties: (CSSProperties | null | undefined | boolean)[]): CSSProperties {
+  const result: CSSProperties = {};
+
+  for (const prop of properties) {
+    if (typeof prop === 'object' && prop !== null) {
+      Object.assign(result, prop);
+    }
+  }
+
+  return result;
 }
 
-function normalizePart(part: string | null | undefined): string | null | undefined {
-  if (typeof part !== 'string') {
-    return null;
+export function styles(...properties: StandardLonghandProperties[]): StandardLonghandProperties {
+  const result: StandardLonghandProperties = {};
+
+  for (const prop of properties) {
+    Object.assign(result, prop);
   }
 
-  let trimmed = part.trim();
-
-  if (trimmed.endsWith(';')) {
-    trimmed = trimmed.slice(0, -1).trim();
-  }
-
-  return trimmed !== '' ? trimmed : null;
+  return result;
 }
 
-export function toStyle(
-  a: string | null | undefined,
-  b: string | null | undefined,
-): string {
-  const styles: string[] = [];
-
-  const normalizedA = normalizePart(a) ?? '';
-  const normalizedB = normalizePart(b) ?? '';
-
-  if (normalizedA !== '') {
-    styles.push(normalizedA);
+export function toRem(size: number | string): string {
+  if (typeof size === 'number') {
+    return `calc(${size.toFixed()}/16*1rem)`;
   }
 
-  if (normalizedB !== '') {
-    styles.push(normalizedB);
+  if (size.endsWith('px')) {
+    return `calc(${size.slice(0, -2)}/16*1rem)`;
   }
 
-  return styles.join('; ');
+  if (size.startsWith('calc(') && size.endsWith(')')) {
+    return size;
+  }
+
+  throw new Error(`toRem: unsupported string value [${size}]`);
 }

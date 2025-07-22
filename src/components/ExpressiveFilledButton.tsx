@@ -2,7 +2,7 @@ import * as stylex from '@stylexjs/stylex';
 import { useCallback, type CSSProperties, type ReactNode } from 'react';
 import type { ButtonProps, ButtonRenderProps } from 'react-aria-components';
 import { Button } from 'react-aria-components';
-import { toClass, toCssProperties } from '../helpers/styles';
+import { mergeClassNames, mergeCssProperties } from '../helpers/styles';
 import { expressivePresetFont, expressivePresetReset, expressivePresetTransition } from '../stylex/preset.stylex';
 import { expressiveSysColor, expressiveSysOpacity, expressiveSysRadius } from '../stylex/sys.stylex';
 import { ExpressiveFocusedStateLayer } from './ExpressiveFocusedStateLayer';
@@ -65,11 +65,11 @@ export function ExpressiveFilledButton({ symbol, xstyle, label, ...props }: Expr
   }, [xstyle]);
 
   const handleClassName = useCallback((args: ButtonRenderProps & { defaultClassName: string | undefined }) => {
-    return toClass(args.defaultClassName, ariax(args).className);
+    return mergeClassNames(args.defaultClassName, ariax(args).className);
   }, [ariax]);
 
   const handleStyle = useCallback((args: ButtonRenderProps & { defaultStyle: CSSProperties | undefined }) => {
-    return toCssProperties(args.defaultStyle, ariax(args).style);
+    return mergeCssProperties(args.defaultStyle, ariax(args).style);
   }, [ariax]);
 
   return (
